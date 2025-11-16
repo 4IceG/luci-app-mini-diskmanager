@@ -10,11 +10,6 @@ LuCI JS Mini Disk Manager. Interface for simple disk/partition management from O
 >
 > <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_Poland.png" height="24"> LuCI JS Mini Disk Manager. Interfejs do prostego zarządzania dyskami/partycjami z poziomu OpenWrt.
 
-> [!IMPORTANT]
-> ***Package will be available soon. Work is in progress...***
-> 
-> ***Pakiet pojawi się niebawem. Prace trwają...***
-
 
 > [!IMPORTANT]
 > ***Required Packages:***
