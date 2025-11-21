@@ -1,2 +1,0 @@
-config filesystem 'config'
-	option enabled '1'
