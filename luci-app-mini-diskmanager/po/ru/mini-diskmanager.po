@@ -1,0 +1,635 @@
+msgid "Disk Manager"
+msgstr "Менеджер дисков"
+
+msgid "-- Select a disk --"
+msgstr "-- Выберите диск --"
+
+msgid "Disk"
+msgstr "Диск"
+
+msgid "Refresh"
+msgstr "Обновить"
+
+msgid "Mounting actions"
+msgstr "Действия монтирования"
+
+msgid "Actions on partitions"
+msgstr "Операции с разделами"
+
+msgid "Mount"
+msgstr "Монтировать"
+
+msgid "Unmount"
+msgstr "Размонтировать"
+
+msgid "Create"
+msgstr "Создать"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Format"
+msgstr "Форматировать"
+
+msgid "Please select a disk to view its partitions"
+msgstr "Выберите диск для просмотра его разделов"
+
+msgid "Please select a disk first"
+msgstr "Сначала выберите диск"
+
+msgid "Please select a partition first"
+msgstr "Сначала выберите раздел"
+
+msgid "Loading disk information..."
+msgstr "Загрузка информации о диске..."
+
+msgid "Error loading disk information: "
+msgstr "Ошибка загрузки информации о диске: "
+
+msgid "Disk Information"
+msgstr "Информация о диске"
+
+msgid "Temperature"
+msgstr "Температура"
+
+msgid "S.M.A.R.T."
+msgstr "S.M.A.R.T."
+
+msgid "S.M.A.R.T. Status"
+msgstr "Статус S.M.A.R.T."
+
+msgid "Partitions"
+msgstr "Разделы"
+
+msgid "Mount Status"
+msgstr "Статус монтирования"
+
+msgid "Mounted"
+msgstr "Смонтирован"
+
+msgid "Not mounted"
+msgstr "Не смонтирован"
+
+msgid "Partition Layout"
+msgstr "Схема разделов"
+
+msgid "Partition"
+msgstr "Раздел"
+
+msgid "Type / Filesystem"
+msgstr "Тип / Файловая система"
+
+msgid "Mount Point"
+msgstr "Точка монтирования"
+
+msgid "Label"
+msgstr "Метка"
+
+msgid "Size"
+msgstr "Размер"
+
+msgid "Used"
+msgstr "Использовано"
+
+msgid "Unused"
+msgstr "Свободно"
+
+msgid "Flags"
+msgstr "Флаги"
+
+msgid "No partitions found"
+msgstr "Разделы не найдены"
+
+msgid "Unallocated"
+msgstr "Не распределено"
+
+msgid "Area without partition table"
+msgstr "Область без таблицы разделов"
+
+msgid "Free Space"
+msgstr "Свободное место"
+
+msgid "Primary"
+msgstr "Первичный"
+
+msgid "Extended"
+msgstr "Расширенный"
+
+msgid "Logical"
+msgstr "Логический"
+
+msgid "Create partition"
+msgstr "Создать раздел"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "File system"
+msgstr "Файловая система"
+
+msgid "Volume label"
+msgstr "Метка тома"
+
+msgid "Partition size"
+msgstr "Размер раздела"
+
+msgid "Enter size"
+msgstr "Введите размер"
+
+msgid "Use all available space"
+msgstr "Использовать всё доступное место"
+
+msgid "Available: %s MB / %s GB / %s TB"
+msgstr "Доступно: %s МБ / %s ГБ / %s ТБ"
+
+msgid "Please enter a valid size"
+msgstr "Введите корректный размер"
+
+msgid "Size is too small"
+msgstr "Размер слишком мал"
+
+msgid "Creating partition..."
+msgstr "Создание раздела..."
+
+msgid "Partition created successfully"
+msgstr "Раздел успешно создан"
+
+msgid "Failed to create partition"
+msgstr "Не удалось создать раздел"
+
+msgid "Format Partition"
+msgstr "Форматировать раздел"
+
+msgid "Warning"
+msgstr "Предупреждение"
+
+msgid "This will erase all data on /dev/%s"
+msgstr "Это удалит все данные на /dev/%s"
+
+msgid "Formatting partition..."
+msgstr "Форматирование раздела..."
+
+msgid "Partition formatted successfully"
+msgstr "Раздел успешно отформатирован"
+
+msgid "Failed to format partition"
+msgstr "Не удалось отформатировать раздел"
+
+msgid "Delete Partition"
+msgstr "Удалить раздел"
+
+msgid "Are you sure you want to continue?"
+msgstr "Вы уверены, что хотите продолжить?"
+
+msgid "Deleting partition..."
+msgstr "Удаление раздела..."
+
+msgid "Partition deleted successfully"
+msgstr "Раздел успешно удалён"
+
+msgid "Failed to delete partition"
+msgstr "Не удалось удалить раздел"
+
+msgid "No partitions to mount"
+msgstr "Нет разделов для монтирования"
+
+msgid "No mounted partitions found"
+msgstr "Не найдено смонтированных разделов"
+
+msgid "No partitions to unmount"
+msgstr "Нет разделов для размонтирования"
+
+msgid "Mounted to %s"
+msgstr "Смонтировано в %s"
+
+msgid "Unmounted %s"
+msgstr "Размонтировано %s"
+
+msgid "Failed to mount: "
+msgstr "Не удалось смонтировать: "
+
+msgid "Failed to unmount: "
+msgstr "Не удалось размонтировать: "
+
+msgid "Failed to check operation status: "
+msgstr "Не удалось проверить статус операции: "
+
+msgid "Partition created but device node did not appear in time"
+msgstr "Раздел создан, но узел устройства не появился вовремя"
+
+msgid "Partition created but device node did not appear; please refresh manually"
+msgstr "Раздел создан, но узел устройства не появился; обновите вручную"
+
+msgid "PASSED"
+msgstr "ПРОЙДЕН"
+
+msgid "FAILED"
+msgstr "НЕ ПРОЙДЕН"
+
+msgid "Cannot create partition on mounted disk. Please unmount first."
+msgstr "Невозможно создать раздел на смонтированном диске. Сначала размонтируйте."
+
+msgid "No unallocated space available on this disk"
+msgstr "На этом диске нет нераспределённого места"
+
+msgid "Cannot format mounted partition. Please unmount first."
+msgstr "Невозможно отформатировать смонтированный раздел. Сначала размонтируйте."
+
+msgid "Failed to refresh partition data: "
+msgstr "Не удалось обновить данные раздела: "
+
+msgid "Cannot delete partition on mounted disk. Please unmount first."
+msgstr "Невозможно удалить раздел на смонтированном диске. Сначала размонтируйте."
+
+msgid "This will delete partition /dev/%s and all its data!"
+msgstr "Это удалит раздел /dev/%s и все его данные!"
+
+msgid "Failed to load disk information: "
+msgstr "Не удалось загрузить информацию о диске: "
+
+msgid "Click to select"
+msgstr "Нажмите для выбора"
+
+msgid "Free"
+msgstr "Свободно"
+
+msgid "Select a disk"
+msgstr "Выберите диск"
+
+msgid "Create a new partition on the selected disk"
+msgstr "Создать новый раздел на выбранном диске"
+
+msgid "Partition layout"
+msgstr "Схема разделов"
+
+msgid "Partition type"
+msgstr "Тип раздела"
+
+msgid "Refresh partition data"
+msgstr "Обновить данные разделов"
+
+msgid "MBR (Master Boot Record)"
+msgstr "MBR (Главная загрузочная запись)"
+
+msgid "GPT (GUID Partition Table)"
+msgstr "GPT (Таблица разделов GUID)"
+
+msgid "The Mini Disk Manager package allows users to easily manage disks and partitions."
+msgstr "Пакет Mini Disk Manager позволяет пользователям легко управлять дисками и разделами."
+
+msgid "Configuration"
+msgstr "Конфигурация"
+
+msgid "Package and Driver Verification"
+msgstr "Проверка пакетов и драйверов"
+
+msgid "Check and install required drivers for storage devices."
+msgstr "Проверка и установка необходимых драйверов для устройств хранения."
+
+msgid "Filesystem Support"
+msgstr "Поддержка файловых систем"
+
+msgid "Check USB drivers"
+msgstr "Проверить драйверы USB"
+
+msgid "USB drivers"
+msgstr "Драйверы USB"
+
+msgid "Check NVMe drivers"
+msgstr "Проверить драйверы NVMe"
+
+msgid "NVMe drivers"
+msgstr "Драйверы NVMe"
+
+msgid "Check ATA/SATA drivers"
+msgstr "Проверить драйверы ATA/SATA"
+
+msgid "ATA/SATA drivers"
+msgstr "Драйверы ATA/SATA"
+
+msgid "Check Linux filesystem packages"
+msgstr "Проверить пакеты файловых систем Linux"
+
+msgid "Linux filesystems"
+msgstr "Файловые системы Linux"
+
+msgid "Check Windows filesystem packages"
+msgstr "Проверить пакеты файловых систем Windows"
+
+msgid "Windows filesystems"
+msgstr "Файловые системы Windows"
+
+msgid "Linux Filesystem Packages"
+msgstr "Пакеты файловых систем Linux"
+
+msgid "Windows Filesystem Packages"
+msgstr "Пакеты файловых систем Windows"
+
+msgid "Disk Manager Log"
+msgstr "Журнал менеджера дисков"
+
+msgid "Loading package data…"
+msgstr "Загрузка данных пакетов…"
+
+msgid "Loading log file…"
+msgstr "Загрузка файла журнала…"
+
+msgid "Log file content"
+msgstr "Содержимое файла журнала"
+
+msgid "Log file is empty"
+msgstr "Файл журнала пуст"
+
+msgid "Unable to read log file"
+msgstr "Невозможно прочитать файл журнала"
+
+msgid "Log file cleared successfully"
+msgstr "Файл журнала успешно очищен"
+
+msgid "Unable to clear the file"
+msgstr "Невозможно очистить файл"
+
+msgid "Installed"
+msgstr "Установлено"
+
+msgid "Install…"
+msgstr "Установить…"
+
+msgid "Clear"
+msgstr "Очистить"
+
+msgid "Download"
+msgstr "Скачать"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Failed to load package data"
+msgstr "Не удалось загрузить данные пакета"
+
+msgid "more info in log"
+msgstr "подробности в журнале"
+
+msgid "The tab allows users to support the package."
+msgstr "Вкладка позволяет пользователям поддержать пакет."
+
+msgid "Package support"
+msgstr "Поддержка пакета"
+
+msgid "Mini Disk Manager Info"
+msgstr "Информация о Mini Disk Manager"
+
+msgid "Luci-app-mdmanager"
+msgstr "Luci-app-mdmanager"
+
+msgid "Buy a coffee"
+msgstr "Угостить кофе"
+
+msgid "Buy a coffee if you want to support the development of the project and the author"
+msgstr "Угостите кофе, если хотите поддержать разработку проекта и автора"
+
+msgid "Become a sponsor"
+msgstr "Стать спонсором"
+
+msgid "Become a sponsor if you want to support the development of the project and the author"
+msgstr "Станьте спонсором, если хотите поддержать разработку проекта и автора"
+
+msgid "Write on forum"
+msgstr "Написать на форуме"
+
+msgid "Write in the topic of the package on the forum eko.one.pl"
+msgstr "Напишите в теме пакета на форуме eko.one.pl"
+
+msgid "Open discussion"
+msgstr "Открыть обсуждение"
+
+msgid "Open a package discussion on Github"
+msgstr "Открыть обсуждение пакета на Github"
+
+msgid "Report a bug"
+msgstr "Сообщить об ошибке"
+
+msgid "Report a bug on the package Github page"
+msgstr "Сообщить об ошибке на странице пакета в Github"
+
+msgid "Package name"
+msgstr "Название пакета"
+
+msgid "Author (package maintainer)"
+msgstr "Автор (сопровождающий пакета)"
+
+msgid "Information about package author and available support options."
+msgstr "Информация об авторе пакета и доступных вариантах поддержки."
+
+msgid ""
+msgstr ""
+
+msgid "All available space"
+msgstr "Всё доступное место"
+
+msgid "Cannot delete mounted partition. Please unmount first."
+msgstr "Невозможно удалить смонтированный раздел. Сначала размонтируйте."
+
+msgid "Failed to create partition: "
+msgstr "Не удалось создать раздел: "
+
+msgid "Failed to detect supported filesystems"
+msgstr "Не удалось обнаружить поддерживаемые файловые системы"
+
+msgid "Failed to format partition: "
+msgstr "Не удалось отформатировать раздел: "
+
+msgid "Failed to parse JSON response: "
+msgstr "Не удалось разобрать JSON-ответ: "
+
+msgid "Failed to start formatting"
+msgstr "Не удалось начать форматирование"
+
+msgid "Failed to start partition creation"
+msgstr "Не удалось начать создание раздела"
+
+msgid "Failed to start partition deletion"
+msgstr "Не удалось начать удаление раздела"
+
+msgid "Fill in size"
+msgstr "Заполните размер"
+
+msgid "Linux Swap"
+msgstr "Linux Swap"
+
+msgid "Loading..."
+msgstr "Загрузка..."
+
+msgid "No filesystem packages detected — user cannot choose unsupported filesystem formats."
+msgstr "Пакеты файловых систем не обнаружены — пользователь не может выбрать неподдерживаемые форматы файловых систем."
+
+msgid "No partition types available. Maximum partitions reached."
+msgstr "Нет доступных типов разделов. Достигнуто максимальное количество разделов."
+
+msgid "No supported filesystems detected on this system"
+msgstr "В этой системе не обнаружено поддерживаемых файловых систем"
+
+msgid "Optional"
+msgstr "Необязательно"
+
+msgid "Partition created but selected filesystem is not available for formatting on this system"
+msgstr "Раздел создан, но выбранная файловая система недоступна для форматирования в этой системе"
+
+msgid "Partition data refreshed"
+msgstr "Данные раздела обновлены"
+
+msgid "Please select a filesystem"
+msgstr "Выберите файловую систему"
+
+msgid "RPC call failed: "
+msgstr "Вызов RPC не удался: "
+
+msgid "Refreshing..."
+msgstr "Обновление..."
+
+msgid "Selected filesystem is not supported on this system"
+msgstr "Выбранная файловая система не поддерживается в этой системе"
+
+msgid "Selected partition is not mounted"
+msgstr "Выбранный раздел не смонтирован"
+
+msgid "unknown error"
+msgstr "неизвестная ошибка"
+
+msgid "Packages & Drivers"
+msgstr "Пакеты и драйверы"
+
+msgid "Mini Disk Manager log"
+msgstr "Журнал Mini Disk Manager"
+
+msgid "Mini Disk Manager Log"
+msgstr "Журнал Mini Disk Manager"
+
+msgid "Packages required to support various file systems."
+msgstr "Пакеты, необходимые для поддержки различных файловых систем."
+
+msgid "Expand"
+msgstr "Расширить"
+
+msgid "Resize"
+msgstr "Изменить размер"
+
+msgid "Resize Partition"
+msgstr "Изменить размер раздела"
+
+msgid "Resize partition /dev/%s"
+msgstr "Изменить размер раздела /dev/%s"
+
+msgid "Resizing partition..."
+msgstr "Изменение размера раздела..."
+
+msgid "Resizing a partition can cause data loss if not done correctly."
+msgstr "Изменение размера раздела может привести к потере данных, если выполнено неправильно."
+
+msgid "Please ensure you have a backup of important data before proceeding."
+msgstr "Убедитесь, что у вас есть резервная копия важных данных перед продолжением."
+
+msgid "Current size: %s MB / %s GB / %s TB"
+msgstr "Текущий размер: %s МБ / %s ГБ / %s ТБ"
+
+msgid "Available space: %s MB / %s GB / %s TB"
+msgstr "Доступное место: %s МБ / %s ГБ / %s ТБ"
+
+msgid "Maximum size to be obtained: %s MB / %s GB / %s TB"
+msgstr "Максимальный размер для получения: %s МБ / %s ГБ / %s ТБ"
+
+msgid "Maximum new size"
+msgstr "Максимальный новый размер"
+
+msgid "New size"
+msgstr "Новый размер"
+
+msgid "Enter new size"
+msgstr "Введите новый размер"
+
+msgid "New size must be larger than current size"
+msgstr "Новый размер должен быть больше текущего размера"
+
+msgid "New size exceeds available space"
+msgstr "Новый размер превышает доступное место"
+
+msgid "Partition resized successfully"
+msgstr "Размер раздела успешно изменён"
+
+msgid "Failed to resize partition"
+msgstr "Не удалось изменить размер раздела"
+
+msgid "Failed to resize partition: "
+msgstr "Не удалось изменить размер раздела: "
+
+msgid "Failed to start partition resize"
+msgstr "Не удалось начать изменение размера раздела"
+
+msgid "Selected partition cannot be resized. Only unmounted Ext2/3/4 partitions with available space can be resized."
+msgstr "Выбранный раздел не может быть изменён. Изменять размер можно только для размонтированных разделов Ext2/3/4 с доступным местом."
+
+msgid "MB"
+msgstr "МБ"
+
+msgid "GB"
+msgstr "ГБ"
+
+msgid "TB"
+msgstr "ТБ"
+
+msgid "Cannot Create Partition"
+msgstr "Невозможно создать раздел"
+
+msgid "Insufficient Space"
+msgstr "Недостаточно места"
+
+msgid "Cannot read partition information"
+msgstr "Невозможно прочитать информацию о разделе"
+
+msgid "Invalid extended partition"
+msgstr "Неверный расширенный раздел"
+
+msgid "Extended partition not found or has invalid size"
+msgstr "Расширенный раздел не найден или имеет неверный размер"
+
+msgid "Extended partition size: %s MB"
+msgstr "Размер расширенного раздела: %s МБ"
+
+msgid "Used by logical partitions: %s MB"
+msgstr "Использовано логическими разделами: %s МБ"
+
+msgid "Available for new logical: %s MB"
+msgstr "Доступно для нового логического: %s МБ"
+
+msgid "Required minimum: 10 MB"
+msgstr "Требуемый минимум: 10 МБ"
+
+msgid "Not enough free space in extended partition /dev/%s"
+msgstr "Недостаточно свободного места в расширенном разделе /dev/%s"
+
+msgid "Extended partition already exists. You can create primary partitions or select the extended partition to create logical partitions inside."
+msgstr "Расширенный раздел уже существует. Вы можете создать первичные разделы или выбрать расширенный раздел для создания логических разделов внутри."
+
+msgid "Creating partition inside extended partition. Only logical partitions can be created here."
+msgstr "Создание раздела внутри расширенного раздела. Здесь можно создавать только логические разделы."
+
+msgid "No partition table detected. A primary partition will be created and a partition table will be initialized."
+msgstr "Таблица разделов не обнаружена. Будет создан первичный раздел и инициализирована таблица разделов."
+
+msgid "No partition table - select to create"
+msgstr "Нет таблицы разделов - выберите для создания"
+
+msgid "No partitions - select to create"
+msgstr "Нет разделов - выберите для создания"
+
+msgid "Select to enable partition creation"
+msgstr "Выберите для включения создания раздела"
+
+msgid "Select unallocated space"
+msgstr "Выберите нераспределённое место"
+
+msgid "Unallocated space"
+msgstr "Нераспределённое место"
+
+msgid "Expand Ext2/Ext3/Ext4"
+msgstr "Расширить Ext2/Ext3/Ext4"

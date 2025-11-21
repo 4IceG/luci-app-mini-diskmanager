@@ -1,0 +1,635 @@
+msgid "Disk Manager"
+msgstr "磁盘管理器"
+
+msgid "-- Select a disk --"
+msgstr "-- 选择磁盘 --"
+
+msgid "Disk"
+msgstr "磁盘"
+
+msgid "Refresh"
+msgstr "刷新"
+
+msgid "Mounting actions"
+msgstr "挂载操作"
+
+msgid "Actions on partitions"
+msgstr "分区操作"
+
+msgid "Mount"
+msgstr "挂载"
+
+msgid "Unmount"
+msgstr "卸载"
+
+msgid "Create"
+msgstr "创建"
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "Format"
+msgstr "格式化"
+
+msgid "Please select a disk to view its partitions"
+msgstr "请选择磁盘以查看其分区"
+
+msgid "Please select a disk first"
+msgstr "请先选择磁盘"
+
+msgid "Please select a partition first"
+msgstr "请先选择分区"
+
+msgid "Loading disk information..."
+msgstr "正在加载磁盘信息..."
+
+msgid "Error loading disk information: "
+msgstr "加载磁盘信息时出错："
+
+msgid "Disk Information"
+msgstr "磁盘信息"
+
+msgid "Temperature"
+msgstr "温度"
+
+msgid "S.M.A.R.T."
+msgstr "S.M.A.R.T."
+
+msgid "S.M.A.R.T. Status"
+msgstr "S.M.A.R.T. 状态"
+
+msgid "Partitions"
+msgstr "分区"
+
+msgid "Mount Status"
+msgstr "挂载状态"
+
+msgid "Mounted"
+msgstr "已挂载"
+
+msgid "Not mounted"
+msgstr "未挂载"
+
+msgid "Partition Layout"
+msgstr "分区布局"
+
+msgid "Partition"
+msgstr "分区"
+
+msgid "Type / Filesystem"
+msgstr "类型 / 文件系统"
+
+msgid "Mount Point"
+msgstr "挂载点"
+
+msgid "Label"
+msgstr "标签"
+
+msgid "Size"
+msgstr "大小"
+
+msgid "Used"
+msgstr "已用"
+
+msgid "Unused"
+msgstr "可用"
+
+msgid "Flags"
+msgstr "标志"
+
+msgid "No partitions found"
+msgstr "未找到分区"
+
+msgid "Unallocated"
+msgstr "未分配"
+
+msgid "Area without partition table"
+msgstr "无分区表的区域"
+
+msgid "Free Space"
+msgstr "可用空间"
+
+msgid "Primary"
+msgstr "主分区"
+
+msgid "Extended"
+msgstr "扩展分区"
+
+msgid "Logical"
+msgstr "逻辑分区"
+
+msgid "Create partition"
+msgstr "创建分区"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "File system"
+msgstr "文件系统"
+
+msgid "Volume label"
+msgstr "卷标签"
+
+msgid "Partition size"
+msgstr "分区大小"
+
+msgid "Enter size"
+msgstr "输入大小"
+
+msgid "Use all available space"
+msgstr "使用所有可用空间"
+
+msgid "Available: %s MB / %s GB / %s TB"
+msgstr "可用：%s MB / %s GB / %s TB"
+
+msgid "Please enter a valid size"
+msgstr "请输入有效的大小"
+
+msgid "Size is too small"
+msgstr "大小太小"
+
+msgid "Creating partition..."
+msgstr "正在创建分区..."
+
+msgid "Partition created successfully"
+msgstr "分区创建成功"
+
+msgid "Failed to create partition"
+msgstr "创建分区失败"
+
+msgid "Format Partition"
+msgstr "格式化分区"
+
+msgid "Warning"
+msgstr "警告"
+
+msgid "This will erase all data on /dev/%s"
+msgstr "这将擦除 /dev/%s 上的所有数据"
+
+msgid "Formatting partition..."
+msgstr "正在格式化分区..."
+
+msgid "Partition formatted successfully"
+msgstr "分区格式化成功"
+
+msgid "Failed to format partition"
+msgstr "格式化分区失败"
+
+msgid "Delete Partition"
+msgstr "删除分区"
+
+msgid "Are you sure you want to continue?"
+msgstr "您确定要继续吗？"
+
+msgid "Deleting partition..."
+msgstr "正在删除分区..."
+
+msgid "Partition deleted successfully"
+msgstr "分区删除成功"
+
+msgid "Failed to delete partition"
+msgstr "删除分区失败"
+
+msgid "No partitions to mount"
+msgstr "没有可挂载的分区"
+
+msgid "No mounted partitions found"
+msgstr "未找到已挂载的分区"
+
+msgid "No partitions to unmount"
+msgstr "没有可卸载的分区"
+
+msgid "Mounted to %s"
+msgstr "已挂载到 %s"
+
+msgid "Unmounted %s"
+msgstr "已卸载 %s"
+
+msgid "Failed to mount: "
+msgstr "挂载失败："
+
+msgid "Failed to unmount: "
+msgstr "卸载失败："
+
+msgid "Failed to check operation status: "
+msgstr "检查操作状态失败："
+
+msgid "Partition created but device node did not appear in time"
+msgstr "分区已创建但设备节点未及时出现"
+
+msgid "Partition created but device node did not appear; please refresh manually"
+msgstr "分区已创建但设备节点未出现；请手动刷新"
+
+msgid "PASSED"
+msgstr "通过"
+
+msgid "FAILED"
+msgstr "失败"
+
+msgid "Cannot create partition on mounted disk. Please unmount first."
+msgstr "无法在已挂载的磁盘上创建分区。请先卸载。"
+
+msgid "No unallocated space available on this disk"
+msgstr "此磁盘上没有可用的未分配空间"
+
+msgid "Cannot format mounted partition. Please unmount first."
+msgstr "无法格式化已挂载的分区。请先卸载。"
+
+msgid "Failed to refresh partition data: "
+msgstr "刷新分区数据失败："
+
+msgid "Cannot delete partition on mounted disk. Please unmount first."
+msgstr "无法删除已挂载磁盘上的分区。请先卸载。"
+
+msgid "This will delete partition /dev/%s and all its data!"
+msgstr "这将删除分区 /dev/%s 及其所有数据！"
+
+msgid "Failed to load disk information: "
+msgstr "加载磁盘信息失败："
+
+msgid "Click to select"
+msgstr "点击以选择"
+
+msgid "Free"
+msgstr "可用"
+
+msgid "Select a disk"
+msgstr "选择磁盘"
+
+msgid "Create a new partition on the selected disk"
+msgstr "在选定的磁盘上创建新分区"
+
+msgid "Partition layout"
+msgstr "分区布局"
+
+msgid "Partition type"
+msgstr "分区类型"
+
+msgid "Refresh partition data"
+msgstr "刷新分区数据"
+
+msgid "MBR (Master Boot Record)"
+msgstr "MBR（主引导记录）"
+
+msgid "GPT (GUID Partition Table)"
+msgstr "GPT（GUID 分区表）"
+
+msgid "The Mini Disk Manager package allows users to easily manage disks and partitions."
+msgstr "Mini 磁盘管理器软件包允许用户轻松管理磁盘和分区。"
+
+msgid "Configuration"
+msgstr "配置"
+
+msgid "Package and Driver Verification"
+msgstr "软件包和驱动程序验证"
+
+msgid "Check and install required drivers for storage devices."
+msgstr "检查并安装存储设备所需的驱动程序。"
+
+msgid "Filesystem Support"
+msgstr "文件系统支持"
+
+msgid "Check USB drivers"
+msgstr "检查 USB 驱动程序"
+
+msgid "USB drivers"
+msgstr "USB 驱动程序"
+
+msgid "Check NVMe drivers"
+msgstr "检查 NVMe 驱动程序"
+
+msgid "NVMe drivers"
+msgstr "NVMe 驱动程序"
+
+msgid "Check ATA/SATA drivers"
+msgstr "检查 ATA/SATA 驱动程序"
+
+msgid "ATA/SATA drivers"
+msgstr "ATA/SATA 驱动程序"
+
+msgid "Check Linux filesystem packages"
+msgstr "检查 Linux 文件系统软件包"
+
+msgid "Linux filesystems"
+msgstr "Linux 文件系统"
+
+msgid "Check Windows filesystem packages"
+msgstr "检查 Windows 文件系统软件包"
+
+msgid "Windows filesystems"
+msgstr "Windows 文件系统"
+
+msgid "Linux Filesystem Packages"
+msgstr "Linux 文件系统软件包"
+
+msgid "Windows Filesystem Packages"
+msgstr "Windows 文件系统软件包"
+
+msgid "Disk Manager Log"
+msgstr "磁盘管理器日志"
+
+msgid "Loading package data…"
+msgstr "正在加载软件包数据…"
+
+msgid "Loading log file…"
+msgstr "正在加载日志文件…"
+
+msgid "Log file content"
+msgstr "日志文件内容"
+
+msgid "Log file is empty"
+msgstr "日志文件为空"
+
+msgid "Unable to read log file"
+msgstr "无法读取日志文件"
+
+msgid "Log file cleared successfully"
+msgstr "日志文件清除成功"
+
+msgid "Unable to clear the file"
+msgstr "无法清除文件"
+
+msgid "Installed"
+msgstr "已安装"
+
+msgid "Install…"
+msgstr "安装…"
+
+msgid "Clear"
+msgstr "清除"
+
+msgid "Download"
+msgstr "下载"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "Failed to load package data"
+msgstr "加载软件包数据失败"
+
+msgid "more info in log"
+msgstr "日志中有更多信息"
+
+msgid "The tab allows users to support the package."
+msgstr "该选项卡允许用户支持该软件包。"
+
+msgid "Package support"
+msgstr "软件包支持"
+
+msgid "Mini Disk Manager Info"
+msgstr "Mini 磁盘管理器信息"
+
+msgid "Luci-app-mdmanager"
+msgstr "Luci-app-mdmanager"
+
+msgid "Buy a coffee"
+msgstr "请喝咖啡"
+
+msgid "Buy a coffee if you want to support the development of the project and the author"
+msgstr "如果您想支持项目和作者的开发，请请喝咖啡"
+
+msgid "Become a sponsor"
+msgstr "成为赞助商"
+
+msgid "Become a sponsor if you want to support the development of the project and the author"
+msgstr "如果您想支持项目和作者的开发，请成为赞助商"
+
+msgid "Write on forum"
+msgstr "在论坛上发帖"
+
+msgid "Write in the topic of the package on the forum eko.one.pl"
+msgstr "在 eko.one.pl 论坛的软件包主题中发帖"
+
+msgid "Open discussion"
+msgstr "打开讨论"
+
+msgid "Open a package discussion on Github"
+msgstr "在 Github 上打开软件包讨论"
+
+msgid "Report a bug"
+msgstr "报告错误"
+
+msgid "Report a bug on the package Github page"
+msgstr "在软件包的 Github 页面上报告错误"
+
+msgid "Package name"
+msgstr "软件包名称"
+
+msgid "Author (package maintainer)"
+msgstr "作者（软件包维护者）"
+
+msgid "Information about package author and available support options."
+msgstr "关于软件包作者和可用支持选项的信息。"
+
+msgid ""
+msgstr ""
+
+msgid "All available space"
+msgstr "所有可用空间"
+
+msgid "Cannot delete mounted partition. Please unmount first."
+msgstr "无法删除已挂载的分区。请先卸载。"
+
+msgid "Failed to create partition: "
+msgstr "创建分区失败："
+
+msgid "Failed to detect supported filesystems"
+msgstr "检测支持的文件系统失败"
+
+msgid "Failed to format partition: "
+msgstr "格式化分区失败："
+
+msgid "Failed to parse JSON response: "
+msgstr "解析 JSON 响应失败："
+
+msgid "Failed to start formatting"
+msgstr "启动格式化失败"
+
+msgid "Failed to start partition creation"
+msgstr "启动分区创建失败"
+
+msgid "Failed to start partition deletion"
+msgstr "启动分区删除失败"
+
+msgid "Fill in size"
+msgstr "填写大小"
+
+msgid "Linux Swap"
+msgstr "Linux 交换分区"
+
+msgid "Loading..."
+msgstr "正在加载..."
+
+msgid "No filesystem packages detected — user cannot choose unsupported filesystem formats."
+msgstr "未检测到文件系统软件包 — 用户无法选择不支持的文件系统格式。"
+
+msgid "No partition types available. Maximum partitions reached."
+msgstr "没有可用的分区类型。已达到最大分区数。"
+
+msgid "No supported filesystems detected on this system"
+msgstr "此系统上未检测到支持的文件系统"
+
+msgid "Optional"
+msgstr "可选"
+
+msgid "Partition created but selected filesystem is not available for formatting on this system"
+msgstr "分区已创建，但选定的文件系统不可用于在此系统上格式化"
+
+msgid "Partition data refreshed"
+msgstr "分区数据已刷新"
+
+msgid "Please select a filesystem"
+msgstr "请选择文件系统"
+
+msgid "RPC call failed: "
+msgstr "RPC 调用失败："
+
+msgid "Refreshing..."
+msgstr "正在刷新..."
+
+msgid "Selected filesystem is not supported on this system"
+msgstr "此系统不支持所选文件系统"
+
+msgid "Selected partition is not mounted"
+msgstr "所选分区未挂载"
+
+msgid "unknown error"
+msgstr "未知错误"
+
+msgid "Packages & Drivers"
+msgstr "软件包和驱动程序"
+
+msgid "Mini Disk Manager log"
+msgstr "Mini 磁盘管理器日志"
+
+msgid "Mini Disk Manager Log"
+msgstr "Mini 磁盘管理器日志"
+
+msgid "Packages required to support various file systems."
+msgstr "支持各种文件系统所需的软件包。"
+
+msgid "Expand"
+msgstr "扩展"
+
+msgid "Resize"
+msgstr "调整大小"
+
+msgid "Resize Partition"
+msgstr "调整分区大小"
+
+msgid "Resize partition /dev/%s"
+msgstr "调整分区 /dev/%s 的大小"
+
+msgid "Resizing partition..."
+msgstr "正在调整分区大小..."
+
+msgid "Resizing a partition can cause data loss if not done correctly."
+msgstr "如果操作不当，调整分区大小可能会导致数据丢失。"
+
+msgid "Please ensure you have a backup of important data before proceeding."
+msgstr "在继续之前，请确保您已备份重要数据。"
+
+msgid "Current size: %s MB / %s GB / %s TB"
+msgstr "当前大小：%s MB / %s GB / %s TB"
+
+msgid "Available space: %s MB / %s GB / %s TB"
+msgstr "可用空间：%s MB / %s GB / %s TB"
+
+msgid "Maximum size to be obtained: %s MB / %s GB / %s TB"
+msgstr "可获得的最大大小：%s MB / %s GB / %s TB"
+
+msgid "Maximum new size"
+msgstr "最大新大小"
+
+msgid "New size"
+msgstr "新大小"
+
+msgid "Enter new size"
+msgstr "输入新大小"
+
+msgid "New size must be larger than current size"
+msgstr "新大小必须大于当前大小"
+
+msgid "New size exceeds available space"
+msgstr "新大小超出可用空间"
+
+msgid "Partition resized successfully"
+msgstr "分区大小调整成功"
+
+msgid "Failed to resize partition"
+msgstr "调整分区大小失败"
+
+msgid "Failed to resize partition: "
+msgstr "调整分区大小失败："
+
+msgid "Failed to start partition resize"
+msgstr "启动分区大小调整失败"
+
+msgid "Selected partition cannot be resized. Only unmounted Ext2/3/4 partitions with available space can be resized."
+msgstr "无法调整所选分区的大小。只能调整具有可用空间的未挂载 Ext2/3/4 分区的大小。"
+
+msgid "MB"
+msgstr "MB"
+
+msgid "GB"
+msgstr "GB"
+
+msgid "TB"
+msgstr "TB"
+
+msgid "Cannot Create Partition"
+msgstr "无法创建分区"
+
+msgid "Insufficient Space"
+msgstr "空间不足"
+
+msgid "Cannot read partition information"
+msgstr "无法读取分区信息"
+
+msgid "Invalid extended partition"
+msgstr "无效的扩展分区"
+
+msgid "Extended partition not found or has invalid size"
+msgstr "未找到扩展分区或大小无效"
+
+msgid "Extended partition size: %s MB"
+msgstr "扩展分区大小：%s MB"
+
+msgid "Used by logical partitions: %s MB"
+msgstr "逻辑分区使用：%s MB"
+
+msgid "Available for new logical: %s MB"
+msgstr "可用于新逻辑分区：%s MB"
+
+msgid "Required minimum: 10 MB"
+msgstr "所需最小值：10 MB"
+
+msgid "Not enough free space in extended partition /dev/%s"
+msgstr "扩展分区 /dev/%s 中没有足够的可用空间"
+
+msgid "Extended partition already exists. You can create primary partitions or select the extended partition to create logical partitions inside."
+msgstr "扩展分区已存在。您可以创建主分区或选择扩展分区以在其中创建逻辑分区。"
+
+msgid "Creating partition inside extended partition. Only logical partitions can be created here."
+msgstr "在扩展分区内创建分区。这里只能创建逻辑分区。"
+
+msgid "No partition table detected. A primary partition will be created and a partition table will be initialized."
+msgstr "未检测到分区表。将创建主分区并初始化分区表。"
+
+msgid "No partition table - select to create"
+msgstr "无分区表 - 选择以创建"
+
+msgid "No partitions - select to create"
+msgstr "无分区 - 选择以创建"
+
+msgid "Select to enable partition creation"
+msgstr "选择以启用分区创建"
+
+msgid "Select unallocated space"
+msgstr "选择未分配空间"
+
+msgid "Unallocated space"
+msgstr "未分配空间"
+
+msgid "Expand Ext2/Ext3/Ext4"
+msgstr "扩展 Ext2/Ext3/Ext4"
