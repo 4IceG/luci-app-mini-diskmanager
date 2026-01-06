@@ -2228,7 +2228,7 @@ return view.extend({
                 
                 let partitionCellDom = E('label', {
                     'data-tooltip': tooltipText,
-                    'style': 'cursor: pointer') + '; display: inline-flex; align-items: center; gap:6px;'
+                    'style': 'cursor: pointer'; display: inline-flex; align-items: center; gap:6px;'
                 }, [
                     checkbox,
                     E('span', {}, partitionName)
@@ -2310,7 +2310,7 @@ return view.extend({
                         
                         let logPartitionCellDom = E('label', {
                             'data-tooltip': logTooltipText,
-                            'style': 'cursor: pointer') + '; display: inline-flex; align-items: center; gap:6px;'
+                            'style': 'cursor: pointer'; display: inline-flex; align-items: center; gap:6px;'
                         }, [
                             logCheckbox,
                             E('span', {}, indent + '▶ ' + logPartitionName)
