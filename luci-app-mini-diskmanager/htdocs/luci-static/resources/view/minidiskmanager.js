@@ -2028,16 +2028,12 @@ return view.extend({
                                     partCheckboxes.forEach(cb => {
                                         if (!cb.disabled) {
                                             cb.checked = true;
-                                            cb.disabled = true;
                                         }
                                     });
                                 } else {
                                     partCheckboxes.forEach(cb => {
                                         if (!cb.disabled) {
                                             cb.checked = false;
-                                        }
-                                        if (cb.getAttribute('disabled') === null) {
-                                            cb.disabled = false;
                                         }
                                     });
                                     this.selectedPartition = null;
@@ -2193,7 +2189,7 @@ return view.extend({
             }
 
             (function(self, partRef, partedInfo, isExtended, extendedPartitions, partNum, fsClass, displayText, indicatorClass) {
-                let isCriticalMount = partRef.mountpoint === '/' || partRef.mountpoint === '/boot';
+                let isCriticalMount = partRef.mountpoint && (partRef.mountpoint === '/' || partRef.mountpoint === '/boot');
                 
                 let checkbox = E('input', {
                     'type': 'checkbox',
@@ -2201,9 +2197,12 @@ return view.extend({
                     'name': 'partition_select',
                     'value': partRef.name,
                     'data-partition': partRef.name,
-                    'aria-label': '/dev/' + partRef.name,
-                    'disabled': isCriticalMount
+                    'aria-label': '/dev/' + partRef.name
                 });
+                
+                if (isCriticalMount) {
+                    checkbox.disabled = true;
+                }
 
                 checkbox.addEventListener('click', function(ev) {
                     if (ev.target.checked) {
@@ -2274,7 +2273,7 @@ return view.extend({
                         let logFsClass = self.normalizeFsClass(logFsType);
                         let logIndicatorClass = logFsClass && logFsClass !== 'unallocated' ? logFsClass : 'logical';
 
-                        let isCriticalMount = logPart.mountpoint === '/' || logPart.mountpoint === '/boot';
+                        let isCriticalMount = logPart.mountpoint && (logPart.mountpoint === '/' || logPart.mountpoint === '/boot');
 
                         let logCheckbox = E('input', {
                             'type': 'checkbox',
@@ -2282,9 +2281,12 @@ return view.extend({
                             'name': 'partition_select',
                             'value': logPart.name,
                             'data-partition': logPart.name,
-                            'aria-label': '/dev/' + logPart.name,
-                            'disabled': isCriticalMount
+                            'aria-label': '/dev/' + logPart.name
                         });
+                        
+                        if (isCriticalMount) {
+                            logCheckbox.disabled = true;
+                        }
 
                         logCheckbox.addEventListener('click', function(ev) {
                             if (ev.target.checked) {
@@ -3797,27 +3799,21 @@ return view.extend({
             this.diskData[this.selectedDisk] = diskInfo;
 
             let diskDetails = E('div', {'class': 'cbi-value'}, [
-		    E('h3', {}, _('Disk Information')),
-                E('table', {'class': 'table'}, [
-                    E('tr', {'class': 'tr'}, [
-                        E('td', {'class': 'td left', 'style': 'width: 200px'}, _('Temperature') + ':'),
-                        E('td', {'class': 'td left'}, diskInfo.temperature || '-')
-                    ]),
-                    E('tr', {'class': 'tr'}, [
-                        E('td', {'class': 'td left'}, _('S.M.A.R.T. Status') + ':'),
-                        E('td', {'class': 'td left', 'style': 'color: ' + diskInfo.smartStatus.color}, 
-                            diskInfo.smartStatus.status)
-                    ]),
-                    E('tr', {'class': 'tr'}, [
-                        E('td', {'class': 'td left'}, _('Partitions') + ':'),
-                        E('td', {'class': 'td left'}, diskInfo.partitions.length.toString())
-                    ]),
-                    E('tr', {'class': 'tr'}, [
-                        E('td', {'class': 'td left'}, _('Mount Status') + ':'),
-                        E('td', {'class': 'td left'}, 
-                            this.hasAnyPartitionMounted(this.selectedDisk) ? 
-                            E('span', {'style': 'color: var(--app-mini-diskmanager-primary)'}, _('Mounted')) : 
-                            E('span', {'style': 'color: var(--text-color-secondary)'}, _('Not mounted')))
+                E('div', { 
+                    'class': 'cbi-value', 
+                    'id': 'disk-info-compact',
+                    'style': 'margin-bottom: 0.5em; text-align: right;'
+                }, [
+                    E('small', { 'style': 'font-size: 0.9em; color: var(--text-color-medium, #111);' }, [
+                        _('Temperature') + ': ',
+                        E('span', {}, [diskInfo.temperature || '-']),
+                        ' | ' + _('S.M.A.R.T. Status') + ': ',
+                        E('span', { 'style': 'color: ' + diskInfo.smartStatus.color }, 
+                            [diskInfo.smartStatus.status]),
+                        ' | ' + _('Mount Status') + ': ',
+                        E('span', { 'style': 'color: ' + (this.hasAnyPartitionMounted(this.selectedDisk) ? 
+                            'var(--app-mini-diskmanager-primary)' : 'var(--text-color-secondary)') }, 
+                            [(this.hasAnyPartitionMounted(this.selectedDisk) ? _('Mounted') : _('Not mounted')).toUpperCase()])
                     ])
                 ])
             ]);
