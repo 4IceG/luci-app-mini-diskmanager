@@ -407,7 +407,7 @@ return view.extend({
     selectedPartition: null,
     selectedUnallocated: null,
     diskData: {},
-    mountedPartitions: {},
+    Partitions: {},
     deviceRegExp: new RegExp('^((h|s)d[a-z]|nvme[0-9]+n[0-9]+|mmcblk[0-9]+)$'),
     supportedFs: null,
     MIN_VISIBLE_SIZE: 200 * 1024 * 1024, // 200 MB
@@ -569,7 +569,7 @@ return view.extend({
         
         return Promise.all([
             this.getBlockDevices(),
-            this.getMountedPartitions(),
+            this.getPartitions(),
             L.resolveDefault(fs.stat('/usr/sbin/fdisk'), null),
             L.resolveDefault(fs.stat('/sbin/parted'), null),
         ]);
@@ -650,19 +650,19 @@ return view.extend({
         });
     },
 
-    getMountedPartitions: function() {
+    getPartitions: function() {
         return fs.exec('/bin/mount').then(res => {
-            let mounted = {};
+            let  = {};
             if (res && res.code === 0) {
                 let lines = res.stdout.trim().split('\n');
                 lines.forEach(line => {
                     let match = line.match(/^(\/dev\/\S+)\s+on\s+(\S+)/);
                     if (match) {
-                        mounted[match[1]] = match[2];
+                        [match[1]] = match[2];
                     }
                 });
             }
-            return mounted;
+            return ;
         }).catch(() => {
             return {};
         });
@@ -1158,7 +1158,7 @@ return view.extend({
         return partTypeClass;
     },
 
-    isDiskMounted: function(diskDevice) {
+    isDisk: function(diskDevice) {
         if (!diskDevice || !this.diskData[diskDevice]) return false;
         let diskInfo = this.diskData[diskDevice];
         if (!diskInfo.partitions) return false;
@@ -1170,12 +1170,12 @@ return view.extend({
         return false;
     },
 
-    isPartitionMounted: function(partition) {
+    isPartition: function(partition) {
         if (!partition) return false;
         return partition.mountpoint && partition.mountpoint !== '';
     },
 
-    hasAnyPartitionMounted: function(diskDevice) {
+    hasAnyPartition: function(diskDevice) {
         if (!diskDevice || !this.diskData[diskDevice]) return false;
         let diskInfo = this.diskData[diskDevice];
         if (!diskInfo.partitions) return false;
@@ -1229,7 +1229,7 @@ return view.extend({
             return false;
         }
 
-        if (this.isPartitionMounted(partition)) {
+        if (this.isPartition(partition)) {
             return false;
         }
 
@@ -1328,7 +1328,7 @@ return view.extend({
 
     render: function(data) {
         let devices = data[0] || [];
-        this.mountedPartitions = data[1] || {};
+        this.Partitions = data[1] || {};
 
         let diskSelect = E('select', {
             'class': 'cbi-input-select',
@@ -2547,8 +2547,8 @@ return view.extend({
         let hasPartition = !!this.selectedPartition;
         let hasUnallocated = !!this.selectedUnallocated;
 
-        let isSelectedPartitionMounted = hasPartition && this.isPartitionMounted(this.selectedPartition);
-        let hasAnyMountedPartition = this.hasAnyPartitionMounted(this.selectedDisk);
+        let isSelectedPartition = hasPartition && this.isPartition(this.selectedPartition);
+        let hasAnyPartition = this.hasAnyPartition(this.selectedDisk);
         let totalUnallocated = diskInfo ? this.getTotalUnallocatedSpace(diskInfo) : 0;
         let hasPartitionTable = diskInfo && diskInfo.hasPartitionTable;
 
@@ -2564,7 +2564,7 @@ return view.extend({
             this.getPartitionType(this.selectedPartition, diskInfo) === 'extended';
 
         if (mountBtn) {
-            if (!hasPartition || isSelectedPartitionMounted || isExtendedSelected) {
+            if (!hasPartition || isSelectedPartition || isExtendedSelected) {
                 mountBtn.setAttribute('disabled', 'disabled');
             } else {
                 mountBtn.removeAttribute('disabled');
@@ -2572,7 +2572,7 @@ return view.extend({
         }
 
         if (unmountBtn) {
-            if (!hasPartition || !isSelectedPartitionMounted) {
+            if (!hasPartition || !isSelectedPartition) {
                 unmountBtn.setAttribute('disabled', 'disabled');
             } else {
                 unmountBtn.removeAttribute('disabled');
@@ -2580,7 +2580,7 @@ return view.extend({
         }
 
         if (createBtn) {            
-            if (!hasAnyMountedPartition && (hasUnallocated || isExtendedSelected)) {
+            if (!hasAnyPartition && (hasUnallocated || isExtendedSelected)) {
                 createBtn.removeAttribute('disabled');
             } else {
                 createBtn.setAttribute('disabled', 'disabled');
@@ -2596,7 +2596,7 @@ return view.extend({
         }
 
         if (deleteBtn) {
-            if (hasAnyMountedPartition || !hasPartition || hasUnallocated || this.wipeAllEnabled) {
+            if (hasAnyPartition || !hasPartition || hasUnallocated || this.wipeAllEnabled) {
                 deleteBtn.setAttribute('disabled', 'disabled');
             } else {
                 deleteBtn.removeAttribute('disabled');
@@ -2604,7 +2604,7 @@ return view.extend({
         }
 
         if (formatBtn) {
-            if (hasAnyMountedPartition || !hasPartition || hasUnallocated || isExtendedSelected) {
+            if (hasAnyPartition || !hasPartition || hasUnallocated || isExtendedSelected) {
                 formatBtn.setAttribute('disabled', 'disabled');
             } else {
                 formatBtn.removeAttribute('disabled');
@@ -2612,7 +2612,7 @@ return view.extend({
         }
 
         if (wipeBtn) {
-            if (!this.wipeAllEnabled || this.hasDdSupport === false || hasAnyMountedPartition) {
+            if (!this.wipeAllEnabled || this.hasDdSupport === false || hasAnyPartition) {
                 wipeBtn.setAttribute('disabled', 'disabled');
             } else {
                 wipeBtn.removeAttribute('disabled');
@@ -2623,7 +2623,7 @@ return view.extend({
         if (wipeCheckbox) {
             let hasPartitions = diskInfo && diskInfo.partitions && diskInfo.partitions.length > 0;
             
-            if (hasAnyMountedPartition || !hasPartitions) {
+            if (hasAnyPartition || !hasPartitions) {
                 wipeCheckbox.disabled = true;
                 wipeCheckbox.checked = false;
                 this.wipeAllEnabled = false;
@@ -3802,7 +3802,7 @@ return view.extend({
                 E('div', { 
                     'class': 'cbi-value', 
                     'id': 'disk-info-compact',
-                    'style': 'margin-bottom: 0.5em; text-align: right;'
+                    'style': 'margin-bottom: 0.5em; text-align: left;'
                 }, [
                     E('small', { 'style': 'font-size: 0.9em; color: var(--text-color-medium, #111);' }, [
                         _('Temperature') + ': ',
