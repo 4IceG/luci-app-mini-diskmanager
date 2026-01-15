@@ -765,6 +765,24 @@ msgstr "ore"
 msgid "h"
 msgstr "h"
 
+msgid "year"
+msgstr "anno"
+
+msgid "years"
+msgstr "anni"
+
+msgid "month"
+msgstr "mese"
+
+msgid "months"
+msgstr "mesi"
+
+msgid "day"
+msgstr "giorno"
+
+msgid "days"
+msgstr "giorni"
+
 msgid "worn"
 msgstr "consumato"
 

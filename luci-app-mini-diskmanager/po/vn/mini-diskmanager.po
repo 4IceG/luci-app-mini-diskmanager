@@ -762,6 +762,24 @@ msgstr "giờ"
 msgid "h"
 msgstr "g"
 
+msgid "year"
+msgstr "năm"
+
+msgid "years"
+msgstr "năm"
+
+msgid "month"
+msgstr "tháng"
+
+msgid "months"
+msgstr "tháng"
+
+msgid "day"
+msgstr "ngày"
+
+msgid "days"
+msgstr "ngày"
+
 msgid "worn"
 msgstr "đã hao mòn"
 

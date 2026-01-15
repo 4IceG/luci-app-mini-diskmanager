@@ -1227,6 +1227,118 @@ return view.extend({
         return parts.join(', ') || totalHours + ' ' + _('hours');
     },
 
+    translateSmartAttribute: function(attrName) {
+        // SMART Translate
+        const translations = {
+            'Raw_Read_Error_Rate': _('Raw Read Error Rate'),
+            'Throughput_Performance': _('Throughput Performance'),
+            'Spin_Up_Time': _('Spin Up Time'),
+            'Start_Stop_Count': _('Start Stop Count'),
+            'Reallocated_Sector_Ct': _('Reallocated Sector Count'),
+            'Seek_Error_Rate': _('Seek Error Rate'),
+            'Seek_Time_Performance': _('Seek Time Performance'),
+            'Power_On_Hours': _('Power On Hours'),
+            'Spin_Retry_Count': _('Spin Retry Count'),
+            'Calibration_Retry_Count': _('Calibration Retry Count'),
+            'Power_Cycle_Count': _('Power Cycle Count'),
+            'Read_Soft_Error_Rate': _('Read Soft Error Rate'),
+            'Airflow_Temperature_Cel': _('Airflow Temperature'),
+            'Temperature_Celsius': _('Temperature Celsius'),
+            'Hardware_ECC_Recovered': _('Hardware ECC Recovered'),
+            'Current_Pending_Sector': _('Current Pending Sector'),
+            'Offline_Uncorrectable': _('Offline Uncorrectable'),
+            'UDMA_CRC_Error_Count': _('UDMA CRC Error Count'),
+            'Multi_Zone_Error_Rate': _('Multi Zone Error Rate'),
+            'Wear_Leveling_Count': _('Wear Leveling Count'),
+            'Used_Rsvd_Blk_Cnt_Tot': _('Used Reserved Block Count Total'),
+            'Used_Rsvd_Blk_Cnt_Chip': _('Used Reserved Block Count Chip'),
+            'Unused_Rsvd_Blk_Cnt_Tot': _('Unused Reserved Block Count Total'),
+            'Program_Fail_Cnt_Total': _('Program Fail Count Total'),
+            'Erase_Fail_Count_Total': _('Erase Fail Count Total'),
+            'Runtime_Bad_Block': _('Runtime Bad Block'),
+            'Uncorrectable_Error_Cnt': _('Uncorrectable Error Count'),
+            'Temperature_Exceed_Cnt': _('Temperature Exceed Count'),
+            'Erase_Fail_Count': _('Erase Fail Count'),
+            'Reported_Uncorrect': _('Reported Uncorrectable Errors'),
+            'High_Fly_Writes': _('High Fly Writes'),
+            'Airflow_Temperature': _('Airflow Temperature'),
+            'G_Sense_Error_Rate': _('G-Sense Error Rate'),
+            'Power_Off_Retract_Count': _('Power-Off Retract Count'),
+            'Load_Cycle_Count': _('Load Cycle Count'),
+            'Temperature_Case': _('Temperature Case'),
+            'Reallocated_Event_Count': _('Reallocated Event Count'),
+            'Transfer_Error_Rate': _('Transfer Error Rate'),
+            'Free_Fall_Sensor': _('Free Fall Sensor'),
+            'Total_LBAs_Written': _('Total LBAs Written'),
+            'Total_LBAs_Read': _('Total LBAs Read'),
+            'Read_Error_Retry_Rate': _('Read Error Retry Rate'),
+            'Min_W/E_Cycle': _('Minimum W/E Cycle'),
+            'Max_W/E_Cycle': _('Maximum W/E Cycle'),
+            'Average_W/E_Cycle': _('Average W/E Cycle'),
+            'Media_Wearout_Indicator': _('Media Wearout Indicator'),
+            'Available_Reservd_Space': _('Available Reserved Space'),
+            'SSD_Life_Left': _('SSD Life Left'),
+            'Remaining_Lifetime_Perc': _('Remaining Lifetime Percentage'),
+            'Percentage_Lifetime_Remain': _('Percentage Lifetime Remaining'),
+            'Remaining_Life': _('Remaining Life'),
+            'Lifetime_Writes_GiB': _('Lifetime Writes GiB'),
+            'Lifetime_Reads_GiB': _('Lifetime Reads GiB'),
+            'Available_Reserved_Space': _('Available Reserved Space'),
+            'Program_Fail_Count': _('Program Fail Count'),
+            'Erase_Fail_Count': _('Erase Fail Count'),
+            'Unexpected_Power_Loss_Ct': _('Unexpected Power Loss Count'),
+            'Thermal_Throttle_Status': _('Thermal Throttle Status'),
+            'End_to_End_Error': _('End-to-End Error'),
+            'Workld_Host_Reads_Perc': _('Workload Host Reads Percentage'),
+            'Workld_Media_Wear_Indic': _('Workload Media Wear Indicator'),
+            'Timed_Workld_Media_Wear': _('Timed Workload Media Wear'),
+            'Workload_Timer': _('Workload Timer'),
+            'Perc_Rated_Life_Used': _('Percentage Rated Life Used'),
+            'Head_Flying_Hours': _('Head Flying Hours'),
+            'Read_Channel_Margin': _('Read Channel Margin'),
+            'Loaded_Hours': _('Loaded Hours'),
+            'Load_Unload_Retry_Count': _('Load/Unload Retry Count'),
+            'GMR_Head_Amplitude': _('GMR Head Amplitude'),
+            'Drive_Temperature': _('Drive Temperature'),
+            'Endurance_Remaining': _('Endurance Remaining'),
+            'Power_On_Hours_and_Msec': _('Power On Hours and Milliseconds'),
+            'Head_Health': _('Head Health'),
+            'POR_Recovery_Count': _('POR Recovery Count'),
+            'Unused_Reserve_NAND_Blk': _('Unused Reserve NAND Blocks'),
+            'SSD_Protect_Mode': _('SSD Protect Mode'),
+            'Host_Writes_32MiB': _('Host Writes 32MiB'),
+            'NAND_Writes_32MiB': _('NAND Writes 32MiB'),
+            'Remaining_Life_Left': _('Remaining Life Left'),
+            'Grown_Bad_Block_Count': _('Grown Bad Block Count'),
+            'Soft_Read_Error_Rate': _('Soft Read Error Rate'),
+            'Data_Address_Mark_Errs': _('Data Address Mark Errors'),
+            'Run_Out_Cancel': _('Run Out Cancel'),
+            'Soft_ECC_Correction': _('Soft ECC Correction'),
+            'TA_Increase_Count': _('TA Increase Count'),
+            'Shock_Count_Write_Opern': _('Shock Count Write Operation'),
+            'Shock_Rate_Write_Opern': _('Shock Rate Write Operation'),
+            'Flying_Height': _('Flying Height'),
+            'Spin_High_Current': _('Spin High Current'),
+            'Spin_Buzz': _('Spin Buzz'),
+            'Offline_Seek_Performnce': _('Offline Seek Performance'),
+            'Vibration_During_Write': _('Vibration During Write'),
+            'Shock_During_Write': _('Shock During Write'),
+            'Disk_Shift': _('Disk Shift'),
+            'Loaded_Hours': _('Loaded Hours'),
+            'Load_Retry_Count': _('Load Retry Count'),
+            'Load_Friction': _('Load Friction'),
+            'Load_In_Time': _('Load-in Time'),
+            'Torque_Amplification_Count': _('Torque Amplification Count'),
+            'Power_Off_Retract_Cycle': _('Power-Off Retract Cycle'),
+            'Write_Error_Rate': _('Write Error Rate')
+        };
+        
+        if (translations[attrName]) {
+            return translations[attrName];
+        }
+        return attrName.replace(/_/g, ' ');
+    },
+
     getDetailedSmartInfo: function(device) {
         const devicePath = '/dev/' + device;
         const diskType = this.getDiskType(device);
@@ -1372,8 +1484,13 @@ return view.extend({
 
                                         let rawValue = '-';
                                         if (attr.raw !== undefined) {
-                                            if (typeof attr.raw === 'object' && attr.raw !== null && attr.raw.value !== undefined) {
-                                                rawValue = attr.raw.value;
+                                            if (typeof attr.raw === 'object' && attr.raw !== null) {
+                                                // Priorytet: string > value
+                                                if (attr.raw.string !== undefined) {
+                                                    rawValue = attr.raw.string;
+                                                } else if (attr.raw.value !== undefined) {
+                                                    rawValue = attr.raw.value;
+                                                }
                                             } else if (attr.raw !== null) {
                                                 rawValue = attr.raw;
                                             }
@@ -3499,7 +3616,7 @@ return view.extend({
 
                     nvmeTable.appendChild(
                         E('tr', {'class': lineStyle}, [
-                            E('td', {'class': 'td left'}, attr.name || 'Unknown'),
+                            E('td', {'class': 'td left'}, attr.name || _('Unknown')),
                             E('td', {'class': 'td left'}, 
                                 attr.value !== undefined ? String(attr.value) : '-')
                         ])
@@ -3559,6 +3676,13 @@ return view.extend({
                 let temperature = '-';
                 let wearPercent = null;
                 
+                if (smartData.raw.temperature && smartData.raw.temperature.current !== undefined) {
+                    let tempValue = smartData.raw.temperature.current;
+                    if (tempValue > 0 && tempValue < 200) {
+                        temperature = tempValue + ' °C';
+                    }
+                }
+                
                 for (let attr of smartData.attributes) {
                     if (!attr || attr.id === undefined) continue;
                     
@@ -3570,8 +3694,8 @@ return view.extend({
                             if (!isNaN(parsed)) powerOnHours = parsed;
                         }
                     }
-                    
-                    if (attr.id === 194 && attr.raw !== undefined && attr.raw !== '-') {
+
+                    if (temperature === '-' && attr.id === 194 && attr.raw !== undefined && attr.raw !== '-') {
                         let tempValue = 0;
                         if (typeof attr.raw === 'number') {
                             tempValue = attr.raw;
@@ -3655,10 +3779,10 @@ return view.extend({
                     E('tr', {'class': 'tr table-titles'}, [
                         E('th', {'class': 'th right'}, _('Id')),
                         E('th', {'class': 'th left'}, _('Attribute')),
-                        E('th', {'class': 'th left'}, _('Raw')),
                         E('th', {'class': 'th left'}, _('Value')),
                         E('th', {'class': 'th left'}, _('Worst')),
-                        E('th', {'class': 'th left'}, _('Thresh'))
+                        E('th', {'class': 'th left'}, _('Thresh')),
+                        E('th', {'class': 'th left'}, _('Raw'))
                     ])
                 ]);
 
@@ -3694,18 +3818,18 @@ return view.extend({
                         E('tr', {'class': lineStyle}, [
                             E('td', {'class': 'td right'}, String(attr.id || '-')),
                             E('td', {'class': 'td left'}, 
-                                attr.name ? attr.name.replace(/_/g, ' ') : 'Unknown'),
-                            E('td', {'class': 'td left', 'style': 'font-weight: bold;'}, 
-                                String(attr.raw !== undefined ? attr.raw : '-')),
+                                attr.name ? this.translateSmartAttribute(attr.name) : _('Unknown')),
                             E('td', {'class': 'td left'}, 
                                 attr.value !== '-' && !isNaN(attr.value) ? 
-                                    String(attr.value).padStart(3, '0') : String(attr.value)),
+                                    String(parseInt(attr.value)) : String(attr.value)),
                             E('td', {'class': 'td left'}, 
                                 attr.worst !== '-' && !isNaN(attr.worst) ? 
-                                    String(attr.worst).padStart(3, '0') : String(attr.worst)),
+                                    String(parseInt(attr.worst)) : String(attr.worst)),
                             E('td', {'class': 'td left'}, 
                                 attr.thresh !== '-' && !isNaN(attr.thresh) ? 
-                                    String(attr.thresh).padStart(3, '0') : String(attr.thresh))
+                                    String(parseInt(attr.thresh)) : String(attr.thresh)),
+                            E('td', {'class': 'td left'}, 
+                                String(attr.raw !== undefined ? attr.raw : '-'))
                         ])
                     );
                 }

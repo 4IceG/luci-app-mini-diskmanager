@@ -762,6 +762,24 @@ msgstr "小时"
 msgid "h"
 msgstr "时"
 
+msgid "year"
+msgstr "年"
+
+msgid "years"
+msgstr "年"
+
+msgid "month"
+msgstr "月"
+
+msgid "months"
+msgstr "月"
+
+msgid "day"
+msgstr "天"
+
+msgid "days"
+msgstr "天"
+
 msgid "worn"
 msgstr "已损耗"
 

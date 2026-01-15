@@ -768,6 +768,24 @@ msgstr "Stunden"
 msgid "h"
 msgstr "Std"
 
+msgid "year"
+msgstr "Jahr"
+
+msgid "years"
+msgstr "Jahre"
+
+msgid "month"
+msgstr "Monat"
+
+msgid "months"
+msgstr "Monate"
+
+msgid "day"
+msgstr "Tag"
+
+msgid "days"
+msgstr "Tage"
+
 msgid "worn"
 msgstr "abgenutzt"
 

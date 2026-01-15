@@ -760,10 +760,28 @@ msgid "hour"
 msgstr "час"
 
 msgid "hours"
-msgstr "часы"
+msgstr "часов"
 
 msgid "h"
 msgstr "ч"
+
+msgid "year"
+msgstr "год"
+
+msgid "years"
+msgstr "лет"
+
+msgid "month"
+msgstr "месяц"
+
+msgid "months"
+msgstr "месяцев"
+
+msgid "day"
+msgstr "день"
+
+msgid "days"
+msgstr "дней"
 
 msgid "worn"
 msgstr "изношено"

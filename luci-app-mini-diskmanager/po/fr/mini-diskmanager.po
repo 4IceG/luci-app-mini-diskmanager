@@ -828,6 +828,24 @@ msgstr "heures"
 msgid "h"
 msgstr "h"
 
+msgid "year"
+msgstr "an"
+
+msgid "years"
+msgstr "ans"
+
+msgid "month"
+msgstr "mois"
+
+msgid "months"
+msgstr "mois"
+
+msgid "day"
+msgstr "jour"
+
+msgid "days"
+msgstr "jours"
+
 msgid "worn"
 msgstr "usé"
 

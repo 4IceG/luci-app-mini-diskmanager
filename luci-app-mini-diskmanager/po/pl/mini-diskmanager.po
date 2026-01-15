@@ -774,6 +774,24 @@ msgstr "godziny"
 msgid "h"
 msgstr "godz"
 
+msgid "year"
+msgstr "rok"
+
+msgid "years"
+msgstr "lata"
+
+msgid "month"
+msgstr "miesiąc"
+
+msgid "months"
+msgstr "miesiące(-y)"
+
+msgid "day"
+msgstr "dzień"
+
+msgid "days"
+msgstr "dni"
+
 msgid "worn"
 msgstr "zużyte"
 
@@ -794,3 +812,296 @@ msgstr "Nie można odczytać danych S.M.A.R.T."
 
 msgid "Error reading S.M.A.R.T. data."
 msgstr "Błąd odczytu danych S.M.A.R.T."
+
+# SMART LOCAL
+
+msgid "Raw Read Error Rate"
+msgstr "Współczynnik błędów odczytu"
+
+msgid "Throughput Performance"
+msgstr "Wydajność przepustowości"
+
+msgid "Spin Up Time"
+msgstr "Czas rozruchu"
+
+msgid "Start Stop Count"
+msgstr "Liczba startów/zatrzymań"
+
+msgid "Reallocated Sector Count"
+msgstr "Liczba relokowanych sektorów"
+
+msgid "Seek Error Rate"
+msgstr "Współczynnik błędów pozycjonowania"
+
+msgid "Seek Time Performance"
+msgstr "Wydajność pozycjonowania"
+
+msgid "Power On Hours"
+msgstr "Godziny pracy"
+
+msgid "Spin Retry Count"
+msgstr "Liczba ponowień rozruchu"
+
+msgid "Calibration Retry Count"
+msgstr "Liczba ponowień kalibracji"
+
+msgid "Power Cycle Count"
+msgstr "Liczba cykli zasilania"
+
+msgid "Read Soft Error Rate"
+msgstr "Współczynnik miękkich błędów odczytu"
+
+msgid "Airflow Temperature"
+msgstr "Temperatura przepływu powietrza"
+
+msgid "Temperature Celsius"
+msgstr "Temperatura (°C)"
+
+msgid "Hardware ECC Recovered"
+msgstr "Naprawione błędy ECC"
+
+msgid "Current Pending Sector"
+msgstr "Sektory oczekujące"
+
+msgid "Offline Uncorrectable"
+msgstr "Błędy nienaprawialne offline"
+
+msgid "UDMA CRC Error Count"
+msgstr "Liczba błędów CRC UDMA"
+
+msgid "Multi Zone Error Rate"
+msgstr "Współczynnik błędów wielostrefowych"
+
+msgid "Wear Leveling Count"
+msgstr "Licznik wyrównywania zużycia"
+
+msgid "Used Reserved Block Count Total"
+msgstr "Zużyte bloki rezerwowe (całość)"
+
+msgid "Used Reserved Block Count Chip"
+msgstr "Zużyte bloki rezerwowe (układ)"
+
+msgid "Unused Reserved Block Count Total"
+msgstr "Niewykorzystane bloki rezerwowe"
+
+msgid "Program Fail Count Total"
+msgstr "Całkowita liczba błędów programowania"
+
+msgid "Erase Fail Count Total"
+msgstr "Całkowita liczba błędów kasowania"
+
+msgid "Runtime Bad Block"
+msgstr "Wadliwe bloki w trakcie pracy"
+
+msgid "Uncorrectable Error Count"
+msgstr "Liczba błędów nienaprawialnych"
+
+msgid "Temperature Exceed Count"
+msgstr "Liczba przekroczeń temperatury"
+
+msgid "Erase Fail Count"
+msgstr "Liczba błędów kasowania"
+
+msgid "Reported Uncorrectable Errors"
+msgstr "Zgłoszone błędy nienaprawialne"
+
+msgid "High Fly Writes"
+msgstr "Zapisy przy wysokim locie głowicy"
+
+msgid "G-Sense Error Rate"
+msgstr "Współczynnik błędów G-Sense"
+
+msgid "Power-Off Retract Count"
+msgstr "Liczba cofnięć przy wyłączeniu"
+
+msgid "Load Cycle Count"
+msgstr "Liczba cykli załadowania"
+
+msgid "Temperature Case"
+msgstr "Temperatura obudowy"
+
+msgid "Reallocated Event Count"
+msgstr "Liczba zdarzeń relokacji"
+
+msgid "Transfer Error Rate"
+msgstr "Współczynnik błędów transferu"
+
+msgid "Free Fall Sensor"
+msgstr "Czujnik swobodnego spadku"
+
+msgid "Total LBAs Written"
+msgstr "Całkowita liczba zapisanych LBA"
+
+msgid "Total LBAs Read"
+msgstr "Całkowita liczba odczytanych LBA"
+
+msgid "Read Error Retry Rate"
+msgstr "Współczynnik ponowień błędów odczytu"
+
+msgid "Minimum W/E Cycle"
+msgstr "Minimalny cykl zapisu/kasowania"
+
+msgid "Maximum W/E Cycle"
+msgstr "Maksymalny cykl zapisu/kasowania"
+
+msgid "Average W/E Cycle"
+msgstr "Średni cykl zapisu/kasowania"
+
+msgid "Media Wearout Indicator"
+msgstr "Wskaźnik zużycia nośnika"
+
+msgid "Available Reserved Space"
+msgstr "Dostępna przestrzeń rezerwowa"
+
+msgid "SSD Life Left"
+msgstr "Pozostała żywotność SSD"
+
+msgid "Remaining Lifetime Percentage"
+msgstr "Procentowa pozostała żywotność"
+
+msgid "Percentage Lifetime Remaining"
+msgstr "Procent pozostałej żywotności"
+
+msgid "Remaining Life"
+msgstr "Pozostała żywotność"
+
+msgid "Lifetime Writes GiB"
+msgstr "Zapisy w czasie życia (GiB)"
+
+msgid "Lifetime Reads GiB"
+msgstr "Odczyty w czasie życia (GiB)"
+
+msgid "Program Fail Count"
+msgstr "Liczba błędów programowania"
+
+msgid "Unexpected Power Loss Count"
+msgstr "Liczba nieoczekiwanych utrat zasilania"
+
+msgid "Thermal Throttle Status"
+msgstr "Status dławienia termicznego"
+
+msgid "End-to-End Error"
+msgstr "Błąd end-to-end"
+
+msgid "Workload Host Reads Percentage"
+msgstr "Procent odczytów hosta"
+
+msgid "Workload Media Wear Indicator"
+msgstr "Wskaźnik zużycia nośnika obciążenia"
+
+msgid "Timed Workload Media Wear"
+msgstr "Czasowe zużycie nośnika obciążenia"
+
+msgid "Workload Timer"
+msgstr "Czasomierz obciążenia"
+
+msgid "Percentage Rated Life Used"
+msgstr "Procent zużytej żywotności"
+
+msgid "Head Flying Hours"
+msgstr "Godziny lotu głowicy"
+
+msgid "Read Channel Margin"
+msgstr "Margines kanału odczytu"
+
+msgid "Loaded Hours"
+msgstr "Godziny załadowania"
+
+msgid "Load/Unload Retry Count"
+msgstr "Liczba ponowień załadowania/rozładowania"
+
+msgid "GMR Head Amplitude"
+msgstr "Amplituda głowicy GMR"
+
+msgid "Drive Temperature"
+msgstr "Temperatura napędu"
+
+msgid "Endurance Remaining"
+msgstr "Pozostała wytrzymałość"
+
+msgid "Power On Hours and Milliseconds"
+msgstr "Godziny pracy i milisekundy"
+
+msgid "Head Health"
+msgstr "Stan głowicy"
+
+msgid "POR Recovery Count"
+msgstr "Liczba odzyskań POR"
+
+msgid "Unused Reserve NAND Blocks"
+msgstr "Niewykorzystane bloki NAND rezerwowe"
+
+msgid "SSD Protect Mode"
+msgstr "Tryb ochrony SSD"
+
+msgid "Host Writes 32MiB"
+msgstr "Zapisy hosta (32 MiB)"
+
+msgid "NAND Writes 32MiB"
+msgstr "Zapisy NAND (32 MiB)"
+
+msgid "Remaining Life Left"
+msgstr "Pozostała żywotność"
+
+msgid "Grown Bad Block Count"
+msgstr "Liczba narastających wadliwych bloków"
+
+msgid "Soft Read Error Rate"
+msgstr "Współczynnik miękkich błędów odczytu"
+
+msgid "Data Address Mark Errors"
+msgstr "Błędy znacznika adresu danych"
+
+msgid "Run Out Cancel"
+msgstr "Anulowanie wyczerpania"
+
+msgid "Soft ECC Correction"
+msgstr "Miękka korekta ECC"
+
+msgid "TA Increase Count"
+msgstr "Liczba wzrostów TA"
+
+msgid "Shock Count Write Operation"
+msgstr "Liczba wstrząsów podczas zapisu"
+
+msgid "Shock Rate Write Operation"
+msgstr "Współczynnik wstrząsów podczas zapisu"
+
+msgid "Flying Height"
+msgstr "Wysokość lotu głowicy"
+
+msgid "Spin High Current"
+msgstr "Wysoki prąd rozruchu"
+
+msgid "Spin Buzz"
+msgstr "Brzęczenie rozruchu"
+
+msgid "Offline Seek Performance"
+msgstr "Wydajność pozycjonowania offline"
+
+msgid "Vibration During Write"
+msgstr "Wibracje podczas zapisu"
+
+msgid "Shock During Write"
+msgstr "Wstrząsy podczas zapisu"
+
+msgid "Disk Shift"
+msgstr "Przesunięcie dysku"
+
+msgid "Load Retry Count"
+msgstr "Liczba ponowień załadowania"
+
+msgid "Load Friction"
+msgstr "Tarcie załadowania"
+
+msgid "Load-in Time"
+msgstr "Czas załadowania"
+
+msgid "Torque Amplification Count"
+msgstr "Liczba wzmocnień momentu obrotowego"
+
+msgid "Power-Off Retract Cycle"
+msgstr "Cykl cofnięcia przy wyłączeniu"
+
+msgid "Write Error Rate"
+msgstr "Współczynnik błędów zapisu"
