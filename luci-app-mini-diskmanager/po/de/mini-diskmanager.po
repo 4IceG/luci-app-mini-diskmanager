@@ -424,8 +424,7 @@ msgstr "Autor (Paketbetreuer)"
 msgid "Information about package author and available support options."
 msgstr "Informationen über den Paketautor und verfügbare Supportoptionen."
 
-msgid ""
-msgstr ""
+# --
 
 msgid "All available space"
 msgstr "Gesamter verfügbarer Speicherplatz"
@@ -806,3 +805,386 @@ msgstr "S.M.A.R.T.-Daten können nicht gelesen werden."
 
 msgid "Error reading S.M.A.R.T. data."
 msgstr "Fehler beim Lesen der S.M.A.R.T.-Daten."
+
+# SMART & Disk Info
+
+msgid "Raw Read Error Rate"
+msgstr "Lesefehlerrate"
+
+msgid "Throughput Performance"
+msgstr "Durchsatzleistung"
+
+msgid "Spin Up Time"
+msgstr "Anlaufzeit"
+
+msgid "Start Stop Count"
+msgstr "Start/Stopp-Anzahl"
+
+msgid "Reallocated Sector Count"
+msgstr "Anzahl neu zugeordneter Sektoren"
+
+msgid "Seek Error Rate"
+msgstr "Positionierungsfehlerrate"
+
+msgid "Seek Time Performance"
+msgstr "Positionierungsleistung"
+
+msgid "Power On Hours"
+msgstr "Betriebsstunden"
+
+msgid "Spin Retry Count"
+msgstr "Anzahl Anlaufwiederholungen"
+
+msgid "Calibration Retry Count"
+msgstr "Anzahl Kalibrierungswiederholungen"
+
+msgid "Power Cycle Count"
+msgstr "Anzahl Einschaltzyklen"
+
+msgid "Read Soft Error Rate"
+msgstr "Soft-Lesefehlerrate"
+
+msgid "Airflow Temperature"
+msgstr "Luftstromtemperatur"
+
+msgid "Temperature Celsius"
+msgstr "Temperatur"
+
+msgid "Hardware ECC Recovered"
+msgstr "Hardware-ECC wiederhergestellt"
+
+msgid "Current Pending Sector"
+msgstr "Instabile Sektoren"
+
+msgid "Offline Uncorrectable"
+msgstr "Offline nicht korrigierbar"
+
+msgid "UDMA CRC Error Count"
+msgstr "UDMA-CRC-Fehleranzahl"
+
+msgid "Multi Zone Error Rate"
+msgstr "Mehrzonen-Fehlerrate"
+
+msgid "Wear Leveling Count"
+msgstr "Abnutzungsausgleichszähler"
+
+msgid "Used Reserved Block Count Total"
+msgstr "Verwendete reservierte Blöcke (gesamt)"
+
+msgid "Used Reserved Block Count Chip"
+msgstr "Verwendete reservierte Blöcke (Chip)"
+
+msgid "Unused Reserved Block Count Total"
+msgstr "Ungenutzte reservierte Blöcke"
+
+msgid "Program Fail Count Total"
+msgstr "Anzahl Programmierfehler"
+
+msgid "Erase Fail Count Total"
+msgstr "Anzahl Löschfehler"
+
+msgid "Runtime Bad Block"
+msgstr "Fehlerhafte Blöcke"
+
+msgid "Uncorrectable Error Count"
+msgstr "Anzahl nicht korrigierbarer Fehler"
+
+msgid "Temperature Exceed Count"
+msgstr "Anzahl Temperaturüberschreitungen"
+
+msgid "Erase Fail Count"
+msgstr "Anzahl Löschfehler"
+
+msgid "Reported Uncorrectable Errors"
+msgstr "Gemeldete nicht korrigierbare Fehler"
+
+msgid "High Fly Writes"
+msgstr "High-Fly-Schreibvorgänge"
+
+msgid "G-Sense Error Rate"
+msgstr "G-Sensor-Fehlerrate"
+
+msgid "Power-Off Retract Count"
+msgstr "Anzahl Kopfrückzüge beim Ausschalten"
+
+msgid "Load Cycle Count"
+msgstr "Anzahl Parkzyklen"
+
+msgid "Temperature Case"
+msgstr "Gehäusetemperatur"
+
+msgid "Reallocated Event Count"
+msgstr "Anzahl Neuzuordnungsereignisse"
+
+msgid "Transfer Error Rate"
+msgstr "Übertragungsfehlerrate"
+
+msgid "Free Fall Sensor"
+msgstr "Freifallsensor"
+
+msgid "Total LBAs Written"
+msgstr "Gesamtanzahl geschriebener LBAs"
+
+msgid "Total LBAs Read"
+msgstr "Gesamtanzahl gelesener LBAs"
+
+msgid "Read Error Retry Rate"
+msgstr "Lesewiederholungsrate"
+
+msgid "Minimum W/E Cycle"
+msgstr "Minimaler Schreib-/Löschzyklus"
+
+msgid "Maximum W/E Cycle"
+msgstr "Maximaler Schreib-/Löschzyklus"
+
+msgid "Average W/E Cycle"
+msgstr "Durchschnittlicher Schreib-/Löschzyklus"
+
+msgid "Media Wearout Indicator"
+msgstr "Medienabnutzungsindikator"
+
+msgid "Available Reserved Space"
+msgstr "Verfügbarer reservierter Speicherplatz"
+
+msgid "SSD Life Left"
+msgstr "Verbleibende SSD-Lebensdauer"
+
+msgid "Remaining Lifetime Percentage"
+msgstr "Verbleibende Lebensdauer (Prozent)"
+
+msgid "Percentage Lifetime Remaining"
+msgstr "Prozent verbleibende Lebensdauer"
+
+msgid "Remaining Life"
+msgstr "Verbleibende Lebensdauer"
+
+msgid "Lifetime Writes GiB"
+msgstr "Geschriebene Daten (GiB)"
+
+msgid "Lifetime Reads GiB"
+msgstr "Gelesene Daten (GiB)"
+
+msgid "Program Fail Count"
+msgstr "Anzahl Programmierfehler"
+
+msgid "Unexpected Power Loss Count"
+msgstr "Anzahl unerwarteter Stromausfälle"
+
+msgid "Thermal Throttle Status"
+msgstr "Thermische Drosselungsstatus"
+
+msgid "End-to-End Error"
+msgstr "End-to-End-Fehler"
+
+msgid "Workload Host Reads Percentage"
+msgstr "Prozentsatz Host-Lesevorgänge"
+
+msgid "Workload Media Wear Indicator"
+msgstr "Workload-Medienabnutzungsindikator"
+
+msgid "Timed Workload Media Wear"
+msgstr "Zeitbasierte Workload-Medienabnutzung"
+
+msgid "Workload Timer"
+msgstr "Workload-Timer"
+
+msgid "Percentage Rated Life Used"
+msgstr "Prozent verbrauchte Lebensdauer"
+
+msgid "Head Flying Hours"
+msgstr "Kopfflugstunden"
+
+msgid "Read Channel Margin"
+msgstr "Lesekanalreserve"
+
+msgid "Loaded Hours"
+msgstr "Betriebsstunden entparkt"
+
+msgid "Load/Unload Retry Count"
+msgstr "Anzahl Park-/Entparkwiederholungen"
+
+msgid "GMR Head Amplitude"
+msgstr "GMR-Kopfamplitude"
+
+msgid "Drive Temperature"
+msgstr "Laufwerkstemperatur"
+
+msgid "Endurance Remaining"
+msgstr "Verbleibende Ausdauer"
+
+msgid "Power On Hours and Milliseconds"
+msgstr "Betriebsstunden (Stunden und Millisekunden)"
+
+msgid "Head Health"
+msgstr "Kopfzustand"
+
+msgid "POR Recovery Count"
+msgstr "POR-Wiederherstellungsanzahl"
+
+msgid "Unused Reserve NAND Blocks"
+msgstr "Ungenutzte NAND-Reserveblöcke"
+
+msgid "SSD Protect Mode"
+msgstr "SSD-Schutzmodus"
+
+msgid "Host Writes 32MiB"
+msgstr "Host-Schreibvorgänge (32MiB)"
+
+msgid "NAND Writes 32MiB"
+msgstr "NAND-Schreibvorgänge (32MiB)"
+
+msgid "Remaining Life Left"
+msgstr "Verbleibende Lebensdauer"
+
+msgid "Grown Bad Block Count"
+msgstr "Anzahl neuer fehlerhafter Blöcke"
+
+msgid "Soft Read Error Rate"
+msgstr "Soft-Lesefehlerrate"
+
+msgid "Data Address Mark Errors"
+msgstr "Datenadressmarkierungsfehler"
+
+msgid "Run Out Cancel"
+msgstr "Überlaufabbruch"
+
+msgid "Soft ECC Correction"
+msgstr "Soft-ECC-Korrektur"
+
+msgid "TA Increase Count"
+msgstr "TA-Erhöhungsanzahl"
+
+msgid "Shock Count Write Operation"
+msgstr "Anzahl Erschütterungen beim Schreiben"
+
+msgid "Shock Rate Write Operation"
+msgstr "Erschütterungsrate beim Schreiben"
+
+msgid "Flying Height"
+msgstr "Flughöhe"
+
+msgid "Spin High Current"
+msgstr "Hoher Anlaufstrom"
+
+msgid "Spin Buzz"
+msgstr "Anlauf-Buzz"
+
+msgid "Offline Seek Performance"
+msgstr "Offline-Positionierungsleistung"
+
+msgid "Vibration During Write"
+msgstr "Vibrationen beim Schreiben"
+
+msgid "Shock During Write"
+msgstr "Erschütterungen beim Schreiben"
+
+msgid "Disk Shift"
+msgstr "Festplattenverschiebung"
+
+msgid "Load Retry Count"
+msgstr "Anzahl Ladewiederholungen"
+
+msgid "Load Friction"
+msgstr "Ladereibung"
+
+msgid "Load-in Time"
+msgstr "Ladezeit"
+
+msgid "Torque Amplification Count"
+msgstr "Anzahl Drehmomentverstärkungen"
+
+msgid "Write Error Rate"
+msgstr "Schreibfehlerrate"
+
+msgid "Serial Number"
+msgstr "Seriennummer"
+
+msgid "LU WWN Device Id"
+msgstr "LU WWN Geräte-ID"
+
+msgid "Firmware Version"
+msgstr "Firmware-Version"
+
+msgid "User Capacity"
+msgstr "Nutzbare Kapazität"
+
+msgid "Capacity"
+msgstr "Kapazität"
+
+msgid "Sector Size"
+msgstr "Sektorgröße"
+
+msgid "Sector Sizes"
+msgstr "Sektorgrößen"
+
+msgid "Rotation Rate"
+msgstr "Drehzahl"
+
+msgid "Form Factor"
+msgstr "Formfaktor"
+
+msgid "Device is"
+msgstr "Gerät"
+
+msgid "ATA Version is"
+msgstr "ATA-Version"
+
+msgid "SATA Version is"
+msgstr "SATA-Version"
+
+msgid "Local Time is"
+msgstr "Ortszeit"
+
+msgid "SMART support is"
+msgstr "SMART-Unterstützung"
+
+msgid "SMART Status"
+msgstr "SMART-Status"
+
+msgid "Device"
+msgstr "Gerät"
+
+msgid "Model Number"
+msgstr "Modell"
+
+msgid "Firmware Revision"
+msgstr "Firmware-Revision"
+
+msgid "PCI Vendor/Subsystem ID"
+msgstr "PCI-Hersteller-/Subsystem-ID"
+
+msgid "IEEE OUI Identifier"
+msgstr "IEEE-OUI-Kennung"
+
+msgid "Total NVM Capacity"
+msgstr "Gesamt-NVM-Kapazität"
+
+msgid "Unallocated NVM Capacity"
+msgstr "Nicht zugeordnete NVM-Kapazität"
+
+msgid "Controller ID"
+msgstr "Controller-ID"
+
+msgid "Number of Namespaces"
+msgstr "Anzahl der Adressräume"
+
+msgid "Namespace 1 Size/Capacity"
+msgstr "Größe/Kapazität Adressraum 1"
+
+msgid "Namespace 1 Formatted LBA Size"
+msgstr "LBA-Größe Adressraum 1"
+
+msgid "Namespace 1 IEEE EUI-64"
+msgstr "IEEE EUI-64 Adressraum 1"
+
+msgid "logical/physical"
+msgstr "logisch/physisch"
+
+msgid "bytes"
+msgstr "Bytes"
+
+msgid "blocks"
+msgstr "Blöcke"
+
+msgid "Solid State Device"
+msgstr "Solid State Disk"

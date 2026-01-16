@@ -840,33 +840,37 @@ resize_partition() {
 
     log_msg "=== Resizing partition $partition to $new_size $unit (Powiększanie partycji $partition do $new_size $unit) ==="
 
+    if [ -z "$partition" ]; then
+        log_msg "ERROR: Partition parameter is empty (BŁĄD: Parametr partition jest pusty)"
+        echo 1 > "$RESULT_FILE"
+        return 1
+    fi
+
+    if [ -z "$new_size" ]; then
+        log_msg "ERROR: New size parameter is empty (BŁĄD: Parametr new_size jest pusty)"
+        echo 1 > "$RESULT_FILE"
+        return 1
+    fi
+
+    if [ -z "$unit" ]; then
+        log_msg "ERROR: Unit parameter is empty (BŁĄD: Parametr unit jest pusty)"
+        echo 1 > "$RESULT_FILE"
+        return 1
+    fi
+
     parse_partition_name "$partition"
+    rc=$?
+    if [ $rc -ne 0 ]; then
+        log_msg "ERROR: Failed to parse partition name (BŁĄD: Nie udało się sparsować nazwy partycji)"
+        echo 1 > "$RESULT_FILE"
+        return 1
+    fi
 
     if is_device_mounted "$partition"; then
         log_msg "ERROR: Cannot resize mounted partition (BŁĄD: Nie można powiększyć zamontowanej partycji)"
         echo 1 > "$RESULT_FILE"
         return 1
     fi
-
-    case "$unit" in
-        MB)
-            new_size_bytes=$(echo "$new_size * 1024 * 1024" | bc)
-            ;;
-        GB)
-            new_size_bytes=$(echo "$new_size * 1024 * 1024 * 1024" | bc)
-            ;;
-        TB)
-            new_size_bytes=$(echo "$new_size * 1024 * 1024 * 1024 * 1024" | bc)
-            ;;
-        *)
-            log_msg "ERROR: Invalid unit $unit (BŁĄD: Nieprawidłowa jednostka $unit)"
-            echo 1 > "$RESULT_FILE"
-            return 1
-            ;;
-    esac
-
-    new_size_sectors=$(echo "$new_size_bytes / 512" | bc)
-    log_msg "New size in sectors: $new_size_sectors (Nowy rozmiar w sektorach: $new_size_sectors)"
 
     part_info=$(parted -s -m "$DEVICE" unit s print 2>/dev/null | grep "^${NUM}:")
     if [ -z "$part_info" ]; then
@@ -881,16 +885,49 @@ resize_partition() {
 
     log_msg "Current partition: start=$current_start end=$current_end size=$current_size sectors"
 
-    new_end=$(echo "$current_start + $new_size_sectors - 1" | bc)
-    log_msg "New end sector: $new_end"
+    case "$unit" in
+        MB)
+            new_size_bytes=$(echo "$new_size * 1024 * 1024" | bc)
+            ;;
+        GB)
+            new_size_bytes=$(echo "$new_size * 1024 * 1024 * 1024" | bc)
+            ;;
+        TB)
+            new_size_bytes=$(echo "$new_size * 1024 * 1024 * 1024 * 1024" | bc)
+            ;;
+        *)
+            log_msg "ERROR: Invalid unit '$unit' - supported: MB, GB, TB (BŁĄD: Nieprawidłowa jednostka '$unit' - obsługiwane: MB, GB, TB)"
+            echo 1 > "$RESULT_FILE"
+            return 1
+            ;;
+    esac
 
-    log_msg "Running e2fsck to check filesystem (Uruchamianie e2fsck w celu sprawdzenia systemu plików)"
-    e2fsck -f -y "$partition" >> "$LOG_FILE" 2>&1
-    fsck_rc=$?
-    
-    if [ $fsck_rc -ne 0 ] && [ $fsck_rc -ne 1 ]; then
-        log_msg "WARNING: e2fsck returned $fsck_rc, but continuing... (OSTRZEŻENIE: e2fsck zwrócił $fsck_rc, ale kontynuuję...)"
+    new_size_sectors=$(echo "$new_size_bytes / 512" | bc)
+    log_msg "New size in sectors: $new_size_sectors (Nowy rozmiar w sektorach: $new_size_sectors)"
+
+    new_end=$(echo "$current_start + $new_size_sectors - 1" | bc)
+    log_msg "New end sector: $new_end (current: $current_end) (Nowy sektor końcowy: $new_end (obecny: $current_end))"
+
+    if [ "$new_end" -le "$current_end" ]; then
+        log_msg "WARNING: New size ($new_end) is not larger than current size ($current_end), skipping resize (OSTRZEŻENIE: Nowy rozmiar nie jest większy od obecnego, pomijanie zmiany rozmiaru)"
+        echo 0 > "$RESULT_FILE"
+        return 0
     fi
+
+    fstype=$(blkid -o value -s TYPE "$partition" 2>/dev/null)
+    log_msg "Filesystem type: ${fstype:-unknown} (Typ systemu plików: ${fstype:-nieznany})"
+
+    case "$fstype" in
+        ext2|ext3|ext4)
+            log_msg "Running e2fsck to check filesystem (Uruchamianie e2fsck w celu sprawdzenia systemu plików)"
+            e2fsck -f -y "$partition" >> "$LOG_FILE" 2>&1
+            fsck_rc=$?
+            
+            if [ $fsck_rc -ne 0 ] && [ $fsck_rc -ne 1 ]; then
+                log_msg "WARNING: e2fsck returned $fsck_rc, but continuing... (OSTRZEŻENIE: e2fsck zwrócił $fsck_rc, ale kontynuuję...)"
+            fi
+            ;;
+    esac
 
     log_msg "Resizing partition with parted (Powiększanie partycji za pomocą parted)"
     parted -s "$DEVICE" resizepart "$NUM" "${new_end}s" >> "$LOG_FILE" 2>&1
@@ -908,9 +945,17 @@ resize_partition() {
 
     wait_for_partition "$partition" 15
 
-    log_msg "Resizing ext filesystem with resize2fs (Powiększanie systemu plików ext za pomocą resize2fs)"
-    resize2fs "$partition" >> "$LOG_FILE" 2>&1
-    rc=$?
+    case "$fstype" in
+        ext2|ext3|ext4)
+            log_msg "Resizing ext filesystem with resize2fs (Powiększanie systemu plików ext za pomocą resize2fs)"
+            resize2fs "$partition" >> "$LOG_FILE" 2>&1
+            rc=$?
+            ;;
+        *)
+            log_msg "WARNING: Automatic filesystem resize not supported for $fstype (OSTRZEŻENIE: Automatyczna zmiana rozmiaru systemu plików nie jest obsługiwana dla $fstype)"
+            rc=0
+            ;;
+    esac
 
     echo $rc > "$RESULT_FILE"
 
@@ -1131,10 +1176,12 @@ case "$1" in
 
             resize_partition)
                 read input
+                log_msg "DEBUG: Raw JSON input: $input"
                 json_load "$input"
                 json_get_var partition partition
                 json_get_var new_size new_size
                 json_get_var unit unit
+                log_msg "DEBUG: Parsed parameters - partition='$partition' new_size='$new_size' unit='$unit'"
 
                 (
                     resize_partition "$partition" "$new_size" "$unit"

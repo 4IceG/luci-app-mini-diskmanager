@@ -236,7 +236,6 @@ document.head.append(E('style', {'type': 'text/css'},
 	border-right: none;
 }
 
-
 .partition-segment.ext4 { 
 	background-color: var(--partition-color-ext4);
 	color: #000;
@@ -516,7 +515,7 @@ return view.extend({
     rpcResizePartition: rpc.declare({
         object: 'minidiskmanager',
         method: 'resize_partition',
-        params: ['device', 'partition', 'size'],
+        params: ['partition', 'new_size', 'unit'],
         expect: {}
     }),
 
@@ -733,9 +732,9 @@ return view.extend({
                 params.label
             ),
             'resize_partition': () => this.rpcResizePartition(
-                params.device,
                 params.partition,
-                params.size
+                params.new_size,
+                params.unit
             ),
             'wipe_disk': () => this.rpcWipeDisk(params.device)
         };
@@ -917,6 +916,10 @@ return view.extend({
                                 const info = {};
                                 
                                 for (let line of lines) {
+                                    if (line.includes('Model Family:')) {
+                                        const match = line.match(/Model Family:\s*(.+)/i);
+                                        if (match) info.modelFamily = match[1].trim();
+                                    }
                                     if (line.includes('Device Model:') || line.includes('Model Number:') || line.includes('Product:')) {
                                         const match = line.match(/(?:Device Model|Model Number|Product):\s*(.+)/i);
                                         if (match) info.model = match[1].trim();
@@ -1228,7 +1231,6 @@ return view.extend({
     },
 
     translateSmartAttribute: function(attrName) {
-        // SMART Translate
         const translations = {
             'Raw_Read_Error_Rate': _('Raw Read Error Rate'),
             'Throughput_Performance': _('Throughput Performance'),
@@ -1263,7 +1265,9 @@ return view.extend({
             'High_Fly_Writes': _('High Fly Writes'),
             'Airflow_Temperature': _('Airflow Temperature'),
             'G_Sense_Error_Rate': _('G-Sense Error Rate'),
+            'G-Sense_Error_Rate': _('G-Sense Error Rate'),
             'Power_Off_Retract_Count': _('Power-Off Retract Count'),
+            'Power-Off_Retract_Count': _('Power-Off Retract Count'),
             'Load_Cycle_Count': _('Load Cycle Count'),
             'Temperature_Case': _('Temperature Case'),
             'Reallocated_Event_Count': _('Reallocated Event Count'),
@@ -1289,6 +1293,7 @@ return view.extend({
             'Unexpected_Power_Loss_Ct': _('Unexpected Power Loss Count'),
             'Thermal_Throttle_Status': _('Thermal Throttle Status'),
             'End_to_End_Error': _('End-to-End Error'),
+            'End-to-End_Error': _('End-to-End Error'),
             'Workld_Host_Reads_Perc': _('Workload Host Reads Percentage'),
             'Workld_Media_Wear_Indic': _('Workload Media Wear Indicator'),
             'Timed_Workld_Media_Wear': _('Timed Workload Media Wear'),
@@ -1298,6 +1303,7 @@ return view.extend({
             'Read_Channel_Margin': _('Read Channel Margin'),
             'Loaded_Hours': _('Loaded Hours'),
             'Load_Unload_Retry_Count': _('Load/Unload Retry Count'),
+            'Load/Unload_Retry_Count': _('Load/Unload Retry Count'),
             'GMR_Head_Amplitude': _('GMR Head Amplitude'),
             'Drive_Temperature': _('Drive Temperature'),
             'Endurance_Remaining': _('Endurance Remaining'),
@@ -1324,19 +1330,60 @@ return view.extend({
             'Vibration_During_Write': _('Vibration During Write'),
             'Shock_During_Write': _('Shock During Write'),
             'Disk_Shift': _('Disk Shift'),
-            'Loaded_Hours': _('Loaded Hours'),
             'Load_Retry_Count': _('Load Retry Count'),
             'Load_Friction': _('Load Friction'),
             'Load_In_Time': _('Load-in Time'),
             'Torque_Amplification_Count': _('Torque Amplification Count'),
-            'Power_Off_Retract_Cycle': _('Power-Off Retract Cycle'),
             'Write_Error_Rate': _('Write Error Rate')
         };
-        
         if (translations[attrName]) {
             return translations[attrName];
         }
         return attrName.replace(/_/g, ' ');
+    },
+
+    translateDeviceInfoLabel: function(label) {
+        const deviceLabels = {
+            // SATA/ATA
+            'Model Family': _('Model Family'),
+            'Device Model': _('Device Model'),
+            'Serial Number': _('Serial Number'),
+            'Serial number': _('Serial Number'),
+            'LU WWN Device Id': _('LU WWN Device Id'),
+            'Firmware Version': _('Firmware Version'),
+            'User Capacity': _('User Capacity'),
+            'Capacity': _('Capacity'),
+            'Sector Size': _('Sector Size'),
+            'Sector Sizes': _('Sector Sizes'),
+            'Rotation Rate': _('Rotation Rate'),
+            'Form Factor': _('Form Factor'),
+            'Device is': _('Device is'),
+            'ATA Version is': _('ATA Version is'),
+            'SATA Version is': _('SATA Version is'),
+            'Local Time is': _('Local Time is'),
+            'SMART support is': _('SMART support is'),
+            'SMART Status': _('SMART Status'),
+            'Device': _('Device'),
+            // NVMe
+            'Model Number': _('Model Number'),
+            'Firmware Revision': _('Firmware Revision'),
+            'PCI Vendor/Subsystem ID': _('PCI Vendor/Subsystem ID'),
+            'IEEE OUI Identifier': _('IEEE OUI Identifier'),
+            'Total NVM Capacity': _('Total NVM Capacity'),
+            'Unallocated NVM Capacity': _('Unallocated NVM Capacity'),
+            'Controller ID': _('Controller ID'),
+            'Number of Namespaces': _('Number of Namespaces'),
+            'Namespace 1 Size/Capacity': _('Namespace 1 Size/Capacity'),
+            'Namespace 1 Formatted LBA Size': _('Namespace 1 Formatted LBA Size'),
+            'Namespace 1 IEEE EUI-64': _('Namespace 1 IEEE EUI-64'),  
+            // Plus
+            'logical/physical': _('logical/physical'),
+            'bytes': _('bytes'),
+            'blocks': _('blocks'),
+            'Solid State Device': _('Solid State Device')
+        };
+        
+        return deviceLabels[label] || label;
     },
 
     getDetailedSmartInfo: function(device) {
@@ -1485,7 +1532,6 @@ return view.extend({
                                         let rawValue = '-';
                                         if (attr.raw !== undefined) {
                                             if (typeof attr.raw === 'object' && attr.raw !== null) {
-                                                // Priorytet: string > value
                                                 if (attr.raw.string !== undefined) {
                                                     rawValue = attr.raw.string;
                                                 } else if (attr.raw.value !== undefined) {
@@ -3438,7 +3484,7 @@ return view.extend({
                 if (deviceInfo.serial) {
                     deviceInfoRows.push(
                         E('div', {'style': 'display:flex;justify-content:space-between;margin-bottom:4px;font-size:12px'}, [
-                            E('span', {}, _('Serial Number') + ':'),
+                            E('span', {}, this.translateDeviceInfoLabel('Serial Number') + ':'),
                             E('span', {'style': 'font-weight:500'}, deviceInfo.serial)
                         ])
                     );
@@ -3447,7 +3493,7 @@ return view.extend({
                 if (deviceInfo.firmware) {
                     deviceInfoRows.push(
                         E('div', {'style': 'display:flex;justify-content:space-between;margin-bottom:4px;font-size:12px'}, [
-                            E('span', {}, _('Firmware') + ':'),
+                            E('span', {}, this.translateDeviceInfoLabel('Firmware Version') + ':'),
                             E('span', {'style': 'font-weight:500'}, deviceInfo.firmware)
                         ])
                     );
@@ -3456,7 +3502,7 @@ return view.extend({
                 if (deviceInfo.capacity) {
                     deviceInfoRows.push(
                         E('div', {'style': 'display:flex;justify-content:space-between;margin-bottom:4px;font-size:12px'}, [
-                            E('span', {}, _('Capacity') + ':'),
+                            E('span', {}, this.translateDeviceInfoLabel('Capacity') + ':'),
                             E('span', {'style': 'font-weight:500'}, deviceInfo.capacity)
                         ])
                     );
@@ -3465,7 +3511,7 @@ return view.extend({
                 if (deviceInfo.sectorSize) {
                     deviceInfoRows.push(
                         E('div', {'style': 'display:flex;justify-content:space-between;margin-bottom:4px;font-size:12px'}, [
-                            E('span', {}, _('Sector Size') + ':'),
+                            E('span', {}, this.translateDeviceInfoLabel('Sector Size') + ':'),
                             E('span', {'style': 'font-weight:500'}, deviceInfo.sectorSize)
                         ])
                     );
@@ -3474,7 +3520,7 @@ return view.extend({
                 if (deviceInfo.rotationRate) {
                     deviceInfoRows.push(
                         E('div', {'style': 'display:flex;justify-content:space-between;margin-bottom:4px;font-size:12px'}, [
-                            E('span', {}, _('Rotation Rate') + ':'),
+                            E('span', {}, this.translateDeviceInfoLabel('Rotation Rate') + ':'),
                             E('span', {'style': 'font-weight:500'}, deviceInfo.rotationRate)
                         ])
                     );
@@ -3483,7 +3529,7 @@ return view.extend({
                 if (deviceInfo.formFactor) {
                     deviceInfoRows.push(
                         E('div', {'style': 'display:flex;justify-content:space-between;margin-bottom:4px;font-size:12px'}, [
-                            E('span', {}, _('Form Factor') + ':'),
+                            E('span', {}, this.translateDeviceInfoLabel('Form Factor') + ':'),
                             E('span', {'style': 'font-weight:500'}, deviceInfo.formFactor)
                         ])
                     );
@@ -3492,7 +3538,7 @@ return view.extend({
                 if (deviceInfo.sataVersion) {
                     deviceInfoRows.push(
                         E('div', {'style': 'display:flex;justify-content:space-between;margin-bottom:4px;font-size:12px'}, [
-                            E('span', {}, _('SATA Version') + ':'),
+                            E('span', {}, this.translateDeviceInfoLabel('SATA Version is') + ':'),
                             E('span', {'style': 'font-weight:500'}, deviceInfo.sataVersion)
                         ])
                     );
@@ -3501,17 +3547,28 @@ return view.extend({
                 if (deviceInfo.ataVersion) {
                     deviceInfoRows.push(
                         E('div', {'style': 'display:flex;justify-content:space-between;margin-bottom:4px;font-size:12px'}, [
-                            E('span', {}, _('ATA Version') + ':'),
+                            E('span', {}, this.translateDeviceInfoLabel('ATA Version is') + ':'),
                             E('span', {'style': 'font-weight:500'}, deviceInfo.ataVersion)
                         ])
                     );
                 }
                 
                 if (deviceInfoRows.length > 0) {
+                    let headerText = '';
+                    if (deviceInfo.modelFamily && deviceInfo.model) {
+                        headerText = deviceInfo.modelFamily + ' ' + deviceInfo.model;
+                    } else if (deviceInfo.model) {
+                        headerText = deviceInfo.model;
+                    } else if (deviceInfo.modelFamily) {
+                        headerText = deviceInfo.modelFamily;
+                    } else {
+                        headerText = this.translateDeviceInfoLabel('Device');
+                    }
+                    
                     content.push(
                         E('div', {'class': 'ifacebox', 'style': 'margin:.25em 0 1em 0;width:100%'}, [
                             E('div', {'class': 'ifacebox-head', 'style': 'font-weight:bold;background:#f8f8f8;padding:8px'}, [
-                                deviceInfo.model || _('Device Information')
+                                headerText
                             ]),
                             E('div', {'class': 'ifacebox-body', 'style': 'padding:8px'}, deviceInfoRows)
                         ])
@@ -3694,7 +3751,7 @@ return view.extend({
                             if (!isNaN(parsed)) powerOnHours = parsed;
                         }
                     }
-
+                    
                     if (temperature === '-' && attr.id === 194 && attr.raw !== undefined && attr.raw !== '-') {
                         let tempValue = 0;
                         if (typeof attr.raw === 'number') {
@@ -3791,17 +3848,29 @@ return view.extend({
                     
                     let lineStyle = 'tr';
                     
-                    if (attr.status === 'ERROR') {
-                        lineStyle = 'tr disks-info-err';
-                    } else if (attr.status === 'WARNING') {
-                        lineStyle = 'tr disks-info-warn';
-                    } else if (smartCriticalAttrs.includes(attr.id)) {
-                        const rawVal = typeof attr.raw === 'number' ? attr.raw : 
-                                      (typeof attr.raw === 'string' ? parseInt(attr.raw) : null);
-                        if (rawVal !== null && !isNaN(rawVal) && rawVal > 0) {
+                    if (attr.value !== undefined && attr.value !== '-' && 
+                        attr.thresh !== undefined && attr.thresh !== '-') {
+                        const attrValue = typeof attr.value === 'number' ? attr.value : parseInt(attr.value);
+                        const attrThresh = typeof attr.thresh === 'number' ? attr.thresh : parseInt(attr.thresh);
+                        if (!isNaN(attrValue) && !isNaN(attrThresh) && attrValue <= attrThresh) {
+                            lineStyle = 'tr disks-info-err';
+                        }
+                    }
+                    
+                    if (lineStyle === 'tr' && smartCriticalAttrs.includes(attr.id)) {
+                        let rawVal = 0;
+                        if (typeof attr.raw === 'number') {
+                            rawVal = attr.raw;
+                        } else if (typeof attr.raw === 'string') {
+                            rawVal = parseInt(attr.raw.split(' ')[0]) || 0;
+                        }
+                        
+                        if (rawVal > 0) {
                             lineStyle = 'tr disks-info-warn';
                         }
-                    } else if (smartTempAttrs.includes(attr.id)) {
+                    }
+                    
+                    if (lineStyle === 'tr' && smartTempAttrs.includes(attr.id)) {
                         let tempValue = null;
                         if (typeof attr.raw === 'number') {
                             tempValue = attr.raw;

@@ -439,8 +439,7 @@ msgstr "Autor (opiekun pakietu)"
 msgid "Information about package author and available support options."
 msgstr "Informacje o autorze pakietu i dostępnych opcjach wsparcia."
 
-msgid ""
-msgstr ""
+# --
 
 msgid "All available space"
 msgstr "Cała dostępna przestrzeń"
@@ -769,7 +768,7 @@ msgid "hour"
 msgstr "godzina"
 
 msgid "hours"
-msgstr "godziny"
+msgstr "godzin(-y)"
 
 msgid "h"
 msgstr "godz"
@@ -784,7 +783,7 @@ msgid "month"
 msgstr "miesiąc"
 
 msgid "months"
-msgstr "miesiące(-y)"
+msgstr "miesiące(-ęcy)"
 
 msgid "day"
 msgstr "dzień"
@@ -813,7 +812,7 @@ msgstr "Nie można odczytać danych S.M.A.R.T."
 msgid "Error reading S.M.A.R.T. data."
 msgstr "Błąd odczytu danych S.M.A.R.T."
 
-# SMART LOCAL
+# SMART & Disk Info
 
 msgid "Raw Read Error Rate"
 msgstr "Współczynnik błędów odczytu"
@@ -822,13 +821,13 @@ msgid "Throughput Performance"
 msgstr "Wydajność przepustowości"
 
 msgid "Spin Up Time"
-msgstr "Czas rozruchu"
+msgstr "Czas rozkręcania"
 
 msgid "Start Stop Count"
-msgstr "Liczba startów/zatrzymań"
+msgstr "Liczba starów/zatrzymań"
 
 msgid "Reallocated Sector Count"
-msgstr "Liczba relokowanych sektorów"
+msgstr "Liczba przemapowanych sektorów"
 
 msgid "Seek Error Rate"
 msgstr "Współczynnik błędów pozycjonowania"
@@ -837,10 +836,10 @@ msgid "Seek Time Performance"
 msgstr "Wydajność pozycjonowania"
 
 msgid "Power On Hours"
-msgstr "Godziny pracy"
+msgstr "Czas pracy"
 
 msgid "Spin Retry Count"
-msgstr "Liczba ponowień rozruchu"
+msgstr "Liczba ponowień rozkręcania"
 
 msgid "Calibration Retry Count"
 msgstr "Liczba ponowień kalibracji"
@@ -855,16 +854,16 @@ msgid "Airflow Temperature"
 msgstr "Temperatura przepływu powietrza"
 
 msgid "Temperature Celsius"
-msgstr "Temperatura (°C)"
+msgstr "Temperatura"
 
 msgid "Hardware ECC Recovered"
-msgstr "Naprawione błędy ECC"
+msgstr "Błędy ECC naprawione sprzętowo"
 
 msgid "Current Pending Sector"
-msgstr "Sektory oczekujące"
+msgstr "Niestabilne sektory"
 
 msgid "Offline Uncorrectable"
-msgstr "Błędy nienaprawialne offline"
+msgstr "Nienaprawialne sektory offline"
 
 msgid "UDMA CRC Error Count"
 msgstr "Liczba błędów CRC UDMA"
@@ -873,25 +872,25 @@ msgid "Multi Zone Error Rate"
 msgstr "Współczynnik błędów wielostrefowych"
 
 msgid "Wear Leveling Count"
-msgstr "Licznik wyrównywania zużycia"
+msgstr "Licznik zużycia"
 
 msgid "Used Reserved Block Count Total"
-msgstr "Zużyte bloki rezerwowe (całość)"
+msgstr "Użyte bloki rezerwowe (całość)"
 
 msgid "Used Reserved Block Count Chip"
-msgstr "Zużyte bloki rezerwowe (układ)"
+msgstr "Użyte bloki rezerwowe (chip)"
 
 msgid "Unused Reserved Block Count Total"
 msgstr "Niewykorzystane bloki rezerwowe"
 
 msgid "Program Fail Count Total"
-msgstr "Całkowita liczba błędów programowania"
+msgstr "Liczba błędów zapisu"
 
 msgid "Erase Fail Count Total"
-msgstr "Całkowita liczba błędów kasowania"
+msgstr "Liczba błędów kasowania"
 
 msgid "Runtime Bad Block"
-msgstr "Wadliwe bloki w trakcie pracy"
+msgstr "Uszkodzone bloki"
 
 msgid "Uncorrectable Error Count"
 msgstr "Liczba błędów nienaprawialnych"
@@ -906,25 +905,25 @@ msgid "Reported Uncorrectable Errors"
 msgstr "Zgłoszone błędy nienaprawialne"
 
 msgid "High Fly Writes"
-msgstr "Zapisy przy wysokim locie głowicy"
+msgstr "Zapisy w wysokim locie"
 
 msgid "G-Sense Error Rate"
-msgstr "Współczynnik błędów G-Sense"
+msgstr "Współczynnik błędów czujnika przeciążeń"
 
 msgid "Power-Off Retract Count"
-msgstr "Liczba cofnięć przy wyłączeniu"
+msgstr "Liczba cofnięć głowic przy wyłączeniu"
 
 msgid "Load Cycle Count"
-msgstr "Liczba cykli załadowania"
+msgstr "Liczba cykli parkowania głowic"
 
 msgid "Temperature Case"
 msgstr "Temperatura obudowy"
 
 msgid "Reallocated Event Count"
-msgstr "Liczba zdarzeń relokacji"
+msgstr "Liczba zdarzeń przemapowania"
 
 msgid "Transfer Error Rate"
-msgstr "Współczynnik błędów transferu"
+msgstr "Współczynnik błędów przesyłu"
 
 msgid "Free Fall Sensor"
 msgstr "Czujnik swobodnego spadku"
@@ -936,7 +935,7 @@ msgid "Total LBAs Read"
 msgstr "Całkowita liczba odczytanych LBA"
 
 msgid "Read Error Retry Rate"
-msgstr "Współczynnik ponowień błędów odczytu"
+msgstr "Współczynnik ponowień odczytu"
 
 msgid "Minimum W/E Cycle"
 msgstr "Minimalny cykl zapisu/kasowania"
@@ -954,10 +953,10 @@ msgid "Available Reserved Space"
 msgstr "Dostępna przestrzeń rezerwowa"
 
 msgid "SSD Life Left"
-msgstr "Pozostała żywotność SSD"
+msgstr "Pozostały żywotność SSD"
 
 msgid "Remaining Lifetime Percentage"
-msgstr "Procentowa pozostała żywotność"
+msgstr "Pozostała żywotność (procent)"
 
 msgid "Percentage Lifetime Remaining"
 msgstr "Procent pozostałej żywotności"
@@ -966,10 +965,10 @@ msgid "Remaining Life"
 msgstr "Pozostała żywotność"
 
 msgid "Lifetime Writes GiB"
-msgstr "Zapisy w czasie życia (GiB)"
+msgstr "Zapisane dane (GiB)"
 
 msgid "Lifetime Reads GiB"
-msgstr "Odczyty w czasie życia (GiB)"
+msgstr "Odczytane dane (GiB)"
 
 msgid "Program Fail Count"
 msgstr "Liczba błędów programowania"
@@ -978,7 +977,7 @@ msgid "Unexpected Power Loss Count"
 msgstr "Liczba nieoczekiwanych utrat zasilania"
 
 msgid "Thermal Throttle Status"
-msgstr "Status dławienia termicznego"
+msgstr "Status ograniczenia termicznego"
 
 msgid "End-to-End Error"
 msgstr "Błąd end-to-end"
@@ -987,43 +986,43 @@ msgid "Workload Host Reads Percentage"
 msgstr "Procent odczytów hosta"
 
 msgid "Workload Media Wear Indicator"
-msgstr "Wskaźnik zużycia nośnika obciążenia"
+msgstr "Wskaźnik zużycia nośnika (obciążenie)"
 
 msgid "Timed Workload Media Wear"
-msgstr "Czasowe zużycie nośnika obciążenia"
+msgstr "Zużycie nośnika (czasowe obciążenie)"
 
 msgid "Workload Timer"
-msgstr "Czasomierz obciążenia"
+msgstr "Timer obciążenia"
 
 msgid "Percentage Rated Life Used"
 msgstr "Procent zużytej żywotności"
 
 msgid "Head Flying Hours"
-msgstr "Godziny lotu głowicy"
+msgstr "Czas lotu głowic"
 
 msgid "Read Channel Margin"
 msgstr "Margines kanału odczytu"
 
 msgid "Loaded Hours"
-msgstr "Godziny załadowania"
+msgstr "Czas pracy z odparkowaniem"
 
 msgid "Load/Unload Retry Count"
-msgstr "Liczba ponowień załadowania/rozładowania"
+msgstr "Liczba ponowień parkowania/odparkowania"
 
 msgid "GMR Head Amplitude"
 msgstr "Amplituda głowicy GMR"
 
 msgid "Drive Temperature"
-msgstr "Temperatura napędu"
+msgstr "Temperatura dysku"
 
 msgid "Endurance Remaining"
 msgstr "Pozostała wytrzymałość"
 
 msgid "Power On Hours and Milliseconds"
-msgstr "Godziny pracy i milisekundy"
+msgstr "Czas pracy (godziny i milisekundy)"
 
 msgid "Head Health"
-msgstr "Stan głowicy"
+msgstr "Stan głowic"
 
 msgid "POR Recovery Count"
 msgstr "Liczba odzyskań POR"
@@ -1035,16 +1034,16 @@ msgid "SSD Protect Mode"
 msgstr "Tryb ochrony SSD"
 
 msgid "Host Writes 32MiB"
-msgstr "Zapisy hosta (32 MiB)"
+msgstr "Zapisy hosta (32MiB)"
 
 msgid "NAND Writes 32MiB"
-msgstr "Zapisy NAND (32 MiB)"
+msgstr "Zapisy NAND (32MiB)"
 
 msgid "Remaining Life Left"
 msgstr "Pozostała żywotność"
 
 msgid "Grown Bad Block Count"
-msgstr "Liczba narastających wadliwych bloków"
+msgstr "Liczba nowych uszkodzonych bloków"
 
 msgid "Soft Read Error Rate"
 msgstr "Współczynnik miękkich błędów odczytu"
@@ -1053,7 +1052,7 @@ msgid "Data Address Mark Errors"
 msgstr "Błędy znacznika adresu danych"
 
 msgid "Run Out Cancel"
-msgstr "Anulowanie wyczerpania"
+msgstr "Anulowanie przekroczenia"
 
 msgid "Soft ECC Correction"
 msgstr "Miękka korekta ECC"
@@ -1062,19 +1061,19 @@ msgid "TA Increase Count"
 msgstr "Liczba wzrostów TA"
 
 msgid "Shock Count Write Operation"
-msgstr "Liczba wstrząsów podczas zapisu"
+msgstr "Liczba wstrząsów przy zapisie"
 
 msgid "Shock Rate Write Operation"
-msgstr "Współczynnik wstrząsów podczas zapisu"
+msgstr "Współczynnik wstrząsów przy zapisie"
 
 msgid "Flying Height"
-msgstr "Wysokość lotu głowicy"
+msgstr "Wysokość lotu głowic"
 
 msgid "Spin High Current"
 msgstr "Wysoki prąd rozruchu"
 
 msgid "Spin Buzz"
-msgstr "Brzęczenie rozruchu"
+msgstr "Buzz rozruchu"
 
 msgid "Offline Seek Performance"
 msgstr "Wydajność pozycjonowania offline"
@@ -1092,7 +1091,7 @@ msgid "Load Retry Count"
 msgstr "Liczba ponowień załadowania"
 
 msgid "Load Friction"
-msgstr "Tarcie załadowania"
+msgstr "Tarcie ładowania"
 
 msgid "Load-in Time"
 msgstr "Czas załadowania"
@@ -1100,8 +1099,98 @@ msgstr "Czas załadowania"
 msgid "Torque Amplification Count"
 msgstr "Liczba wzmocnień momentu obrotowego"
 
-msgid "Power-Off Retract Cycle"
-msgstr "Cykl cofnięcia przy wyłączeniu"
-
 msgid "Write Error Rate"
 msgstr "Współczynnik błędów zapisu"
+
+msgid "Serial Number"
+msgstr "Numer seryjny"
+
+msgid "LU WWN Device Id"
+msgstr "Identyfikator LU WWN"
+
+msgid "Firmware Version"
+msgstr "Wersja firmware"
+
+msgid "User Capacity"
+msgstr "Pojemność użyteczna"
+
+msgid "Capacity"
+msgstr "Pojemność"
+
+msgid "Sector Size"
+msgstr "Rozmiar sektora"
+
+msgid "Sector Sizes"
+msgstr "Rozmiary sektorów"
+
+msgid "Rotation Rate"
+msgstr "Prędkość obrotowa"
+
+msgid "Form Factor"
+msgstr "Format"
+
+msgid "Device is"
+msgstr "Urządzenie"
+
+msgid "ATA Version is"
+msgstr "Wersja ATA"
+
+msgid "SATA Version is"
+msgstr "Wersja SATA"
+
+msgid "Local Time is"
+msgstr "Czas lokalny"
+
+msgid "SMART support is"
+msgstr "Obsługa SMART"
+
+msgid "SMART Status"
+msgstr "Status SMART"
+
+msgid "Device"
+msgstr "Urządzenie"
+
+msgid "Model Number"
+msgstr "Model"
+
+msgid "Firmware Revision"
+msgstr "Wersja firmware"
+
+msgid "PCI Vendor/Subsystem ID"
+msgstr "ID producenta/podsystemu PCI"
+
+msgid "IEEE OUI Identifier"
+msgstr "Identyfikator IEEE OUI"
+
+msgid "Total NVM Capacity"
+msgstr "Całkowita pojemność NVM"
+
+msgid "Unallocated NVM Capacity"
+msgstr "Nieprzydzielona pojemność NVM"
+
+msgid "Controller ID"
+msgstr "ID kontrolera"
+
+msgid "Number of Namespaces"
+msgstr "Liczba obszarów adresowych"
+
+msgid "Namespace 1 Size/Capacity"
+msgstr "Rozmiar/pojemność obszaru adresowego 1"
+
+msgid "Namespace 1 Formatted LBA Size"
+msgstr "Rozmiar LBA obszaru adresowego 1"
+
+msgid "Namespace 1 IEEE EUI-64"
+msgstr "IEEE EUI-64 obszaru adresowego 1"
+
+msgid "logical/physical"
+msgstr "logiczny/fizyczny"
+
+msgid "bytes"
+msgstr "bajtów"
+
+msgid "blocks"
+msgstr "bloków"
+
+msgid "Solid State Device"
+msgstr "Dysk SSD"

@@ -424,8 +424,7 @@ msgstr "作者（软件包维护者）"
 msgid "Information about package author and available support options."
 msgstr "关于软件包作者和可用支持选项的信息。"
 
-msgid ""
-msgstr ""
+# --
 
 msgid "All available space"
 msgstr "所有可用空间"
@@ -800,3 +799,386 @@ msgstr "无法读取 S.M.A.R.T. 数据。"
 
 msgid "Error reading S.M.A.R.T. data."
 msgstr "读取 S.M.A.R.T. 数据时出错。"
+
+# SMART & Disk Info
+
+msgid "Raw Read Error Rate"
+msgstr "原始读取错误率"
+
+msgid "Throughput Performance"
+msgstr "吞吐量性能"
+
+msgid "Spin Up Time"
+msgstr "启动时间"
+
+msgid "Start Stop Count"
+msgstr "启动/停止次数"
+
+msgid "Reallocated Sector Count"
+msgstr "重新分配扇区计数"
+
+msgid "Seek Error Rate"
+msgstr "寻道错误率"
+
+msgid "Seek Time Performance"
+msgstr "寻道时间性能"
+
+msgid "Power On Hours"
+msgstr "通电时间"
+
+msgid "Spin Retry Count"
+msgstr "启动重试次数"
+
+msgid "Calibration Retry Count"
+msgstr "校准重试次数"
+
+msgid "Power Cycle Count"
+msgstr "电源循环次数"
+
+msgid "Read Soft Error Rate"
+msgstr "软读取错误率"
+
+msgid "Airflow Temperature"
+msgstr "气流温度"
+
+msgid "Temperature Celsius"
+msgstr "温度"
+
+msgid "Hardware ECC Recovered"
+msgstr "硬件ECC已恢复"
+
+msgid "Current Pending Sector"
+msgstr "不稳定扇区"
+
+msgid "Offline Uncorrectable"
+msgstr "离线不可纠正扇区"
+
+msgid "UDMA CRC Error Count"
+msgstr "UDMA CRC错误计数"
+
+msgid "Multi Zone Error Rate"
+msgstr "多区错误率"
+
+msgid "Wear Leveling Count"
+msgstr "磨损平衡计数"
+
+msgid "Used Reserved Block Count Total"
+msgstr "已用保留块计数(总计)"
+
+msgid "Used Reserved Block Count Chip"
+msgstr "已用保留块计数(芯片)"
+
+msgid "Unused Reserved Block Count Total"
+msgstr "未用保留块"
+
+msgid "Program Fail Count Total"
+msgstr "写入失败计数"
+
+msgid "Erase Fail Count Total"
+msgstr "擦除失败计数"
+
+msgid "Runtime Bad Block"
+msgstr "坏块"
+
+msgid "Uncorrectable Error Count"
+msgstr "不可纠正错误计数"
+
+msgid "Temperature Exceed Count"
+msgstr "温度超标次数"
+
+msgid "Erase Fail Count"
+msgstr "擦除失败计数"
+
+msgid "Reported Uncorrectable Errors"
+msgstr "报告的不可纠正错误"
+
+msgid "High Fly Writes"
+msgstr "高飞写入"
+
+msgid "G-Sense Error Rate"
+msgstr "G感应错误率"
+
+msgid "Power-Off Retract Count"
+msgstr "断电时磁头收回次数"
+
+msgid "Load Cycle Count"
+msgstr "磁头停靠循环次数"
+
+msgid "Temperature Case"
+msgstr "外壳温度"
+
+msgid "Reallocated Event Count"
+msgstr "重新分配事件计数"
+
+msgid "Transfer Error Rate"
+msgstr "传输错误率"
+
+msgid "Free Fall Sensor"
+msgstr "自由落体传感器"
+
+msgid "Total LBAs Written"
+msgstr "写入LBA总数"
+
+msgid "Total LBAs Read"
+msgstr "读取LBA总数"
+
+msgid "Read Error Retry Rate"
+msgstr "读取重试率"
+
+msgid "Minimum W/E Cycle"
+msgstr "最小写入/擦除循环"
+
+msgid "Maximum W/E Cycle"
+msgstr "最大写入/擦除循环"
+
+msgid "Average W/E Cycle"
+msgstr "平均写入/擦除循环"
+
+msgid "Media Wearout Indicator"
+msgstr "介质磨损指示器"
+
+msgid "Available Reserved Space"
+msgstr "可用保留空间"
+
+msgid "SSD Life Left"
+msgstr "SSD剩余寿命"
+
+msgid "Remaining Lifetime Percentage"
+msgstr "剩余寿命百分比"
+
+msgid "Percentage Lifetime Remaining"
+msgstr "剩余寿命百分比"
+
+msgid "Remaining Life"
+msgstr "剩余寿命"
+
+msgid "Lifetime Writes GiB"
+msgstr "写入数据(GiB)"
+
+msgid "Lifetime Reads GiB"
+msgstr "读取数据(GiB)"
+
+msgid "Program Fail Count"
+msgstr "编程失败计数"
+
+msgid "Unexpected Power Loss Count"
+msgstr "意外断电次数"
+
+msgid "Thermal Throttle Status"
+msgstr "温控降速状态"
+
+msgid "End-to-End Error"
+msgstr "端到端错误"
+
+msgid "Workload Host Reads Percentage"
+msgstr "主机读取百分比"
+
+msgid "Workload Media Wear Indicator"
+msgstr "介质磨损指示器(工作负载)"
+
+msgid "Timed Workload Media Wear"
+msgstr "介质磨损(定时工作负载)"
+
+msgid "Workload Timer"
+msgstr "工作负载计时器"
+
+msgid "Percentage Rated Life Used"
+msgstr "已用额定寿命百分比"
+
+msgid "Head Flying Hours"
+msgstr "磁头飞行小时数"
+
+msgid "Read Channel Margin"
+msgstr "读取通道裕量"
+
+msgid "Loaded Hours"
+msgstr "非停靠运行时间"
+
+msgid "Load/Unload Retry Count"
+msgstr "停靠/解除停靠重试次数"
+
+msgid "GMR Head Amplitude"
+msgstr "GMR磁头振幅"
+
+msgid "Drive Temperature"
+msgstr "驱动器温度"
+
+msgid "Endurance Remaining"
+msgstr "剩余耐久性"
+
+msgid "Power On Hours and Milliseconds"
+msgstr "通电时间(小时和毫秒)"
+
+msgid "Head Health"
+msgstr "磁头状态"
+
+msgid "POR Recovery Count"
+msgstr "POR恢复次数"
+
+msgid "Unused Reserve NAND Blocks"
+msgstr "未用NAND保留块"
+
+msgid "SSD Protect Mode"
+msgstr "SSD保护模式"
+
+msgid "Host Writes 32MiB"
+msgstr "主机写入(32MiB)"
+
+msgid "NAND Writes 32MiB"
+msgstr "NAND写入(32MiB)"
+
+msgid "Remaining Life Left"
+msgstr "剩余寿命"
+
+msgid "Grown Bad Block Count"
+msgstr "新增坏块数"
+
+msgid "Soft Read Error Rate"
+msgstr "软读取错误率"
+
+msgid "Data Address Mark Errors"
+msgstr "数据地址标记错误"
+
+msgid "Run Out Cancel"
+msgstr "溢出取消"
+
+msgid "Soft ECC Correction"
+msgstr "软ECC纠正"
+
+msgid "TA Increase Count"
+msgstr "TA增加计数"
+
+msgid "Shock Count Write Operation"
+msgstr "写入时冲击次数"
+
+msgid "Shock Rate Write Operation"
+msgstr "写入时冲击率"
+
+msgid "Flying Height"
+msgstr "磁头飞行高度"
+
+msgid "Spin High Current"
+msgstr "启动高电流"
+
+msgid "Spin Buzz"
+msgstr "启动噪音"
+
+msgid "Offline Seek Performance"
+msgstr "离线寻道性能"
+
+msgid "Vibration During Write"
+msgstr "写入时振动"
+
+msgid "Shock During Write"
+msgstr "写入时冲击"
+
+msgid "Disk Shift"
+msgstr "磁盘偏移"
+
+msgid "Load Retry Count"
+msgstr "加载重试次数"
+
+msgid "Load Friction"
+msgstr "加载摩擦"
+
+msgid "Load-in Time"
+msgstr "加载时间"
+
+msgid "Torque Amplification Count"
+msgstr "扭矩放大次数"
+
+msgid "Write Error Rate"
+msgstr "写入错误率"
+
+msgid "Serial Number"
+msgstr "序列号"
+
+msgid "LU WWN Device Id"
+msgstr "LU WWN设备ID"
+
+msgid "Firmware Version"
+msgstr "固件版本"
+
+msgid "User Capacity"
+msgstr "可用容量"
+
+msgid "Capacity"
+msgstr "容量"
+
+msgid "Sector Size"
+msgstr "扇区大小"
+
+msgid "Sector Sizes"
+msgstr "扇区大小"
+
+msgid "Rotation Rate"
+msgstr "转速"
+
+msgid "Form Factor"
+msgstr "外形规格"
+
+msgid "Device is"
+msgstr "设备"
+
+msgid "ATA Version is"
+msgstr "ATA版本"
+
+msgid "SATA Version is"
+msgstr "SATA版本"
+
+msgid "Local Time is"
+msgstr "本地时间"
+
+msgid "SMART support is"
+msgstr "SMART支持"
+
+msgid "SMART Status"
+msgstr "SMART状态"
+
+msgid "Device"
+msgstr "设备"
+
+msgid "Model Number"
+msgstr "型号"
+
+msgid "Firmware Revision"
+msgstr "固件修订版"
+
+msgid "PCI Vendor/Subsystem ID"
+msgstr "PCI供应商/子系统ID"
+
+msgid "IEEE OUI Identifier"
+msgstr "IEEE OUI标识符"
+
+msgid "Total NVM Capacity"
+msgstr "NVM总容量"
+
+msgid "Unallocated NVM Capacity"
+msgstr "未分配NVM容量"
+
+msgid "Controller ID"
+msgstr "控制器ID"
+
+msgid "Number of Namespaces"
+msgstr "命名空间数量"
+
+msgid "Namespace 1 Size/Capacity"
+msgstr "命名空间1大小/容量"
+
+msgid "Namespace 1 Formatted LBA Size"
+msgstr "命名空间1 LBA大小"
+
+msgid "Namespace 1 IEEE EUI-64"
+msgstr "命名空间1 IEEE EUI-64"
+
+msgid "logical/physical"
+msgstr "逻辑/物理"
+
+msgid "bytes"
+msgstr "字节"
+
+msgid "blocks"
+msgstr "块"
+
+msgid "Solid State Device"
+msgstr "固态硬盘"

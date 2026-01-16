@@ -424,8 +424,7 @@ msgstr "Автор (сопровождающий пакета)"
 msgid "Information about package author and available support options."
 msgstr "Информация об авторе пакета и доступных вариантах поддержки."
 
-msgid ""
-msgstr ""
+# --
 
 msgid "All available space"
 msgstr "Всё доступное место"
@@ -803,3 +802,386 @@ msgstr "Невозможно прочитать данные S.M.A.R.T."
 
 msgid "Error reading S.M.A.R.T. data."
 msgstr "Ошибка чтения данных S.M.A.R.T."
+
+# SMART & Disk Info
+
+msgid "Raw Read Error Rate"
+msgstr "Частота ошибок чтения"
+
+msgid "Throughput Performance"
+msgstr "Производительность пропускной способности"
+
+msgid "Spin Up Time"
+msgstr "Время раскрутки"
+
+msgid "Start Stop Count"
+msgstr "Количество запусков/остановок"
+
+msgid "Reallocated Sector Count"
+msgstr "Количество переназначенных секторов"
+
+msgid "Seek Error Rate"
+msgstr "Частота ошибок позиционирования"
+
+msgid "Seek Time Performance"
+msgstr "Производительность позиционирования"
+
+msgid "Power On Hours"
+msgstr "Время работы"
+
+msgid "Spin Retry Count"
+msgstr "Количество повторов раскрутки"
+
+msgid "Calibration Retry Count"
+msgstr "Количество повторов калибровки"
+
+msgid "Power Cycle Count"
+msgstr "Количество циклов питания"
+
+msgid "Read Soft Error Rate"
+msgstr "Частота мягких ошибок чтения"
+
+msgid "Airflow Temperature"
+msgstr "Температура воздушного потока"
+
+msgid "Temperature Celsius"
+msgstr "Температура"
+
+msgid "Hardware ECC Recovered"
+msgstr "Ошибки ECC исправлены аппаратно"
+
+msgid "Current Pending Sector"
+msgstr "Нестабильные сектора"
+
+msgid "Offline Uncorrectable"
+msgstr "Неисправимые сектора offline"
+
+msgid "UDMA CRC Error Count"
+msgstr "Количество ошибок CRC UDMA"
+
+msgid "Multi Zone Error Rate"
+msgstr "Частота многозонных ошибок"
+
+msgid "Wear Leveling Count"
+msgstr "Счетчик износа"
+
+msgid "Used Reserved Block Count Total"
+msgstr "Использованные резервные блоки (всего)"
+
+msgid "Used Reserved Block Count Chip"
+msgstr "Использованные резервные блоки (чип)"
+
+msgid "Unused Reserved Block Count Total"
+msgstr "Неиспользованные резервные блоки"
+
+msgid "Program Fail Count Total"
+msgstr "Количество ошибок записи"
+
+msgid "Erase Fail Count Total"
+msgstr "Количество ошибок стирания"
+
+msgid "Runtime Bad Block"
+msgstr "Поврежденные блоки"
+
+msgid "Uncorrectable Error Count"
+msgstr "Количество неисправимых ошибок"
+
+msgid "Temperature Exceed Count"
+msgstr "Количество превышений температуры"
+
+msgid "Erase Fail Count"
+msgstr "Количество ошибок стирания"
+
+msgid "Reported Uncorrectable Errors"
+msgstr "Зарегистрированные неисправимые ошибки"
+
+msgid "High Fly Writes"
+msgstr "Записи на большой высоте"
+
+msgid "G-Sense Error Rate"
+msgstr "Частота ошибок G-сенсора"
+
+msgid "Power-Off Retract Count"
+msgstr "Количество отводов головок при отключении"
+
+msgid "Load Cycle Count"
+msgstr "Количество циклов парковки головок"
+
+msgid "Temperature Case"
+msgstr "Температура корпуса"
+
+msgid "Reallocated Event Count"
+msgstr "Количество событий переназначения"
+
+msgid "Transfer Error Rate"
+msgstr "Частота ошибок передачи"
+
+msgid "Free Fall Sensor"
+msgstr "Датчик свободного падения"
+
+msgid "Total LBAs Written"
+msgstr "Всего записано LBA"
+
+msgid "Total LBAs Read"
+msgstr "Всего считано LBA"
+
+msgid "Read Error Retry Rate"
+msgstr "Частота повторов чтения"
+
+msgid "Minimum W/E Cycle"
+msgstr "Минимальный цикл записи/стирания"
+
+msgid "Maximum W/E Cycle"
+msgstr "Максимальный цикл записи/стирания"
+
+msgid "Average W/E Cycle"
+msgstr "Средний цикл записи/стирания"
+
+msgid "Media Wearout Indicator"
+msgstr "Индикатор износа носителя"
+
+msgid "Available Reserved Space"
+msgstr "Доступное резервное пространство"
+
+msgid "SSD Life Left"
+msgstr "Остаточный ресурс SSD"
+
+msgid "Remaining Lifetime Percentage"
+msgstr "Остаточный ресурс (процент)"
+
+msgid "Percentage Lifetime Remaining"
+msgstr "Процент остаточного ресурса"
+
+msgid "Remaining Life"
+msgstr "Остаточный ресурс"
+
+msgid "Lifetime Writes GiB"
+msgstr "Записано данных (ГиБ)"
+
+msgid "Lifetime Reads GiB"
+msgstr "Считано данных (ГиБ)"
+
+msgid "Program Fail Count"
+msgstr "Количество ошибок программирования"
+
+msgid "Unexpected Power Loss Count"
+msgstr "Количество неожиданных отключений питания"
+
+msgid "Thermal Throttle Status"
+msgstr "Состояние тепловой защиты"
+
+msgid "End-to-End Error"
+msgstr "Сквозная ошибка"
+
+msgid "Workload Host Reads Percentage"
+msgstr "Процент чтений хоста"
+
+msgid "Workload Media Wear Indicator"
+msgstr "Индикатор износа носителя (нагрузка)"
+
+msgid "Timed Workload Media Wear"
+msgstr "Износ носителя (временная нагрузка)"
+
+msgid "Workload Timer"
+msgstr "Таймер нагрузки"
+
+msgid "Percentage Rated Life Used"
+msgstr "Процент использованного ресурса"
+
+msgid "Head Flying Hours"
+msgstr "Часы полета головок"
+
+msgid "Read Channel Margin"
+msgstr "Запас канала чтения"
+
+msgid "Loaded Hours"
+msgstr "Часы работы с распаркованными головками"
+
+msgid "Load/Unload Retry Count"
+msgstr "Количество повторов парковки/распарковки"
+
+msgid "GMR Head Amplitude"
+msgstr "Амплитуда головки GMR"
+
+msgid "Drive Temperature"
+msgstr "Температура диска"
+
+msgid "Endurance Remaining"
+msgstr "Остаточная выносливость"
+
+msgid "Power On Hours and Milliseconds"
+msgstr "Время работы (часы и миллисекунды)"
+
+msgid "Head Health"
+msgstr "Состояние головок"
+
+msgid "POR Recovery Count"
+msgstr "Количество восстановлений POR"
+
+msgid "Unused Reserve NAND Blocks"
+msgstr "Неиспользованные резервные блоки NAND"
+
+msgid "SSD Protect Mode"
+msgstr "Режим защиты SSD"
+
+msgid "Host Writes 32MiB"
+msgstr "Записи хоста (32 МиБ)"
+
+msgid "NAND Writes 32MiB"
+msgstr "Записи NAND (32 МиБ)"
+
+msgid "Remaining Life Left"
+msgstr "Остаточный ресурс"
+
+msgid "Grown Bad Block Count"
+msgstr "Количество новых поврежденных блоков"
+
+msgid "Soft Read Error Rate"
+msgstr "Частота мягких ошибок чтения"
+
+msgid "Data Address Mark Errors"
+msgstr "Ошибки маркера адреса данных"
+
+msgid "Run Out Cancel"
+msgstr "Отмена переполнения"
+
+msgid "Soft ECC Correction"
+msgstr "Мягкая коррекция ECC"
+
+msgid "TA Increase Count"
+msgstr "Количество увеличений TA"
+
+msgid "Shock Count Write Operation"
+msgstr "Количество ударов при записи"
+
+msgid "Shock Rate Write Operation"
+msgstr "Частота ударов при записи"
+
+msgid "Flying Height"
+msgstr "Высота полета головок"
+
+msgid "Spin High Current"
+msgstr "Высокий ток запуска"
+
+msgid "Spin Buzz"
+msgstr "Жужжание при запуске"
+
+msgid "Offline Seek Performance"
+msgstr "Производительность позиционирования offline"
+
+msgid "Vibration During Write"
+msgstr "Вибрации при записи"
+
+msgid "Shock During Write"
+msgstr "Удары при записи"
+
+msgid "Disk Shift"
+msgstr "Смещение диска"
+
+msgid "Load Retry Count"
+msgstr "Количество повторов загрузки"
+
+msgid "Load Friction"
+msgstr "Трение при загрузке"
+
+msgid "Load-in Time"
+msgstr "Время загрузки"
+
+msgid "Torque Amplification Count"
+msgstr "Количество усилений крутящего момента"
+
+msgid "Write Error Rate"
+msgstr "Частота ошибок записи"
+
+msgid "Serial Number"
+msgstr "Серийный номер"
+
+msgid "LU WWN Device Id"
+msgstr "Идентификатор устройства LU WWN"
+
+msgid "Firmware Version"
+msgstr "Версия прошивки"
+
+msgid "User Capacity"
+msgstr "Полезная емкость"
+
+msgid "Capacity"
+msgstr "Емкость"
+
+msgid "Sector Size"
+msgstr "Размер сектора"
+
+msgid "Sector Sizes"
+msgstr "Размеры секторов"
+
+msgid "Rotation Rate"
+msgstr "Скорость вращения"
+
+msgid "Form Factor"
+msgstr "Форм-фактор"
+
+msgid "Device is"
+msgstr "Устройство"
+
+msgid "ATA Version is"
+msgstr "Версия ATA"
+
+msgid "SATA Version is"
+msgstr "Версия SATA"
+
+msgid "Local Time is"
+msgstr "Местное время"
+
+msgid "SMART support is"
+msgstr "Поддержка SMART"
+
+msgid "SMART Status"
+msgstr "Состояние SMART"
+
+msgid "Device"
+msgstr "Устройство"
+
+msgid "Model Number"
+msgstr "Модель"
+
+msgid "Firmware Revision"
+msgstr "Ревизия прошивки"
+
+msgid "PCI Vendor/Subsystem ID"
+msgstr "ID производителя/подсистемы PCI"
+
+msgid "IEEE OUI Identifier"
+msgstr "Идентификатор IEEE OUI"
+
+msgid "Total NVM Capacity"
+msgstr "Общая емкость NVM"
+
+msgid "Unallocated NVM Capacity"
+msgstr "Нераспределенная емкость NVM"
+
+msgid "Controller ID"
+msgstr "ID контроллера"
+
+msgid "Number of Namespaces"
+msgstr "Количество адресных пространств"
+
+msgid "Namespace 1 Size/Capacity"
+msgstr "Размер/емкость адресного пространства 1"
+
+msgid "Namespace 1 Formatted LBA Size"
+msgstr "Размер LBA адресного пространства 1"
+
+msgid "Namespace 1 IEEE EUI-64"
+msgstr "IEEE EUI-64 адресного пространства 1"
+
+msgid "logical/physical"
+msgstr "логический/физический"
+
+msgid "bytes"
+msgstr "байт"
+
+msgid "blocks"
+msgstr "блоков"
+
+msgid "Solid State Device"
+msgstr "Твердотельный накопитель"

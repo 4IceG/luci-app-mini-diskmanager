@@ -424,8 +424,7 @@ msgstr "Tác giả (người bảo trì gói)"
 msgid "Information about package author and available support options."
 msgstr "Thông tin về tác giả gói và các tùy chọn hỗ trợ có sẵn."
 
-msgid ""
-msgstr ""
+# --
 
 msgid "All available space"
 msgstr "Toàn bộ dung lượng có sẵn"
@@ -800,3 +799,386 @@ msgstr "Không thể đọc dữ liệu S.M.A.R.T."
 
 msgid "Error reading S.M.A.R.T. data."
 msgstr "Lỗi khi đọc dữ liệu S.M.A.R.T."
+
+# SMART & Disk Info
+
+msgid "Raw Read Error Rate"
+msgstr "Tỷ lệ lỗi đọc thô"
+
+msgid "Throughput Performance"
+msgstr "Hiệu suất thông lượng"
+
+msgid "Spin Up Time"
+msgstr "Thời gian khởi động"
+
+msgid "Start Stop Count"
+msgstr "Số lần khởi động/dừng"
+
+msgid "Reallocated Sector Count"
+msgstr "Số sector tái phân bổ"
+
+msgid "Seek Error Rate"
+msgstr "Tỷ lệ lỗi định vị"
+
+msgid "Seek Time Performance"
+msgstr "Hiệu suất thời gian định vị"
+
+msgid "Power On Hours"
+msgstr "Giờ hoạt động"
+
+msgid "Spin Retry Count"
+msgstr "Số lần thử lại khởi động"
+
+msgid "Calibration Retry Count"
+msgstr "Số lần thử lại hiệu chuẩn"
+
+msgid "Power Cycle Count"
+msgstr "Số chu kỳ nguồn"
+
+msgid "Read Soft Error Rate"
+msgstr "Tỷ lệ lỗi đọc mềm"
+
+msgid "Airflow Temperature"
+msgstr "Nhiệt độ luồng khí"
+
+msgid "Temperature Celsius"
+msgstr "Nhiệt độ"
+
+msgid "Hardware ECC Recovered"
+msgstr "Lỗi ECC khôi phục bằng phần cứng"
+
+msgid "Current Pending Sector"
+msgstr "Sector không ổn định"
+
+msgid "Offline Uncorrectable"
+msgstr "Sector không sửa được offline"
+
+msgid "UDMA CRC Error Count"
+msgstr "Số lỗi CRC UDMA"
+
+msgid "Multi Zone Error Rate"
+msgstr "Tỷ lệ lỗi đa vùng"
+
+msgid "Wear Leveling Count"
+msgstr "Bộ đếm mài mòn"
+
+msgid "Used Reserved Block Count Total"
+msgstr "Khối dự trữ đã sử dụng (tổng)"
+
+msgid "Used Reserved Block Count Chip"
+msgstr "Khối dự trữ đã sử dụng (chip)"
+
+msgid "Unused Reserved Block Count Total"
+msgstr "Khối dự trữ chưa sử dụng"
+
+msgid "Program Fail Count Total"
+msgstr "Số lỗi ghi"
+
+msgid "Erase Fail Count Total"
+msgstr "Số lỗi xóa"
+
+msgid "Runtime Bad Block"
+msgstr "Khối hỏng"
+
+msgid "Uncorrectable Error Count"
+msgstr "Số lỗi không sửa được"
+
+msgid "Temperature Exceed Count"
+msgstr "Số lần vượt nhiệt độ"
+
+msgid "Erase Fail Count"
+msgstr "Số lỗi xóa"
+
+msgid "Reported Uncorrectable Errors"
+msgstr "Lỗi không sửa được đã báo cáo"
+
+msgid "High Fly Writes"
+msgstr "Ghi ở độ cao lớn"
+
+msgid "G-Sense Error Rate"
+msgstr "Tỷ lệ lỗi cảm biến G"
+
+msgid "Power-Off Retract Count"
+msgstr "Số lần rút đầu đọc khi tắt nguồn"
+
+msgid "Load Cycle Count"
+msgstr "Số chu kỳ đỗ đầu đọc"
+
+msgid "Temperature Case"
+msgstr "Nhiệt độ vỏ"
+
+msgid "Reallocated Event Count"
+msgstr "Số sự kiện tái phân bổ"
+
+msgid "Transfer Error Rate"
+msgstr "Tỷ lệ lỗi truyền"
+
+msgid "Free Fall Sensor"
+msgstr "Cảm biến rơi tự do"
+
+msgid "Total LBAs Written"
+msgstr "Tổng LBA đã ghi"
+
+msgid "Total LBAs Read"
+msgstr "Tổng LBA đã đọc"
+
+msgid "Read Error Retry Rate"
+msgstr "Tỷ lệ thử lại đọc"
+
+msgid "Minimum W/E Cycle"
+msgstr "Chu kỳ ghi/xóa tối thiểu"
+
+msgid "Maximum W/E Cycle"
+msgstr "Chu kỳ ghi/xóa tối đa"
+
+msgid "Average W/E Cycle"
+msgstr "Chu kỳ ghi/xóa trung bình"
+
+msgid "Media Wearout Indicator"
+msgstr "Chỉ báo mài mòn phương tiện"
+
+msgid "Available Reserved Space"
+msgstr "Không gian dự trữ khả dụng"
+
+msgid "SSD Life Left"
+msgstr "Tuổi thọ SSD còn lại"
+
+msgid "Remaining Lifetime Percentage"
+msgstr "Phần trăm tuổi thọ còn lại"
+
+msgid "Percentage Lifetime Remaining"
+msgstr "Phần trăm tuổi thọ còn lại"
+
+msgid "Remaining Life"
+msgstr "Tuổi thọ còn lại"
+
+msgid "Lifetime Writes GiB"
+msgstr "Dữ liệu đã ghi (GiB)"
+
+msgid "Lifetime Reads GiB"
+msgstr "Dữ liệu đã đọc (GiB)"
+
+msgid "Program Fail Count"
+msgstr "Số lỗi lập trình"
+
+msgid "Unexpected Power Loss Count"
+msgstr "Số lần mất nguồn bất ngờ"
+
+msgid "Thermal Throttle Status"
+msgstr "Trạng thái giới hạn nhiệt"
+
+msgid "End-to-End Error"
+msgstr "Lỗi đầu cuối"
+
+msgid "Workload Host Reads Percentage"
+msgstr "Phần trăm đọc của host"
+
+msgid "Workload Media Wear Indicator"
+msgstr "Chỉ báo mài mòn phương tiện (tải)"
+
+msgid "Timed Workload Media Wear"
+msgstr "Mài mòn phương tiện (tải theo thời gian)"
+
+msgid "Workload Timer"
+msgstr "Bộ đếm thời gian tải"
+
+msgid "Percentage Rated Life Used"
+msgstr "Phần trăm tuổi thọ đã sử dụng"
+
+msgid "Head Flying Hours"
+msgstr "Giờ bay của đầu đọc"
+
+msgid "Read Channel Margin"
+msgstr "Biên độ kênh đọc"
+
+msgid "Loaded Hours"
+msgstr "Giờ hoạt động không đỗ"
+
+msgid "Load/Unload Retry Count"
+msgstr "Số lần thử lại đỗ/bỏ đỗ"
+
+msgid "GMR Head Amplitude"
+msgstr "Biên độ đầu đọc GMR"
+
+msgid "Drive Temperature"
+msgstr "Nhiệt độ ổ đĩa"
+
+msgid "Endurance Remaining"
+msgstr "Độ bền còn lại"
+
+msgid "Power On Hours and Milliseconds"
+msgstr "Giờ hoạt động (giờ và mili giây)"
+
+msgid "Head Health"
+msgstr "Tình trạng đầu đọc"
+
+msgid "POR Recovery Count"
+msgstr "Số lần khôi phục POR"
+
+msgid "Unused Reserve NAND Blocks"
+msgstr "Khối NAND dự trữ chưa sử dụng"
+
+msgid "SSD Protect Mode"
+msgstr "Chế độ bảo vệ SSD"
+
+msgid "Host Writes 32MiB"
+msgstr "Ghi của host (32MiB)"
+
+msgid "NAND Writes 32MiB"
+msgstr "Ghi NAND (32MiB)"
+
+msgid "Remaining Life Left"
+msgstr "Tuổi thọ còn lại"
+
+msgid "Grown Bad Block Count"
+msgstr "Số khối hỏng mới"
+
+msgid "Soft Read Error Rate"
+msgstr "Tỷ lệ lỗi đọc mềm"
+
+msgid "Data Address Mark Errors"
+msgstr "Lỗi dấu địa chỉ dữ liệu"
+
+msgid "Run Out Cancel"
+msgstr "Hủy tràn"
+
+msgid "Soft ECC Correction"
+msgstr "Sửa lỗi ECC mềm"
+
+msgid "TA Increase Count"
+msgstr "Số lần tăng TA"
+
+msgid "Shock Count Write Operation"
+msgstr "Số lần va đập khi ghi"
+
+msgid "Shock Rate Write Operation"
+msgstr "Tỷ lệ va đập khi ghi"
+
+msgid "Flying Height"
+msgstr "Độ cao bay của đầu đọc"
+
+msgid "Spin High Current"
+msgstr "Dòng cao khi khởi động"
+
+msgid "Spin Buzz"
+msgstr "Tiếng kêu khi khởi động"
+
+msgid "Offline Seek Performance"
+msgstr "Hiệu suất định vị offline"
+
+msgid "Vibration During Write"
+msgstr "Rung động khi ghi"
+
+msgid "Shock During Write"
+msgstr "Va đập khi ghi"
+
+msgid "Disk Shift"
+msgstr "Dịch chuyển đĩa"
+
+msgid "Load Retry Count"
+msgstr "Số lần thử lại tải"
+
+msgid "Load Friction"
+msgstr "Ma sát khi tải"
+
+msgid "Load-in Time"
+msgstr "Thời gian tải"
+
+msgid "Torque Amplification Count"
+msgstr "Số lần khuếch đại mô-men xoắn"
+
+msgid "Write Error Rate"
+msgstr "Tỷ lệ lỗi ghi"
+
+msgid "Serial Number"
+msgstr "Số seri"
+
+msgid "LU WWN Device Id"
+msgstr "ID thiết bị LU WWN"
+
+msgid "Firmware Version"
+msgstr "Phiên bản firmware"
+
+msgid "User Capacity"
+msgstr "Dung lượng khả dụng"
+
+msgid "Capacity"
+msgstr "Dung lượng"
+
+msgid "Sector Size"
+msgstr "Kích thước sector"
+
+msgid "Sector Sizes"
+msgstr "Kích thước các sector"
+
+msgid "Rotation Rate"
+msgstr "Tốc độ quay"
+
+msgid "Form Factor"
+msgstr "Kích thước"
+
+msgid "Device is"
+msgstr "Thiết bị"
+
+msgid "ATA Version is"
+msgstr "Phiên bản ATA"
+
+msgid "SATA Version is"
+msgstr "Phiên bản SATA"
+
+msgid "Local Time is"
+msgstr "Giờ địa phương"
+
+msgid "SMART support is"
+msgstr "Hỗ trợ SMART"
+
+msgid "SMART Status"
+msgstr "Trạng thái SMART"
+
+msgid "Device"
+msgstr "Thiết bị"
+
+msgid "Model Number"
+msgstr "Mẫu"
+
+msgid "Firmware Revision"
+msgstr "Bản sửa đổi firmware"
+
+msgid "PCI Vendor/Subsystem ID"
+msgstr "ID nhà cung cấp/hệ thống con PCI"
+
+msgid "IEEE OUI Identifier"
+msgstr "Mã định danh IEEE OUI"
+
+msgid "Total NVM Capacity"
+msgstr "Tổng dung lượng NVM"
+
+msgid "Unallocated NVM Capacity"
+msgstr "Dung lượng NVM chưa phân bổ"
+
+msgid "Controller ID"
+msgstr "ID bộ điều khiển"
+
+msgid "Number of Namespaces"
+msgstr "Số không gian địa chỉ"
+
+msgid "Namespace 1 Size/Capacity"
+msgstr "Kích thước/dung lượng không gian địa chỉ 1"
+
+msgid "Namespace 1 Formatted LBA Size"
+msgstr "Kích thước LBA không gian địa chỉ 1"
+
+msgid "Namespace 1 IEEE EUI-64"
+msgstr "IEEE EUI-64 không gian địa chỉ 1"
+
+msgid "logical/physical"
+msgstr "logic/vật lý"
+
+msgid "bytes"
+msgstr "byte"
+
+msgid "blocks"
+msgstr "khối"
+
+msgid "Solid State Device"
+msgstr "Ổ SSD"
