@@ -1,5 +1,5 @@
 {
-	"admin/services/mini-diskmanager": {
+	"admin/system/mini-diskmanager": {
 		"title": "Disk Manager",
 		"order": 60,
 		"action": {
@@ -10,8 +10,8 @@
 			"uci": { "fstab": true }
 		}
 	},
-	
-	"admin/services/mini-diskmanager/minidiskmanager": {
+
+	"admin/system/mini-diskmanager/minidiskmanager": {
 		"title": "Disk Manager",
 		"order": 10,
 		"action": {
@@ -19,8 +19,8 @@
 			"path": "minidiskmanager"
 		}
 	},
-	
-	"admin/services/mini-diskmanager/mdmconfig": {
+
+	"admin/system/mini-diskmanager/mdmconfig": {
 		"title": "Configuration",
 		"order": 20,
 		"action": {
@@ -28,8 +28,8 @@
 			"path": "mdmconfig"
 		}
 	},
-	
-	"admin/services/mini-diskmanager/mdmsupport": {
+
+	"admin/system/mini-diskmanager/mdmsupport": {
 		"title": "Package support",
 		"order": 30,
 		"action": {
