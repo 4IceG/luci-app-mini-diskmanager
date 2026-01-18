@@ -9,9 +9,9 @@
 /*
 
   Copyright 2025-2026 Rafał Wabik - IceG - From eko.one.pl forum
-  
+
   MIT License
-  
+
 */
 
 var callInitList = rpc.declare({
@@ -186,9 +186,9 @@ return view.extend({
                     { name: 'kmod-nls-utf8', label: 'kmod-nls-utf8' }
                 ],
                 'exFAT': [
+                    { name: 'kmod-fs-exfat', label: 'kmod-fs-exfat' },
                     { name: 'exfat-mkfs', label: 'exfat-mkfs' },
-                    { name: 'kmod-fs-exfat', label: 'kmod-fs-exfat' },  
-                    { name: 'exfat-utils', label: 'exfat-utils' }
+                    { name: 'exfat-fsck', label: 'exfat-fsck' }
                 ]
             });
         }, this);
@@ -220,9 +220,9 @@ return view.extend({
             ]);
 
             var isDiskWipeDialog = (title === 'Disk Wipe Support');
-            
+
             var checkPromises = [pkg.checkPackages()];
-            
+
             if (isDiskWipeDialog) {
                 checkPromises.push(
                     L.resolveDefault(fs.stat('/bin/dd'), null).then(function(result) {
@@ -244,10 +244,10 @@ return view.extend({
                 var _row = function(pkgName, installed, isAlternative, ddAvailable) {
                     var title = E('label', { 'class': 'cbi-value-title' }, pkgName);
                     var btn;
-                    
+
                     if (isAlternative && ddAvailable) {
-                        btn = E('button', { 
-                            'class': 'edit btn', 
+                        btn = E('button', {
+                            'class': 'edit btn',
                             'disabled': true
                         }, _('dd from BusyBox'));
                     } else if (installed) {
