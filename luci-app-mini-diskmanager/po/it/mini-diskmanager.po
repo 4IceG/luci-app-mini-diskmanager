@@ -1185,3 +1185,23 @@ msgstr "blocs"
 
 msgid "Solid State Device"
 msgstr "Disque SSD"
+
+# Reserved space
+
+msgid "Reserved space"
+msgstr "Spazio riservato"
+
+msgid "Space reserved for root (default: 5%)"
+msgstr "Spazio riservato per root (predefinito: 5%)"
+
+msgid "Used Reserved Block Count Total"
+msgstr "Conteggio totale blocchi riservati utilizzati"
+
+msgid "Used Reserved Block Count Chip"
+msgstr "Conteggio blocchi riservati utilizzati per chip"
+
+msgid "Unused Reserved Block Count Total"
+msgstr "Conteggio totale blocchi riservati non utilizzati"
+
+msgid "Available Reserved Space"
+msgstr "Spazio riservato disponibile"

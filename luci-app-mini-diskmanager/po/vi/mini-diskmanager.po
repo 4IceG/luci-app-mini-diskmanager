@@ -1,0 +1,1207 @@
+msgid "Disk Manager"
+msgstr "Trình quản lý đĩa"
+
+msgid "-- Select a disk --"
+msgstr "-- Chọn đĩa --"
+
+msgid "Disk"
+msgstr "Đĩa"
+
+msgid "Refresh"
+msgstr "Làm mới"
+
+msgid "Mounting actions"
+msgstr "Thao tác gắn kết"
+
+msgid "Actions on partitions"
+msgstr "Thao tác trên phân vùng"
+
+msgid "Mount"
+msgstr "Gắn kết"
+
+msgid "Unmount"
+msgstr "Tháo gắn"
+
+msgid "Create"
+msgstr "Tạo"
+
+msgid "Delete"
+msgstr "Xóa"
+
+msgid "Format"
+msgstr "Định dạng"
+
+msgid "Please select a disk to view its partitions"
+msgstr "Vui lòng chọn đĩa để xem các phân vùng của nó"
+
+msgid "Please select a disk first"
+msgstr "Vui lòng chọn đĩa trước"
+
+msgid "Please select a partition first"
+msgstr "Vui lòng chọn phân vùng trước"
+
+msgid "Loading disk information..."
+msgstr "Đang tải thông tin đĩa..."
+
+msgid "Error loading disk information: "
+msgstr "Lỗi khi tải thông tin đĩa: "
+
+msgid "Disk Information"
+msgstr "Thông tin đĩa"
+
+msgid "Temperature"
+msgstr "Nhiệt độ"
+
+msgid "S.M.A.R.T."
+msgstr "S.M.A.R.T."
+
+msgid "S.M.A.R.T. Status"
+msgstr "Trạng thái S.M.A.R.T."
+
+msgid "Partitions"
+msgstr "Phân vùng"
+
+msgid "Mount Status"
+msgstr "Trạng thái gắn kết"
+
+msgid "Mounted"
+msgstr "Đã gắn kết"
+
+msgid "Not mounted"
+msgstr "Chưa gắn kết"
+
+msgid "Partition Layout"
+msgstr "Bố cục phân vùng"
+
+msgid "Partition"
+msgstr "Phân vùng"
+
+msgid "Type / Filesystem"
+msgstr "Loại / Hệ thống tệp"
+
+msgid "Filesystem"
+msgstr "Hệ thống tệp"
+
+msgid "Mount Point"
+msgstr "Điểm gắn kết"
+
+msgid "Label"
+msgstr "Nhãn"
+
+msgid "Size"
+msgstr "Kích thước"
+
+msgid "Used"
+msgstr "Đã dùng"
+
+msgid "Unused"
+msgstr "Còn trống"
+
+msgid "Flags"
+msgstr "Cờ"
+
+msgid "No partitions found"
+msgstr "Không tìm thấy phân vùng"
+
+msgid "Unallocated"
+msgstr "Chưa phân bổ"
+
+msgid "Area without partition table"
+msgstr "Vùng không có bảng phân vùng"
+
+msgid "Free Space"
+msgstr "Dung lượng trống"
+
+msgid "Primary"
+msgstr "Chính"
+
+msgid "Extended"
+msgstr "Mở rộng"
+
+msgid "Logical"
+msgstr "Lôgic"
+
+msgid "Create partition"
+msgstr "Tạo phân vùng"
+
+msgid "Cancel"
+msgstr "Hủy"
+
+msgid "File system"
+msgstr "Hệ thống tệp"
+
+msgid "Volume label"
+msgstr "Nhãn ổ đĩa"
+
+msgid "Partition size"
+msgstr "Kích thước phân vùng"
+
+msgid "Enter size"
+msgstr "Nhập kích thước"
+
+msgid "Use all available space"
+msgstr "Sử dụng toàn bộ dung lượng có sẵn"
+
+msgid "Available: %s MB / %s GB / %s TB"
+msgstr "Có sẵn: %s MB / %s GB / %s TB"
+
+msgid "Please enter a valid size"
+msgstr "Vui lòng nhập kích thước hợp lệ"
+
+msgid "Size is too small"
+msgstr "Kích thước quá nhỏ"
+
+msgid "Creating partition..."
+msgstr "Đang tạo phân vùng..."
+
+msgid "Partition created successfully"
+msgstr "Tạo phân vùng thành công"
+
+msgid "Failed to create partition"
+msgstr "Không thể tạo phân vùng"
+
+msgid "Format Partition"
+msgstr "Định dạng phân vùng"
+
+msgid "Warning"
+msgstr "Cảnh báo"
+
+msgid "This will erase all data on /dev/%s"
+msgstr "Thao tác này sẽ xóa tất cả dữ liệu trên /dev/%s"
+
+msgid "Formatting partition..."
+msgstr "Đang định dạng phân vùng..."
+
+msgid "Partition formatted successfully"
+msgstr "Định dạng phân vùng thành công"
+
+msgid "Failed to format partition"
+msgstr "Không thể định dạng phân vùng"
+
+msgid "Delete Partition"
+msgstr "Xóa phân vùng"
+
+msgid "Are you sure you want to continue?"
+msgstr "Bạn có chắc chắn muốn tiếp tục?"
+
+msgid "Deleting partition..."
+msgstr "Đang xóa phân vùng..."
+
+msgid "Partition deleted successfully"
+msgstr "Xóa phân vùng thành công"
+
+msgid "Failed to delete partition"
+msgstr "Không thể xóa phân vùng"
+
+msgid "No partitions to mount"
+msgstr "Không có phân vùng để gắn kết"
+
+msgid "No mounted partitions found"
+msgstr "Không tìm thấy phân vùng đã gắn kết"
+
+msgid "No partitions to unmount"
+msgstr "Không có phân vùng để tháo gắn"
+
+msgid "Mounted to %s"
+msgstr "Đã gắn kết vào %s"
+
+msgid "Unmounted %s"
+msgstr "Đã tháo gắn %s"
+
+msgid "Failed to mount: "
+msgstr "Không thể gắn kết: "
+
+msgid "Failed to unmount: "
+msgstr "Không thể tháo gắn: "
+
+msgid "Failed to check operation status: "
+msgstr "Không thể kiểm tra trạng thái thao tác: "
+
+msgid "Partition created but device node did not appear in time"
+msgstr "Đã tạo phân vùng nhưng nút thiết bị không xuất hiện kịp thời"
+
+msgid "Partition created but device node did not appear; please refresh manually"
+msgstr "Đã tạo phân vùng nhưng nút thiết bị không xuất hiện; vui lòng làm mới thủ công"
+
+msgid "PASSED"
+msgstr "ĐẠT"
+
+msgid "FAILED"
+msgstr "KHÔNG ĐẠT"
+
+msgid "Cannot create partition on mounted disk. Please unmount first."
+msgstr "Không thể tạo phân vùng trên đĩa đã gắn kết. Vui lòng tháo gắn trước."
+
+msgid "No unallocated space available on this disk"
+msgstr "Không có dung lượng chưa phân bổ trên đĩa này"
+
+msgid "Cannot format mounted partition. Please unmount first."
+msgstr "Không thể định dạng phân vùng đã gắn kết. Vui lòng tháo gắn trước."
+
+msgid "Failed to refresh partition data: "
+msgstr "Không thể làm mới dữ liệu phân vùng: "
+
+msgid "Cannot delete partition on mounted disk. Please unmount first."
+msgstr "Không thể xóa phân vùng trên đĩa đã gắn kết. Vui lòng tháo gắn trước."
+
+msgid "This will delete partition /dev/%s and all its data!"
+msgstr "Thao tác này sẽ xóa phân vùng /dev/%s và tất cả dữ liệu của nó!"
+
+msgid "Failed to load disk information: "
+msgstr "Không thể tải thông tin đĩa: "
+
+msgid "Click to select"
+msgstr "Nhấp để chọn"
+
+msgid "System partition cannot be selected"
+msgstr "Không thể chọn phân vùng hệ thống"
+
+msgid "Free"
+msgstr "Trống"
+
+msgid "Select a disk"
+msgstr "Chọn đĩa"
+
+msgid "Create a new partition on the selected disk"
+msgstr "Tạo phân vùng mới trên đĩa đã chọn"
+
+msgid "Partition layout"
+msgstr "Bố cục phân vùng"
+
+msgid "Partition type"
+msgstr "Loại phân vùng"
+
+msgid "Refresh partition data"
+msgstr "Làm mới dữ liệu phân vùng"
+
+msgid "MBR (Master Boot Record)"
+msgstr "MBR (Bản ghi khởi động chính)"
+
+msgid "GPT (GUID Partition Table)"
+msgstr "GPT (Bảng phân vùng GUID)"
+
+msgid "The Mini Disk Manager package allows users to easily manage disks and partitions."
+msgstr "Gói Mini Disk Manager cho phép người dùng dễ dàng quản lý đĩa và phân vùng."
+
+msgid "Configuration"
+msgstr "Cấu hình"
+
+msgid "Package and Driver Verification"
+msgstr "Xác minh gói và trình điều khiển"
+
+msgid "Check and install required drivers for storage devices."
+msgstr "Kiểm tra và cài đặt trình điều khiển cần thiết cho thiết bị lưu trữ."
+
+msgid "Filesystem Support"
+msgstr "Hỗ trợ hệ thống tệp"
+
+msgid "Check USB drivers"
+msgstr "Kiểm tra trình điều khiển USB"
+
+msgid "USB drivers"
+msgstr "Trình điều khiển USB"
+
+msgid "Check NVMe drivers"
+msgstr "Kiểm tra trình điều khiển NVMe"
+
+msgid "NVMe drivers"
+msgstr "Trình điều khiển NVMe"
+
+msgid "Check ATA/SATA drivers"
+msgstr "Kiểm tra trình điều khiển ATA/SATA"
+
+msgid "ATA/SATA drivers"
+msgstr "Trình điều khiển ATA/SATA"
+
+msgid "Check Linux filesystem packages"
+msgstr "Kiểm tra gói hệ thống tệp Linux"
+
+msgid "Linux filesystems"
+msgstr "Hệ thống tệp Linux"
+
+msgid "Check Windows filesystem packages"
+msgstr "Kiểm tra gói hệ thống tệp Windows"
+
+msgid "Windows filesystems"
+msgstr "Hệ thống tệp Windows"
+
+msgid "Linux Filesystem Packages"
+msgstr "Gói hệ thống tệp Linux"
+
+msgid "Windows Filesystem Packages"
+msgstr "Gói hệ thống tệp Windows"
+
+msgid "Disk Manager Log"
+msgstr "Nhật ký trình quản lý đĩa"
+
+msgid "Loading package data…"
+msgstr "Đang tải dữ liệu gói…"
+
+msgid "Loading log file…"
+msgstr "Đang tải tệp nhật ký…"
+
+msgid "Log file content"
+msgstr "Nội dung tệp nhật ký"
+
+msgid "Log file is empty"
+msgstr "Tệp nhật ký trống"
+
+msgid "Unable to read log file"
+msgstr "Không thể đọc tệp nhật ký"
+
+msgid "Log file cleared successfully"
+msgstr "Xóa file nhật ký thành công"
+
+msgid "Unable to clear the file"
+msgstr "Không thể xóa file"
+
+msgid "Installed"
+msgstr "Đã cài đặt"
+
+msgid "Install…"
+msgstr "Cài đặt…"
+
+msgid "Clear"
+msgstr "Xóa"
+
+msgid "Download"
+msgstr "Tải xuống"
+
+msgid "Close"
+msgstr "Đóng"
+
+msgid "Failed to load package data"
+msgstr "Không thể tải dữ liệu gói"
+
+msgid "more info in log"
+msgstr "thêm thông tin trong nhật ký"
+
+msgid "The tab allows users to support the package."
+msgstr "Tab này cho phép người dùng hỗ trợ gói."
+
+msgid "Package support"
+msgstr "Hỗ trợ gói"
+
+msgid "Mini Disk Manager Info"
+msgstr "Thông tin Mini Disk Manager"
+
+msgid "Luci-app-mdmanager"
+msgstr "Luci-app-mdmanager"
+
+msgid "Buy a coffee"
+msgstr "Mua cà phê"
+
+msgid "Buy a coffee if you want to support the development of the project and the author"
+msgstr "Mua cà phê nếu bạn muốn hỗ trợ phát triển dự án và tác giả"
+
+msgid "Become a sponsor"
+msgstr "Trở thành nhà tài trợ"
+
+msgid "Become a sponsor if you want to support the development of the project and the author"
+msgstr "Trở thành nhà tài trợ nếu bạn muốn hỗ trợ phát triển dự án và tác giả"
+
+msgid "Write on forum"
+msgstr "Viết trên diễn đàn"
+
+msgid "Write in the topic of the package on the forum eko.one.pl"
+msgstr "Viết trong chủ đề của gói trên diễn đàn eko.one.pl"
+
+msgid "Open discussion"
+msgstr "Mở thảo luận"
+
+msgid "Open a package discussion on Github"
+msgstr "Mở thảo luận về gói trên Github"
+
+msgid "Report a bug"
+msgstr "Báo cáo lỗi"
+
+msgid "Report a bug on the package Github page"
+msgstr "Báo cáo lỗi trên trang Github của gói"
+
+msgid "Package name"
+msgstr "Tên gói"
+
+msgid "Author (package maintainer)"
+msgstr "Tác giả (người bảo trì gói)"
+
+msgid "Information about package author and available support options."
+msgstr "Thông tin về tác giả gói và các tùy chọn hỗ trợ có sẵn."
+
+# --
+
+msgid "All available space"
+msgstr "Toàn bộ dung lượng có sẵn"
+
+msgid "Cannot delete mounted partition. Please unmount first."
+msgstr "Không thể xóa phân vùng đã gắn kết. Vui lòng tháo gắn trước."
+
+msgid "Failed to create partition: "
+msgstr "Không thể tạo phân vùng: "
+
+msgid "Failed to detect supported filesystems"
+msgstr "Không thể phát hiện hệ thống tệp được hỗ trợ"
+
+msgid "Failed to format partition: "
+msgstr "Không thể định dạng phân vùng: "
+
+msgid "Failed to parse JSON response: "
+msgstr "Không thể phân tích phản hồi JSON: "
+
+msgid "Failed to start formatting"
+msgstr "Không thể bắt đầu định dạng"
+
+msgid "Failed to start partition creation"
+msgstr "Không thể bắt đầu tạo phân vùng"
+
+msgid "Failed to start partition deletion"
+msgstr "Không thể bắt đầu xóa phân vùng"
+
+msgid "Fill in size"
+msgstr "Điền kích thước"
+
+msgid "Linux Swap"
+msgstr "Linux Swap"
+
+msgid "Loading..."
+msgstr "Đang tải..."
+
+msgid "No filesystem packages detected — user cannot choose unsupported filesystem formats."
+msgstr "Không phát hiện gói hệ thống tệp — người dùng không thể chọn định dạng hệ thống tệp không được hỗ trợ."
+
+msgid "No partition types available. Maximum partitions reached."
+msgstr "Không có loại phân vùng nào khả dụng. Đã đạt số lượng phân vùng tối đa."
+
+msgid "No supported filesystems detected on this system"
+msgstr "Không phát hiện hệ thống tệp được hỗ trợ trên hệ thống này"
+
+msgid "Optional"
+msgstr "Tùy chọn"
+
+msgid "Partition created but selected filesystem is not available for formatting on this system"
+msgstr "Đã tạo phân vùng nhưng hệ thống tệp đã chọn không khả dụng để định dạng trên hệ thống này"
+
+msgid "Partition data refreshed"
+msgstr "Dữ liệu phân vùng đã được làm mới"
+
+msgid "Please select a filesystem"
+msgstr "Vui lòng chọn hệ thống tệp"
+
+msgid "RPC call failed: "
+msgstr "Cuộc gọi RPC thất bại: "
+
+msgid "Refreshing..."
+msgstr "Đang làm mới..."
+
+msgid "Selected filesystem is not supported on this system"
+msgstr "Hệ thống tệp đã chọn không được hỗ trợ trên hệ thống này"
+
+msgid "Selected partition is not mounted"
+msgstr "Phân vùng đã chọn chưa được gắn kết"
+
+msgid "unknown error"
+msgstr "lỗi không xác định"
+
+msgid "Packages & Drivers"
+msgstr "Gói và trình điều khiển"
+
+msgid "Mini Disk Manager log"
+msgstr "Nhật ký Mini Disk Manager"
+
+msgid "Mini Disk Manager Log"
+msgstr "Nhật ký Mini Disk Manager"
+
+msgid "Packages required to support various file systems."
+msgstr "Các gói cần thiết để hỗ trợ các hệ thống tệp khác nhau."
+
+msgid "Expand"
+msgstr "Mở rộng"
+
+msgid "Resize"
+msgstr "Thay đổi kích thước"
+
+msgid "Resize Partition"
+msgstr "Thay đổi kích thước phân vùng"
+
+msgid "Resize partition /dev/%s"
+msgstr "Thay đổi kích thước phân vùng /dev/%s"
+
+msgid "Resizing partition..."
+msgstr "Đang thay đổi kích thước phân vùng..."
+
+msgid "Resizing a partition can cause data loss if not done correctly."
+msgstr "Thay đổi kích thước phân vùng có thể gây mất dữ liệu nếu không được thực hiện đúng cách."
+
+msgid "Please ensure you have a backup of important data before proceeding."
+msgstr "Vui lòng đảm bảo bạn có bản sao lưu dữ liệu quan trọng trước khi tiếp tục."
+
+msgid "Current size: %s MB / %s GB / %s TB"
+msgstr "Kích thước hiện tại: %s MB / %s GB / %s TB"
+
+msgid "Available space: %s MB / %s GB / %s TB"
+msgstr "Dung lượng có sẵn: %s MB / %s GB / %s TB"
+
+msgid "Maximum size to be obtained: %s MB / %s GB / %s TB"
+msgstr "Kích thước tối đa có thể đạt được: %s MB / %s GB / %s TB"
+
+msgid "Maximum new size"
+msgstr "Kích thước mới tối đa"
+
+msgid "New size"
+msgstr "Kích thước mới"
+
+msgid "Enter new size"
+msgstr "Nhập kích thước mới"
+
+msgid "New size must be larger than current size"
+msgstr "Kích thước mới phải lớn hơn kích thước hiện tại"
+
+msgid "New size exceeds available space"
+msgstr "Kích thước mới vượt quá dung lượng có sẵn"
+
+msgid "Partition resized successfully"
+msgstr "Thay đổi kích thước phân vùng thành công"
+
+msgid "Failed to resize partition"
+msgstr "Không thể thay đổi kích thước phân vùng"
+
+msgid "Failed to resize partition: "
+msgstr "Không thể thay đổi kích thước phân vùng: "
+
+msgid "Failed to start partition resize"
+msgstr "Không thể bắt đầu thay đổi kích thước phân vùng"
+
+msgid "Selected partition cannot be resized. Only unmounted Ext2/3/4 partitions with available space can be resized."
+msgstr "Không thể thay đổi kích thước phân vùng đã chọn. Chỉ có thể thay đổi kích thước các phân vùng Ext2/3/4 chưa gắn kết có dung lượng khả dụng."
+
+msgid "MB"
+msgstr "MB"
+
+msgid "GB"
+msgstr "GB"
+
+msgid "TB"
+msgstr "TB"
+
+msgid "Cannot Create Partition"
+msgstr "Không thể tạo phân vùng"
+
+msgid "Insufficient Space"
+msgstr "Không đủ dung lượng"
+
+msgid "Cannot read partition information"
+msgstr "Không thể đọc thông tin phân vùng"
+
+msgid "Invalid extended partition"
+msgstr "Phân vùng mở rộng không hợp lệ"
+
+msgid "Extended partition not found or has invalid size"
+msgstr "Không tìm thấy phân vùng mở rộng hoặc có kích thước không hợp lệ"
+
+msgid "Extended partition size: %s MB"
+msgstr "Kích thước phân vùng mở rộng: %s MB"
+
+msgid "Used by logical partitions: %s MB"
+msgstr "Được sử dụng bởi phân vùng lôgic: %s MB"
+
+msgid "Available for new logical: %s MB"
+msgstr "Có sẵn cho phân vùng lôgic mới: %s MB"
+
+msgid "Required minimum: 10 MB"
+msgstr "Tối thiểu yêu cầu: 10 MB"
+
+msgid "Not enough free space in extended partition /dev/%s"
+msgstr "Không đủ dung lượng trống trong phân vùng mở rộng /dev/%s"
+
+msgid "Extended partition already exists. You can create primary partitions or select the extended partition to create logical partitions inside."
+msgstr "Phân vùng mở rộng đã tồn tại. Bạn có thể tạo phân vùng chính hoặc chọn phân vùng mở rộng để tạo phân vùng lôgic bên trong."
+
+msgid "Creating partition inside extended partition. Only logical partitions can be created here."
+msgstr "Đang tạo phân vùng bên trong phân vùng mở rộng. Chỉ có thể tạo phân vùng lôgic tại đây."
+
+msgid "No partition table detected. A primary partition will be created and a partition table will be initialized."
+msgstr "Không phát hiện bảng phân vùng. Phân vùng chính sẽ được tạo và bảng phân vùng sẽ được khởi tạo."
+
+msgid "No partition table - select to create"
+msgstr "Không có bảng phân vùng - chọn để tạo"
+
+msgid "No partitions - select to create"
+msgstr "Không có phân vùng - chọn để tạo"
+
+msgid "Select to enable partition creation"
+msgstr "Chọn để bật tạo phân vùng"
+
+msgid "Select unallocated space"
+msgstr "Chọn dung lượng chưa phân bổ"
+
+msgid "Unallocated space"
+msgstr "Dung lượng chưa phân bổ"
+
+msgid "Expand Ext2/Ext3/Ext4"
+msgstr "Mở rộng Ext2/Ext3/Ext4"
+
+msgid "Wipe"
+msgstr "Xóa sạch"
+
+msgid "Select all partitions for wiping"
+msgstr "Chọn tất cả các phân vùng để xóa"
+
+msgid "Please enable wipe mode first"
+msgstr "Vui lòng bật chế độ xóa sạch trước"
+
+msgid "Cannot wipe disk with mounted partitions. Please unmount all partitions first."
+msgstr "Không thể xóa sạch ổ đĩa khi các phân vùng đang được gắn. Vui lòng tháo gắn tất cả phân vùng trước."
+
+msgid "Wipe Disk"
+msgstr "Xóa sạch ổ đĩa"
+
+msgid "WARNING"
+msgstr "CẢNH BÁO"
+
+msgid "This will completely erase the partition table and all data on /dev/%s!"
+msgstr "Điều này sẽ xóa hoàn toàn bảng phân vùng và tất cả dữ liệu trên /dev/%s!"
+
+msgid "All partitions will be deleted and the disk will be unallocated."
+msgstr "Tất cả các phân vùng sẽ bị xóa và đĩa sẽ không được phân bổ."
+
+msgid "THIS OPERATION CANNOT BE UNDONE!"
+msgstr "THAO TÁC NÀY KHÔNG THỂ HOÀN TÁC!"
+
+msgid "Number of partitions to be deleted: %d"
+msgstr "Số lượng phân vùng sẽ bị xóa: %d"
+
+msgid "Are you absolutely sure you want to continue?"
+msgstr "Bạn có hoàn toàn chắc chắn muốn tiếp tục không?"
+
+msgid "Wiping disk partition table..."
+msgstr "Đang xóa bảng phân vùng đĩa..."
+
+msgid "Disk partition table has been successfully erased"
+msgstr "Bảng phân vùng đĩa đã được xóa thành công"
+
+msgid "Failed to wipe disk"
+msgstr "Xóa sạch ổ đĩa thất bại"
+
+msgid "Failed to wipe disk: "
+msgstr "Xóa sạch ổ đĩa thất bại: "
+
+msgid "Disk Wipe Support"
+msgstr "Hỗ trợ xóa đĩa"
+
+msgid "Packages required to support disk wiping functionality (clearing partition table)."
+msgstr "Các gói cần thiết để hỗ trợ chức năng xóa đĩa (xóa bảng phân vùng)."
+
+msgid "Check Disk Wipe packages"
+msgstr "Kiểm tra gói xóa đĩa"
+
+msgid "Disk Wipe"
+msgstr "Xóa sạch ổ đĩa"
+
+msgid "dd from BusyBox"
+msgstr "dd từ BusyBox"
+
+msgid "Disk Wipe (dd command)"
+msgstr "Xóa sạch ổ đĩa (lệnh dd)"
+
+msgid "alternative"
+msgstr "thay thế"
+
+# SMART
+
+msgid "Attribute"
+msgstr "Thuộc tính"
+
+msgid "Id"
+msgstr "ID"
+
+msgid "Raw"
+msgstr "Thôngtin"
+
+msgid "Value"
+msgstr "Giátrị"
+
+msgid "Worst"
+msgstr "Tệnhất"
+
+msgid "Thresh"
+msgstr "Ngưỡng"
+
+msgid "Value"
+msgstr "Giá trị"
+
+msgid "NVMe S.M.A.R.T. Health Status"
+msgstr "Tình trạng sức khỏe NVMe S.M.A.R.T."
+
+msgid "OK"
+msgstr "OK"
+
+msgid "WARNING"
+msgstr "CẢNHBÁO"
+
+msgid "Power On Time"
+msgstr "Thời gian hoạt động"
+
+msgid "Power On Hours"
+msgstr "Giờ hoạt động"
+
+msgid "Disk Usage"
+msgstr "Sử dụng ổ đĩa"
+
+msgid "Disk Wear Level"
+msgstr "Mức độ hao mòn ổ đĩa"
+
+msgid "Available Spare"
+msgstr "Dự trữ khả dụng"
+
+msgid "Available Spare Threshold"
+msgstr "Ngưỡng dự trữ khả dụng"
+
+msgid "hour"
+msgstr "giờ"
+
+msgid "hours"
+msgstr "giờ"
+
+msgid "h"
+msgstr "g"
+
+msgid "year"
+msgstr "năm"
+
+msgid "years"
+msgstr "năm"
+
+msgid "month"
+msgstr "tháng"
+
+msgid "months"
+msgstr "tháng"
+
+msgid "day"
+msgstr "ngày"
+
+msgid "days"
+msgstr "ngày"
+
+msgid "worn"
+msgstr "đã hao mòn"
+
+msgid "remaining"
+msgstr "còn lại"
+
+msgid "S.M.A.R.T. Health Status"
+msgstr "Tình trạng sức khỏe tổng thể của ổ đĩa S.M.A.R.T."
+
+msgid "No S.M.A.R.T. attributes found."
+msgstr "Không tìm thấy thuộc tính S.M.A.R.T."
+
+msgid "Loading S.M.A.R.T. data..."
+msgstr "Đang tải dữ liệu S.M.A.R.T..."
+
+msgid "Unable to read S.M.A.R.T. data."
+msgstr "Không thể đọc dữ liệu S.M.A.R.T."
+
+msgid "Error reading S.M.A.R.T. data."
+msgstr "Lỗi khi đọc dữ liệu S.M.A.R.T."
+
+# SMART & Disk Info
+
+msgid "Raw Read Error Rate"
+msgstr "Tỷ lệ lỗi đọc thô"
+
+msgid "Throughput Performance"
+msgstr "Hiệu suất thông lượng"
+
+msgid "Spin Up Time"
+msgstr "Thời gian khởi động"
+
+msgid "Start Stop Count"
+msgstr "Số lần khởi động/dừng"
+
+msgid "Reallocated Sector Count"
+msgstr "Số sector tái phân bổ"
+
+msgid "Seek Error Rate"
+msgstr "Tỷ lệ lỗi định vị"
+
+msgid "Seek Time Performance"
+msgstr "Hiệu suất thời gian định vị"
+
+msgid "Power On Hours"
+msgstr "Giờ hoạt động"
+
+msgid "Spin Retry Count"
+msgstr "Số lần thử lại khởi động"
+
+msgid "Calibration Retry Count"
+msgstr "Số lần thử lại hiệu chuẩn"
+
+msgid "Power Cycle Count"
+msgstr "Số chu kỳ nguồn"
+
+msgid "Read Soft Error Rate"
+msgstr "Tỷ lệ lỗi đọc mềm"
+
+msgid "Airflow Temperature"
+msgstr "Nhiệt độ luồng khí"
+
+msgid "Temperature Celsius"
+msgstr "Nhiệt độ"
+
+msgid "Hardware ECC Recovered"
+msgstr "Lỗi ECC khôi phục bằng phần cứng"
+
+msgid "Current Pending Sector"
+msgstr "Sector không ổn định"
+
+msgid "Offline Uncorrectable"
+msgstr "Sector không sửa được offline"
+
+msgid "UDMA CRC Error Count"
+msgstr "Số lỗi CRC UDMA"
+
+msgid "Multi Zone Error Rate"
+msgstr "Tỷ lệ lỗi đa vùng"
+
+msgid "Wear Leveling Count"
+msgstr "Bộ đếm mài mòn"
+
+msgid "Used Reserved Block Count Total"
+msgstr "Khối dự trữ đã sử dụng (tổng)"
+
+msgid "Used Reserved Block Count Chip"
+msgstr "Khối dự trữ đã sử dụng (chip)"
+
+msgid "Unused Reserved Block Count Total"
+msgstr "Khối dự trữ chưa sử dụng"
+
+msgid "Program Fail Count Total"
+msgstr "Số lỗi ghi"
+
+msgid "Erase Fail Count Total"
+msgstr "Số lỗi xóa"
+
+msgid "Runtime Bad Block"
+msgstr "Khối hỏng"
+
+msgid "Uncorrectable Error Count"
+msgstr "Số lỗi không sửa được"
+
+msgid "Temperature Exceed Count"
+msgstr "Số lần vượt nhiệt độ"
+
+msgid "Erase Fail Count"
+msgstr "Số lỗi xóa"
+
+msgid "Reported Uncorrectable Errors"
+msgstr "Lỗi không sửa được đã báo cáo"
+
+msgid "High Fly Writes"
+msgstr "Ghi ở độ cao lớn"
+
+msgid "G-Sense Error Rate"
+msgstr "Tỷ lệ lỗi cảm biến G"
+
+msgid "Power-Off Retract Count"
+msgstr "Số lần rút đầu đọc khi tắt nguồn"
+
+msgid "Load Cycle Count"
+msgstr "Số chu kỳ đỗ đầu đọc"
+
+msgid "Temperature Case"
+msgstr "Nhiệt độ vỏ"
+
+msgid "Reallocated Event Count"
+msgstr "Số sự kiện tái phân bổ"
+
+msgid "Transfer Error Rate"
+msgstr "Tỷ lệ lỗi truyền"
+
+msgid "Free Fall Sensor"
+msgstr "Cảm biến rơi tự do"
+
+msgid "Total LBAs Written"
+msgstr "Tổng LBA đã ghi"
+
+msgid "Total LBAs Read"
+msgstr "Tổng LBA đã đọc"
+
+msgid "Read Error Retry Rate"
+msgstr "Tỷ lệ thử lại đọc"
+
+msgid "Minimum W/E Cycle"
+msgstr "Chu kỳ ghi/xóa tối thiểu"
+
+msgid "Maximum W/E Cycle"
+msgstr "Chu kỳ ghi/xóa tối đa"
+
+msgid "Average W/E Cycle"
+msgstr "Chu kỳ ghi/xóa trung bình"
+
+msgid "Media Wearout Indicator"
+msgstr "Chỉ báo mài mòn phương tiện"
+
+msgid "Available Reserved Space"
+msgstr "Không gian dự trữ khả dụng"
+
+msgid "SSD Life Left"
+msgstr "Tuổi thọ SSD còn lại"
+
+msgid "Remaining Lifetime Percentage"
+msgstr "Phần trăm tuổi thọ còn lại"
+
+msgid "Percentage Lifetime Remaining"
+msgstr "Phần trăm tuổi thọ còn lại"
+
+msgid "Remaining Life"
+msgstr "Tuổi thọ còn lại"
+
+msgid "Lifetime Writes GiB"
+msgstr "Dữ liệu đã ghi (GiB)"
+
+msgid "Lifetime Reads GiB"
+msgstr "Dữ liệu đã đọc (GiB)"
+
+msgid "Program Fail Count"
+msgstr "Số lỗi lập trình"
+
+msgid "Unexpected Power Loss Count"
+msgstr "Số lần mất nguồn bất ngờ"
+
+msgid "Thermal Throttle Status"
+msgstr "Trạng thái giới hạn nhiệt"
+
+msgid "End-to-End Error"
+msgstr "Lỗi đầu cuối"
+
+msgid "Workload Host Reads Percentage"
+msgstr "Phần trăm đọc của host"
+
+msgid "Workload Media Wear Indicator"
+msgstr "Chỉ báo mài mòn phương tiện (tải)"
+
+msgid "Timed Workload Media Wear"
+msgstr "Mài mòn phương tiện (tải theo thời gian)"
+
+msgid "Workload Timer"
+msgstr "Bộ đếm thời gian tải"
+
+msgid "Percentage Rated Life Used"
+msgstr "Phần trăm tuổi thọ đã sử dụng"
+
+msgid "Head Flying Hours"
+msgstr "Giờ bay của đầu đọc"
+
+msgid "Read Channel Margin"
+msgstr "Biên độ kênh đọc"
+
+msgid "Loaded Hours"
+msgstr "Giờ hoạt động không đỗ"
+
+msgid "Load/Unload Retry Count"
+msgstr "Số lần thử lại đỗ/bỏ đỗ"
+
+msgid "GMR Head Amplitude"
+msgstr "Biên độ đầu đọc GMR"
+
+msgid "Drive Temperature"
+msgstr "Nhiệt độ ổ đĩa"
+
+msgid "Endurance Remaining"
+msgstr "Độ bền còn lại"
+
+msgid "Power On Hours and Milliseconds"
+msgstr "Giờ hoạt động (giờ và mili giây)"
+
+msgid "Head Health"
+msgstr "Tình trạng đầu đọc"
+
+msgid "POR Recovery Count"
+msgstr "Số lần khôi phục POR"
+
+msgid "Unused Reserve NAND Blocks"
+msgstr "Khối NAND dự trữ chưa sử dụng"
+
+msgid "SSD Protect Mode"
+msgstr "Chế độ bảo vệ SSD"
+
+msgid "Host Writes 32MiB"
+msgstr "Ghi của host (32MiB)"
+
+msgid "NAND Writes 32MiB"
+msgstr "Ghi NAND (32MiB)"
+
+msgid "Remaining Life Left"
+msgstr "Tuổi thọ còn lại"
+
+msgid "Grown Bad Block Count"
+msgstr "Số khối hỏng mới"
+
+msgid "Soft Read Error Rate"
+msgstr "Tỷ lệ lỗi đọc mềm"
+
+msgid "Data Address Mark Errors"
+msgstr "Lỗi dấu địa chỉ dữ liệu"
+
+msgid "Run Out Cancel"
+msgstr "Hủy tràn"
+
+msgid "Soft ECC Correction"
+msgstr "Sửa lỗi ECC mềm"
+
+msgid "TA Increase Count"
+msgstr "Số lần tăng TA"
+
+msgid "Shock Count Write Operation"
+msgstr "Số lần va đập khi ghi"
+
+msgid "Shock Rate Write Operation"
+msgstr "Tỷ lệ va đập khi ghi"
+
+msgid "Flying Height"
+msgstr "Độ cao bay của đầu đọc"
+
+msgid "Spin High Current"
+msgstr "Dòng cao khi khởi động"
+
+msgid "Spin Buzz"
+msgstr "Tiếng kêu khi khởi động"
+
+msgid "Offline Seek Performance"
+msgstr "Hiệu suất định vị offline"
+
+msgid "Vibration During Write"
+msgstr "Rung động khi ghi"
+
+msgid "Shock During Write"
+msgstr "Va đập khi ghi"
+
+msgid "Disk Shift"
+msgstr "Dịch chuyển đĩa"
+
+msgid "Load Retry Count"
+msgstr "Số lần thử lại tải"
+
+msgid "Load Friction"
+msgstr "Ma sát khi tải"
+
+msgid "Load-in Time"
+msgstr "Thời gian tải"
+
+msgid "Torque Amplification Count"
+msgstr "Số lần khuếch đại mô-men xoắn"
+
+msgid "Write Error Rate"
+msgstr "Tỷ lệ lỗi ghi"
+
+msgid "Serial Number"
+msgstr "Số seri"
+
+msgid "LU WWN Device Id"
+msgstr "ID thiết bị LU WWN"
+
+msgid "Firmware Version"
+msgstr "Phiên bản firmware"
+
+msgid "User Capacity"
+msgstr "Dung lượng khả dụng"
+
+msgid "Capacity"
+msgstr "Dung lượng"
+
+msgid "Sector Size"
+msgstr "Kích thước sector"
+
+msgid "Sector Sizes"
+msgstr "Kích thước các sector"
+
+msgid "Rotation Rate"
+msgstr "Tốc độ quay"
+
+msgid "Form Factor"
+msgstr "Kích thước"
+
+msgid "Device is"
+msgstr "Thiết bị"
+
+msgid "ATA Version is"
+msgstr "Phiên bản ATA"
+
+msgid "SATA Version is"
+msgstr "Phiên bản SATA"
+
+msgid "Local Time is"
+msgstr "Giờ địa phương"
+
+msgid "SMART support is"
+msgstr "Hỗ trợ SMART"
+
+msgid "SMART Status"
+msgstr "Trạng thái SMART"
+
+msgid "Device"
+msgstr "Thiết bị"
+
+msgid "Model Number"
+msgstr "Mẫu"
+
+msgid "Firmware Revision"
+msgstr "Bản sửa đổi firmware"
+
+msgid "PCI Vendor/Subsystem ID"
+msgstr "ID nhà cung cấp/hệ thống con PCI"
+
+msgid "IEEE OUI Identifier"
+msgstr "Mã định danh IEEE OUI"
+
+msgid "Total NVM Capacity"
+msgstr "Tổng dung lượng NVM"
+
+msgid "Unallocated NVM Capacity"
+msgstr "Dung lượng NVM chưa phân bổ"
+
+msgid "Controller ID"
+msgstr "ID bộ điều khiển"
+
+msgid "Number of Namespaces"
+msgstr "Số không gian địa chỉ"
+
+msgid "Namespace 1 Size/Capacity"
+msgstr "Kích thước/dung lượng không gian địa chỉ 1"
+
+msgid "Namespace 1 Formatted LBA Size"
+msgstr "Kích thước LBA không gian địa chỉ 1"
+
+msgid "Namespace 1 IEEE EUI-64"
+msgstr "IEEE EUI-64 không gian địa chỉ 1"
+
+msgid "logical/physical"
+msgstr "logic/vật lý"
+
+msgid "bytes"
+msgstr "byte"
+
+msgid "blocks"
+msgstr "khối"
+
+msgid "Solid State Device"
+msgstr "Ổ SSD"
+
+# Reserved space
+
+msgid "Reserved space"
+msgstr "Không gian dành riêng"
+
+msgid "Space reserved for root (default: 5%)"
+msgstr "Không gian dành riêng cho root (mặc định: 5%)"
+
+msgid "Used Reserved Block Count Total"
+msgstr "Tổng số khối dành riêng đã sử dụng"
+
+msgid "Used Reserved Block Count Chip"
+msgstr "Số khối dành riêng đã sử dụng trên chip"
+
+msgid "Unused Reserved Block Count Total"
+msgstr "Tổng số khối dành riêng chưa sử dụng"
+
+msgid "Available Reserved Space"
+msgstr "Không gian dành riêng khả dụng"

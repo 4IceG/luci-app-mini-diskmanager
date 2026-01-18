@@ -475,7 +475,19 @@ return view.extend({
     MIN_VISIBLE_SIZE: 200 * 1024 * 1024, // 200 MB
     wipeAllEnabled: false,
     hasDdSupport: null,
-    wipeAllEnabled: false,
+    
+    viewName: 'minidiskmanager',
+
+    restoreSettingsFromLocalStorage: function() {
+        let selectedDiskLocal = localStorage.getItem(`luci-app-${this.viewName}-selectedDisk`);
+        if(selectedDiskLocal) {
+            this.selectedDisk = selectedDiskLocal;
+        }
+    },
+
+    saveSettingsToLocalStorage: function(diskName) {
+        localStorage.setItem(`luci-app-${this.viewName}-selectedDisk`, diskName);
+    },
 
     rpcCheckOperation: rpc.declare({
         object: 'minidiskmanager',
@@ -494,7 +506,7 @@ return view.extend({
     rpcCreatePartition: rpc.declare({
         object: 'minidiskmanager',
         method: 'create_partition',
-        params: ['device', 'type', 'fstype', 'size', 'layout', 'label'],
+        params: ['device', 'type', 'fstype', 'size', 'layout', 'label', 'reserved_space', 'reserved_unit'],
         expect: {}
     }),
 
@@ -508,7 +520,7 @@ return view.extend({
     rpcFormatPartition: rpc.declare({
         object: 'minidiskmanager',
         method: 'format_partition',
-        params: ['device', 'fstype', 'label'],
+        params: ['device', 'fstype', 'label', 'reserved_space', 'reserved_unit'],
         expect: {}
     }),
 
@@ -589,7 +601,7 @@ return view.extend({
                 fsSet.add('ntfs');
             }
 
-            if (has('exfat-mkfs') && has('kmod-fs-exfat') && has('exfat-utils')) {
+            if (has('exfat-mkfs') && has('kmod-fs-exfat')) {
                 fsSet.add('exfat');
             }
 
@@ -677,6 +689,7 @@ return view.extend({
 
     load: function() {
         this.checkDdSupport();
+        this.restoreSettingsFromLocalStorage();
         
         return Promise.all([
             this.getBlockDevices(),
@@ -720,7 +733,9 @@ return view.extend({
                 params.fstype,
                 params.size,
                 params.layout,
-                params.label
+                params.label,
+                params.reserved_space,
+                params.reserved_unit
             ),
             'delete_partition': () => this.rpcDeletePartition(
                 params.device,
@@ -729,7 +744,9 @@ return view.extend({
             'format_partition': () => this.rpcFormatPartition(
                 params.device,
                 params.fstype,
-                params.label
+                params.label,
+                params.reserved_space,
+                params.reserved_unit
             ),
             'resize_partition': () => this.rpcResizePartition(
                 params.partition,
@@ -2054,6 +2071,7 @@ return view.extend({
             'class': 'cbi-input-select',
             'style': 'max-width: 400px;',
             'change': ui.createHandlerFn(this, function(ev) {
+                this.saveSettingsToLocalStorage(ev.target.value);
                 this.selectedDisk = ev.target.value;
                 this.selectedPartition = null;
                 this.selectedUnallocated = null;
@@ -2066,6 +2084,16 @@ return view.extend({
             let modelStr = dev.model ? ' (' + dev.model.trim() + ')' : '';
             diskSelect.appendChild(E('option', {'value': dev.name}, '/dev/' + dev.name + sizeStr + modelStr));
         });
+
+        if (this.selectedDisk && this.selectedDisk !== '') {
+            let options = diskSelect.querySelectorAll('option');
+            for (let i = 0; i < options.length; i++) {
+                if (options[i].value === this.selectedDisk) {
+                    diskSelect.selectedIndex = i;
+                    break;
+                }
+            }
+        }
 
         let controls = E('div', {'class': 'controls'}, [
             E('div', {}, [
@@ -2146,6 +2174,12 @@ return view.extend({
         let contentArea = E('div', {'id': 'disk-content-area'}, [
             E('div', {'class': 'alert alert-info'}, _('Please select a disk to view its partitions'))
         ]);
+
+        if (this.selectedDisk && this.selectedDisk !== '') {
+            setTimeout(() => {
+                this.refreshDiskView();
+            }, 0);
+        }
 
         return E([
             E('h2', {'class': 'fade-in'}, _('Disk Manager')),
@@ -3304,7 +3338,6 @@ return view.extend({
         return table;
     },
 
-
     getPartitionUsage: function(mountpoint) {
         return L.resolveDefault(fs.exec('/bin/df', ['-h', mountpoint]), null).then(res => {
             if (res && res.code === 0) {
@@ -4238,7 +4271,20 @@ return view.extend({
                         E('div', {'class': 'cbi-value'}, [
                             E('label', {'class': 'cbi-value-title'}, _('File system')),
                             E('div', {'class': 'cbi-value-field'}, [
-                                E('select', {'class': 'cbi-input-select', 'id': 'fs_type'}, [
+                                E('select', {
+                                    'class': 'cbi-input-select', 
+                                    'id': 'fs_type',
+                                    'change': function() {
+                                        let reservedSection = document.getElementById('reserved_space_section');
+                                        if (reservedSection) {
+                                            if (this.value === 'ext2' || this.value === 'ext3' || this.value === 'ext4') {
+                                                reservedSection.style.display = '';
+                                            } else {
+                                                reservedSection.style.display = 'none';
+                                            }
+                                        }
+                                    }
+                                }, [
                                     E('option', {'value': '', 'selected': 'selected', 'disabled': true}, _('Loading...'))
                                 ])
                             ])
@@ -4282,6 +4328,31 @@ return view.extend({
                                             freeSpaceTB
                                         ))
                                 ])
+                            ])
+                        ]),
+                        E('div', {'class': 'cbi-value', 'id': 'reserved_space_section'}, [
+                            E('label', {'class': 'cbi-value-title'}, _('Reserved space')),
+                            E('div', {'class': 'cbi-value-field'}, [
+                                E('div', {'class': 'size-input-group'}, [
+                                    E('input', {
+                                        'class': 'cbi-input-text',
+                                        'id': 'reserved_space_value',
+                                        'type': 'text',
+                                        'value': '5',
+                                        'placeholder': '5'
+                                    }),
+                                    E('select', {
+                                        'class': 'cbi-input-select',
+                                        'id': 'reserved_space_unit'
+                                    }, [
+                                        E('option', {'value': '%', 'selected': 'selected'}, '%'),
+                                        E('option', {'value': 'MB'}, _('MB')),
+                                        E('option', {'value': 'GB'}, _('GB')),
+                                        E('option', {'value': 'TB'}, _('TB'))
+                                    ])
+                                ]),
+                                E('div', {'style': 'margin-top: 5px; font-size: 12px; color: var(--text-color-secondary)'}, 
+                                    _('Space reserved for root (default: 5%)'))
                             ])
                         ])
                     ])
@@ -4342,6 +4413,16 @@ return view.extend({
                     fsSelect.appendChild(E('option', {'value': '', 'disabled': true}, _('No supported filesystems detected on this system')));
                     ui.addNotification(null, E('p', _('No filesystem packages detected — user cannot choose unsupported filesystem formats.')), 'warning');
                 }
+                
+                // Reserved space section
+                const reservedSection = document.getElementById('reserved_space_section');
+                if (reservedSection && fsSelect.value) {
+                    if (fsSelect.value === 'ext2' || fsSelect.value === 'ext3' || fsSelect.value === 'ext4') {
+                        reservedSection.style.display = '';
+                    } else {
+                        reservedSection.style.display = 'none';
+                    }
+                }
 
                 const createBtn = document.getElementById('create_partition_confirm');
 
@@ -4374,15 +4455,21 @@ return view.extend({
                         }
 
                         let size = Math.floor(sizeMB).toString();
+                        
+                        let reservedSpaceValue = document.getElementById('reserved_space_value').value.trim();
+                        let reservedSpaceUnit = document.getElementById('reserved_space_unit').value;
+                        let fstype = document.getElementById('fs_type').value;
 
                         ui.hideModal();
 
                         this.createPartition(
                             document.getElementById('part_part_type').value,
-                            document.getElementById('fs_type').value,
+                            fstype,
                             document.getElementById('part_label').value,
                             size,
-                            document.getElementById('part_layout').value
+                            document.getElementById('part_layout').value,
+                            reservedSpaceValue,
+                            reservedSpaceUnit
                         );
                     }));
                 }
@@ -4446,7 +4533,7 @@ return view.extend({
         });
     },
 
-    createPartition: async function(type, fstype, label, size, layout) {
+    createPartition: async function(type, fstype, label, size, layout, reservedSpace, reservedUnit) {
         const restorer = this.disableAllButtonsAndRemember();
         try {
             if (!this.selectedDisk) {
@@ -4465,7 +4552,9 @@ return view.extend({
                 fstype: fstype,
                 size: size || '',
                 layout: layout,
-                label: label || ''
+                label: label || '',
+                reserved_space: reservedSpace || '',
+                reserved_unit: reservedUnit || ''
             });
 
             if (result.success && result.pid) {
@@ -4492,7 +4581,7 @@ return view.extend({
                 if (exists && fstype && fstype !== 'extended') {
                     const supported = await this.detectSupportedFilesystems();
                     if (supported && supported.indexOf(fstype) !== -1) {
-                        await this.formatPartition(lastPart.name, fstype, label, true, true);
+                        await this.formatPartition(lastPart.name, fstype, label, true, true, reservedSpace, reservedUnit);
                     } else {
                         ui.addNotification(null, E('p', _('Partition created but selected filesystem is not available for formatting on this system')), 'warning');
                         this.refreshDiskView();
@@ -4560,7 +4649,20 @@ return view.extend({
                     E('div', {'class': 'cbi-value'}, [
                         E('label', {'class': 'cbi-value-title'}, _('File system')),
                         E('div', {'class': 'cbi-value-field'}, [
-                            E('select', {'class': 'cbi-input-select', 'id': 'format_fs_type'}, fsOptions)
+                            E('select', {
+                                'class': 'cbi-input-select', 
+                                'id': 'format_fs_type',
+                                'change': function() {
+                                    let reservedSection = document.getElementById('format_reserved_space_section');
+                                    if (reservedSection) {
+                                        if (this.value === 'ext2' || this.value === 'ext3' || this.value === 'ext4') {
+                                            reservedSection.style.display = '';
+                                        } else {
+                                            reservedSection.style.display = 'none';
+                                        }
+                                    }
+                                }
+                            }, fsOptions)
                         ])
                     ]),
                     E('div', {'class': 'cbi-value'}, [
@@ -4568,6 +4670,31 @@ return view.extend({
                         E('div', {'class': 'cbi-value-field'}, [
                             E('input', {'class': 'cbi-input-text', 'id': 'format_label', 'type': 'text', 
                                 'placeholder': _('Optional')})
+                        ])
+                    ]),
+                    E('div', {'class': 'cbi-value', 'id': 'format_reserved_space_section', 'style': 'display: none'}, [
+                        E('label', {'class': 'cbi-value-title'}, _('Reserved space')),
+                        E('div', {'class': 'cbi-value-field'}, [
+                            E('div', {'class': 'size-input-group'}, [
+                                E('input', {
+                                    'class': 'cbi-input-text',
+                                    'id': 'format_reserved_space_value',
+                                    'type': 'text',
+                                    'value': '5',
+                                    'placeholder': '5'
+                                }),
+                                E('select', {
+                                    'class': 'cbi-input-select',
+                                    'id': 'format_reserved_space_unit'
+                                }, [
+                                    E('option', {'value': '%', 'selected': 'selected'}, '%'),
+                                    E('option', {'value': 'MB'}, _('MB')),
+                                    E('option', {'value': 'GB'}, _('GB')),
+                                    E('option', {'value': 'TB'}, _('TB'))
+                                ])
+                            ]),
+                            E('div', {'style': 'margin-top: 5px; font-size: 12px; color: var(--text-color-secondary)'}, 
+                                _('Space reserved for root (ext2/ext3/ext4 only, default: 5%)'))
                         ])
                     ])
                 ]),
@@ -4580,6 +4707,8 @@ return view.extend({
                             let fstypeEl = document.getElementById('format_fs_type');
                             let fstype = fstypeEl ? fstypeEl.value : '';
                             let label = document.getElementById('format_label').value;
+                            let reservedSpaceValue = document.getElementById('format_reserved_space_value').value.trim();
+                            let reservedSpaceUnit = document.getElementById('format_reserved_space_unit').value;
 
                             if (!fstype) {
                                 ui.addNotification(null, E('p', _('Please select a filesystem')), 'warning');
@@ -4593,11 +4722,24 @@ return view.extend({
 				            }
 
                             ui.hideModal();
-                            this.formatPartition(partName, fstype, label, false);
+                            this.formatPartition(partName, fstype, label, false, false, reservedSpaceValue, reservedSpaceUnit);
                         })
                     }, _('Format'))
                 ])
             ]);
+            
+            // Reserved space section
+            setTimeout(() => {
+                const fsSelect = document.getElementById('format_fs_type');
+                const reservedSection = document.getElementById('format_reserved_space_section');
+                if (reservedSection && fsSelect && fsSelect.value) {
+                    if (fsSelect.value === 'ext2' || fsSelect.value === 'ext3' || fsSelect.value === 'ext4') {
+                        reservedSection.style.display = '';
+                    } else {
+                        reservedSection.style.display = 'none';
+                    }
+                }
+            }, 100);
         }).catch(err => {
             ui.showModal(_('Format Partition'), [
                 E('p', {}, _('Failed to detect supported filesystems')),
@@ -4609,7 +4751,7 @@ return view.extend({
         });
     },
 
-    formatPartition: async function(partition, fstype, label, skipModal, skipDisable) {
+    formatPartition: async function(partition, fstype, label, skipModal, skipDisable, reservedSpace, reservedUnit) {
         const restorer = (skipDisable ? { restore: function() {} } : this.disableActiveButtonsAndRemember());
         try {
             const supported = await this.detectSupportedFilesystems();
@@ -4625,7 +4767,9 @@ return view.extend({
             let result = await this.callRpcd('format_partition', {
                 device: device,
                 fstype: fstype,
-                label: label || ''
+                label: label || '',
+                reserved_space: reservedSpace || '',
+                reserved_unit: reservedUnit || ''
             });
 
             if (result.success && result.pid) {

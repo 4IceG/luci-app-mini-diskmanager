@@ -79,6 +79,9 @@ msgstr "Раздел"
 msgid "Type / Filesystem"
 msgstr "Тип / Файловая система"
 
+msgid "Filesystem"
+msgstr "Файловая система"
+
 msgid "Mount Point"
 msgstr "Точка монтирования"
 
@@ -1185,3 +1188,23 @@ msgstr "блоков"
 
 msgid "Solid State Device"
 msgstr "Твердотельный накопитель"
+
+# Reserved space
+
+msgid "Reserved space"
+msgstr "Зарезервированное пространство"
+
+msgid "Space reserved for root (default: 5%)"
+msgstr "Пространство, зарезервированное для root (по умолчанию: 5%)"
+
+msgid "Used Reserved Block Count Total"
+msgstr "Общее количество использованных зарезервированных блоков"
+
+msgid "Used Reserved Block Count Chip"
+msgstr "Количество использованных зарезервированных блоков на микросхеме"
+
+msgid "Unused Reserved Block Count Total"
+msgstr "Общее количество неиспользованных зарезервированных блоков"
+
+msgid "Available Reserved Space"
+msgstr "Доступное зарезервированное пространство"

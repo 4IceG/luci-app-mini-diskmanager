@@ -80,7 +80,7 @@ return view.extend({
 
         m = new form.Map('mdmconfig', _('Configuration'));
 
-        s = m.section(form.TypedSection, 'filesystem', _('Filesystem'));
+        s = m.section(form.TypedSection, 'filesystem', _('Disk Manager'));
         s.anonymous = true;
         s.addremove = false;
 
@@ -187,8 +187,8 @@ return view.extend({
                 ],
                 'exFAT': [
                     { name: 'exfat-mkfs', label: 'exfat-mkfs' },
-                    { name: 'kmod-fs-exfat', label: 'kmod-fs-exfat' },  
-                    { name: 'exfat-utils', label: 'exfat-utils' }
+                    { name: 'kmod-fs-exfat', label: 'kmod-fs-exfat' },
+                    { name: 'exfat-fsck', label: 'exfat-fsck' }
                 ]
             });
         }, this);

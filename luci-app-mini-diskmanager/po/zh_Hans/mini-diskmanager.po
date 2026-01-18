@@ -79,6 +79,9 @@ msgstr "分区"
 msgid "Type / Filesystem"
 msgstr "类型 / 文件系统"
 
+msgid "Filesystem"
+msgstr "文件系统"
+
 msgid "Mount Point"
 msgstr "挂载点"
 
@@ -1182,3 +1185,23 @@ msgstr "块"
 
 msgid "Solid State Device"
 msgstr "固态硬盘"
+
+# Reserved space
+
+msgid "Reserved space"
+msgstr "预留空间"
+
+msgid "Space reserved for root (default: 5%)"
+msgstr "为 root 预留的空间（默认：5%）"
+
+msgid "Used Reserved Block Count Total"
+msgstr "已用预留块总数"
+
+msgid "Used Reserved Block Count Chip"
+msgstr "芯片已用预留块数"
+
+msgid "Unused Reserved Block Count Total"
+msgstr "未用预留块总数"
+
+msgid "Available Reserved Space"
+msgstr "可用预留空间"

@@ -370,6 +370,8 @@ zero_device_start() {
 #   $4 - size_param: size / rozmiar ('123MB' / '1GB' / '100%' / '1114656768s')
 #   $5 - layout: partitioning scheme / schemat partycjonowania ('gpt' lub 'msdos')
 #   $6 - label: optional label / opcjonalna etykieta
+#   $7 - reserved_space: optional reserved space value / opcjonalna wartość zarezerwowanego miejsca
+#   $8 - reserved_unit: optional reserved space unit / opcjonalna jednostka zarezerwowanego miejsca (%, MB, GB, TB)
 ##################################################################################################################
 create_partition_impl() {
     disk="$1"       # Base device / Urządzenie bazowe: /dev/sda lub /dev/nvme0n1
@@ -378,9 +380,19 @@ create_partition_impl() {
     size_param="$4" # number in MB or / liczba MB lub '123MB' / '1GB' / '100%' / '1114656768s'
     layout="$5"     # 'gpt' or 'msdos' (msdos = mbr)
     label="$6"      # optional label / opcjonalna etykieta
+    reserved_space="$7"  # optional reserved space value / opcjonalna wartość zarezerwowanego miejsca
+    reserved_unit="$8"   # optional reserved space unit / opcjonalna jednostka (%, MB, GB, TB)
 
     log_msg "=== Creating partition on $disk (Tworzenie partycji na $disk) ==="
-    log_msg "Params (Parametry): type=$type fstype=$fstype size=$size_param layout=$layout label=$label"
+    log_msg "CREATE PARTITION PARAMETERS (PARAMETRY TWORZENIA PARTYCJI):"
+    log_msg "  - Disk (Dysk): $disk"
+    log_msg "  - Partition type (Typ partycji): $type"
+    log_msg "  - Filesystem type (Typ systemu plików): $fstype"
+    log_msg "  - Partition size (Rozmiar partycji): $size_param"
+    log_msg "  - Partition layout (Układ partycji): $layout"
+    log_msg "  - Label (Etykieta): ${label:-<none/brak>}"
+    log_msg "  - Reserved space value (Wartość zarezerwowanego miejsca): ${reserved_space:-<not set/nie ustawiono>}"
+    log_msg "  - Reserved space unit (Jednostka zarezerwowanego miejsca): ${reserved_unit:-<not set/nie ustawiono>}"
 
     if [ ! -b "$disk" ]; then
         log_msg "Device $disk not found! (Urządzenie $disk nie znalezione!)"
@@ -648,6 +660,10 @@ create_partition_impl() {
     last_part_num=$(get_last_partition_number "$disk" || true)
     if [ -n "$last_part_num" ]; then
         log_msg "Created partition number (Utworzono partycję numer): $last_part_num"
+        log_msg "Partition creation completed successfully (Tworzenie partycji zakończone pomyślnie)"
+        log_msg "Summary: Type=$type, FS=$fstype, Size=$size_param, Label=${label:-<none>}, Reserved=${reserved_space:-0}${reserved_unit:-%}"
+    else
+        log_msg "WARNING: Could not determine partition number (OSTRZEŻENIE: Nie można określić numeru partycji)"
     fi
 
     /sbin/parted -s "$disk" print >> "$LOG_FILE" 2>&1 || true
@@ -662,6 +678,8 @@ delete_partition() {
     partition_path="$1"
 
     log_msg "=== Deleting partition (Usuwanie partycji): $partition_path ==="
+    log_msg "DELETE PARTITION PARAMETERS (PARAMETRY USUWANIA PARTYCJI):"
+    log_msg "  - Partition path (Ścieżka partycji): $partition_path"
 
     if [ -z "$partition_path" ]; then
         log_msg "ERROR: Missing partition path (BŁĄD: Brak ścieżki partycji)"
@@ -839,6 +857,10 @@ resize_partition() {
     unit="$3"
 
     log_msg "=== Resizing partition $partition to $new_size $unit (Powiększanie partycji $partition do $new_size $unit) ==="
+    log_msg "RESIZE PARTITION PARAMETERS (PARAMETRY POWIĘKSZANIA PARTYCJI):"
+    log_msg "  - Partition (Partycja): $partition"
+    log_msg "  - New size (Nowy rozmiar): $new_size"
+    log_msg "  - Unit (Jednostka): $unit"
 
     if [ -z "$partition" ]; then
         log_msg "ERROR: Partition parameter is empty (BŁĄD: Parametr partition jest pusty)"
@@ -976,8 +998,16 @@ format_partition() {
     device="$1"
     fstype="$2"
     label="$3"
+    reserved_space="$4"
+    reserved_unit="$5"
 
     log_msg "=== Formatting $device as $fstype (Formatowanie $device jako $fstype) ==="
+    log_msg "FORMAT PARAMETERS (PARAMETRY FORMATOWANIA):"
+    log_msg "  - Device (Urządzenie): $device"
+    log_msg "  - Filesystem type (Typ systemu plików): $fstype"
+    log_msg "  - Label (Etykieta): ${label:-<none/brak>}"
+    log_msg "  - Reserved space value (Wartość zarezerwowanego miejsca): ${reserved_space:-<not set/nie ustawiono>}"
+    log_msg "  - Reserved space unit (Jednostka zarezerwowanego miejsca): ${reserved_unit:-<not set/nie ustawiono>}"
 
     if is_device_mounted "$device"; then
         umount -l "$device" >> "$LOG_FILE" 2>&1 || true
@@ -986,8 +1016,40 @@ format_partition() {
 
     case "$fstype" in
         ext4|ext3|ext2)
-            [ -n "$label" ] && mkfs.$fstype -F -L "$label" "$device" >> "$LOG_FILE" 2>&1 \
-                             || mkfs.$fstype -F "$device" >> "$LOG_FILE" 2>&1
+            cmd="mkfs.$fstype -F"
+            
+            if [ -n "$reserved_unit" ]; then
+                case "$reserved_unit" in
+                    "%")
+                        cmd="$cmd -m ${reserved_space:-0}"
+                        log_msg "Setting reserved space to ${reserved_space:-0}% (Ustawianie zarezerwowanego miejsca na ${reserved_space:-0}%)"
+                        ;;
+                    "MB"|"GB"|"TB")
+                        bytes=""
+                        rsv="${reserved_space:-0}"
+                        case "$reserved_unit" in
+                            "MB") bytes=$(( rsv * 1024 * 1024 / 4096 )) ;;  # Convert to 4K blocks
+                            "GB") bytes=$(( rsv * 1024 * 1024 * 1024 / 4096 )) ;;
+                            "TB") bytes=$(( rsv * 1024 * 1024 * 1024 * 1024 / 4096 )) ;;
+                        esac
+                        if [ "$bytes" -gt 0 ] 2>/dev/null; then
+                            cmd="$cmd -r $bytes"
+                            log_msg "Setting reserved blocks to $bytes (${rsv}${reserved_unit}) (Ustawianie zarezerwowanych bloków na $bytes)"
+                        else
+                            cmd="$cmd -m 0"
+                            log_msg "Setting reserved space to 0% (user specified 0${reserved_unit}) (Ustawianie zarezerwowanego miejsca na 0%)"
+                        fi
+                        ;;
+                esac
+            else
+                log_msg "No reserved space specified, using mkfs default (5%) (Nie określono zarezerwowanego miejsca, używanie domyślnych ustawień mkfs - 5%)"
+            fi
+            
+            [ -n "$label" ] && cmd="$cmd -L \"$label\""
+            
+            cmd="$cmd \"$device\""
+            log_msg "Running mkfs command (Uruchamianie polecenia mkfs): $cmd"
+            eval "$cmd" >> "$LOG_FILE" 2>&1
             ;;
         ntfs)
             [ -n "$label" ] && mkfs.ntfs -f -L "$label" "$device" >> "$LOG_FILE" 2>&1 \
@@ -1018,6 +1080,12 @@ format_partition() {
 
     rc=$?
     echo $rc > "$RESULT_FILE"
+    
+    if [ $rc -eq 0 ]; then
+        log_msg "Formatting completed successfully (Formatowanie zakończone pomyślnie) - rc=$rc"
+    else
+        log_msg "ERROR: Formatting failed (BŁĄD: Formatowanie nie powiodło się) - rc=$rc"
+    fi
 
     base=$(echo "$device" | sed -E 's/p?[0-9]+$//')
 
@@ -1033,6 +1101,8 @@ wipe_disk() {
     device="$1"
     
     log_msg "=== Wiping disk $device (Wymazywanie dysku $device) ==="
+    log_msg "WIPE DISK PARAMETERS (PARAMETRY WYMAZYWANIA DYSKU):"
+    log_msg "  - Device (Urządzenie): $device"
     
     if [ -z "$device" ]; then
         log_msg "ERROR: No device specified (BŁĄD: Nie podano urządzenia)"
@@ -1096,6 +1166,8 @@ case "$1" in
             json_add_string "size" "string"
             json_add_string "layout" "string"
             json_add_string "label" "string"
+            json_add_string "reserved_space" "string"
+            json_add_string "reserved_unit" "string"
         json_close_object
         json_add_object "delete_partition"
             json_add_string "partition" "string"
@@ -1104,6 +1176,8 @@ case "$1" in
             json_add_string "device" "string"
             json_add_string "fstype" "string"
             json_add_string "label" "string"
+            json_add_string "reserved_space" "string"
+            json_add_string "reserved_unit" "string"
         json_close_object
         json_add_object "resize_partition"
             json_add_string "partition" "string"
@@ -1131,9 +1205,11 @@ case "$1" in
                 json_get_var size size
                 json_get_var layout layout
                 json_get_var label label
+                json_get_var reserved_space reserved_space
+                json_get_var reserved_unit reserved_unit
 
                 (
-                    create_partition_impl "$device" "$type" "${fstype:-ext2}" "${size:-0}" "${layout:-msdos}" "$label"
+                    create_partition_impl "$device" "$type" "${fstype:-ext2}" "${size:-0}" "${layout:-msdos}" "$label" "$reserved_space" "$reserved_unit"
                     exit $?
                 ) &
                 pid=$!
@@ -1163,9 +1239,11 @@ case "$1" in
                 json_get_var device device
                 json_get_var fstype fstype
                 json_get_var label label
+                json_get_var reserved_space reserved_space
+                json_get_var reserved_unit reserved_unit
 
                 (
-                    format_partition "$device" "$fstype" "$label"
+                    format_partition "$device" "$fstype" "$label" "$reserved_space" "$reserved_unit"
                     exit $?
                 ) &
                 pid=$!

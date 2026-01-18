@@ -79,6 +79,9 @@ msgstr "Partition"
 msgid "Type / Filesystem"
 msgstr "Typ / Dateisystem"
 
+msgid "Filesystem"
+msgstr "Dateisystem"
+
 msgid "Mount Point"
 msgstr "Einhängepunkt"
 
@@ -1188,3 +1191,23 @@ msgstr "Blöcke"
 
 msgid "Solid State Device"
 msgstr "Solid State Disk"
+
+# Reserved space 
+
+msgid "Reserved space"
+msgstr "Reservierter Speicherplatz"
+
+msgid "Space reserved for root (default: 5%)"
+msgstr "Für Root reservierter Speicherplatz (Standard: 5%)"
+
+msgid "Used Reserved Block Count Total"
+msgstr "Gesamtzahl verwendeter reservierter Blöcke"
+
+msgid "Used Reserved Block Count Chip"
+msgstr "Anzahl verwendeter reservierter Blöcke pro Chip"
+
+msgid "Unused Reserved Block Count Total"
+msgstr "Gesamtzahl ungenutzter reservierter Blöcke"
+
+msgid "Available Reserved Space"
+msgstr "Verfügbarer reservierter Speicherplatz"

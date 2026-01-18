@@ -23,7 +23,7 @@
 				"/tmp/diskop.result": ["read"],
 				"/tmp/diskop.log": ["read"],
 				
-				"/etc/mdmconfig": ["read"],
+				"/etc/mdmconfig": [ "read" ],
 
 				"/usr/bin/lsblk -J -b -o NAME,SIZE,TYPE,FSTYPE,MOUNTPOINT,MODEL /dev/*": ["exec"],
 				"/usr/bin/lsblk -J -b -o NAME,SIZE,TYPE,FSTYPE,MOUNTPOINT,LABEL,UUID,PARTTYPENAME /dev/*": ["exec"],

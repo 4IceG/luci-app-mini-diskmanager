@@ -1758,3 +1758,23 @@ msgstr "載入磁碟機資訊時發生錯誤："
 
 #~ msgid "Disk Wipe (dd command)"
 #~ msgstr "磁盘擦除（dd 命令）"
+
+# Reserved space
+
+msgid "Reserved space"
+msgstr "預留空間"
+
+msgid "Space reserved for root (default: 5%)"
+msgstr "為 root 預留的空間（預設：5%）"
+
+msgid "Used Reserved Block Count Total"
+msgstr "已用預留區塊總數"
+
+msgid "Used Reserved Block Count Chip"
+msgstr "晶片已用預留區塊數"
+
+msgid "Unused Reserved Block Count Total"
+msgstr "未用預留區塊總數"
+
+msgid "Available Reserved Space"
+msgstr "可用預留空間"
