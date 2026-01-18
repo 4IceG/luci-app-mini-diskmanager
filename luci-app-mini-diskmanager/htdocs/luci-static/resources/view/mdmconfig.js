@@ -80,7 +80,7 @@ return view.extend({
 
         m = new form.Map('mdmconfig', _('Configuration'));
 
-        s = m.section(form.TypedSection, 'filesystem', _(''));
+        s = m.section(form.TypedSection, 'filesystem', _('Filesystem'));
         s.anonymous = true;
         s.addremove = false;
 
