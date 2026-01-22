@@ -831,17 +831,29 @@ return view.extend({
             return devices.sort();
         }).then(devices => {
             return Promise.all(devices.map(dev =>
-                L.resolveDefault(fs.exec('/usr/bin/lsblk', ['-J', '-b', '-o', 'NAME,SIZE,TYPE,FSTYPE,MOUNTPOINT,MODEL', '/dev/' + dev]), null)
+                L.resolveDefault(fs.exec('/usr/bin/lsblk', ['-J', '-b', '-o', 'NAME,SIZE,TYPE,FSTYPE,MOUNTPOINT,VENDOR,MODEL', '/dev/' + dev]), null)
                     .then(res => {
                         if (res && res.code === 0) {
                             try {
                                 let data = JSON.parse(res.stdout);
                                 if (data.blockdevices && data.blockdevices[0]) {
+                                    let vendor = (data.blockdevices[0].vendor || '').trim();
+                                    let model = (data.blockdevices[0].model || '').trim();
+                                    let fullModel = '';
+                                    
+                                    if (vendor && model) {
+                                        fullModel = vendor + ' ' + model;
+                                    } else if (model) {
+                                        fullModel = model;
+                                    } else if (vendor) {
+                                        fullModel = vendor;
+                                    }
+                                    
                                     return {
                                         name: dev,
                                         path: '/dev/' + dev,
                                         size: data.blockdevices[0].size,
-                                        model: data.blockdevices[0].model || '',
+                                        model: fullModel,
                                         type: data.blockdevices[0].type
                                     };
                                 }

@@ -1,3 +1,8 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: luci-app-mini-diskmanager\n"
+"Language-Team: Rafał Wabik (IceG)\n"
+
 msgid "Disk Manager"
 msgstr "Gestione Dischi"
 
