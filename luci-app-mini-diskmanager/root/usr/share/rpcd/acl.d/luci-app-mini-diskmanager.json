@@ -15,6 +15,7 @@
 				"/proc/mounts": ["read"],
 				"/proc/partitions": ["read"],
 				"/sys/block/*/device/model": ["read"],
+				"/sys/block/*/device/vendor": ["read"],
 				"/sys/block/*/device/rescan": ["read", "write"],
 				"/tmp/mini-diskmanager.pid": ["read"],
 				"/tmp/mini-diskmanager.result": ["read"],

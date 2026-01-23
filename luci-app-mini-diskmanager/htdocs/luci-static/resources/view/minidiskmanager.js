@@ -831,42 +831,115 @@ return view.extend({
             return devices.sort();
         }).then(devices => {
             return Promise.all(devices.map(dev =>
-                L.resolveDefault(fs.exec('/usr/bin/lsblk', ['-J', '-b', '-o', 'NAME,SIZE,TYPE,FSTYPE,MOUNTPOINT,VENDOR,MODEL', '/dev/' + dev]), null)
-                    .then(res => {
-                        if (res && res.code === 0) {
-                            try {
-                                let data = JSON.parse(res.stdout);
-                                if (data.blockdevices && data.blockdevices[0]) {
-                                    let vendor = (data.blockdevices[0].vendor || '').trim();
-                                    let model = (data.blockdevices[0].model || '').trim();
-                                    let fullModel = '';
-                                    
-                                    if (vendor && model) {
-                                        fullModel = vendor + ' ' + model;
-                                    } else if (model) {
-                                        fullModel = model;
-                                    } else if (vendor) {
-                                        fullModel = vendor;
-                                    }
-                                    
-                                    return {
-                                        name: dev,
-                                        path: '/dev/' + dev,
-                                        size: data.blockdevices[0].size,
-                                        model: fullModel,
-                                        type: data.blockdevices[0].type
-                                    };
-                                }
-                            } catch (e) {
-                                console.log('JSON parse error for ' + dev, e);
+                Promise.all([
+                    L.resolveDefault(fs.exec('/usr/bin/lsblk', ['-J', '-b', '-o', 'NAME,SIZE,TYPE,FSTYPE,MOUNTPOINT', '/dev/' + dev]), null),
+                    this.getFullDiskModel(dev)
+                ]).then(results => {
+                    let lsblkResult = results[0];
+                    let fullModel = results[1];
+                    
+                    if (lsblkResult && lsblkResult.code === 0) {
+                        try {
+                            let data = JSON.parse(lsblkResult.stdout);
+                            if (data.blockdevices && data.blockdevices[0]) {
+                                return {
+                                    name: dev,
+                                    path: '/dev/' + dev,
+                                    size: data.blockdevices[0].size,
+                                    model: fullModel || '',
+                                    type: data.blockdevices[0].type
+                                };
                             }
+                        } catch (e) {
+                            console.log('JSON parse error for ' + dev, e);
                         }
-                        return { name: dev, path: '/dev/' + dev, size: 0, model: '', type: 'disk' };
-                    })
+                    }
+                    return { name: dev, path: '/dev/' + dev, size: 0, model: fullModel || '', type: 'disk' };
+                })
             ));
         }).catch(err => {
             console.log('getBlockDevices error:', err);
             return [];
+        });
+    },
+
+    getFullDiskModel: function(device) {
+        return Promise.all([
+            L.resolveDefault(fs.exec('/usr/sbin/smartctl', ['-i', '/dev/' + device]), null),
+            L.resolveDefault(fs.exec('/usr/bin/lsblk', ['-dno', 'VENDOR,MODEL', '/dev/' + device]), null),
+            L.resolveDefault(fs.read('/sys/block/' + device + '/device/vendor'), null),
+            L.resolveDefault(fs.read('/sys/block/' + device + '/device/model'), null)
+        ]).then(results => {
+            let modelFamily = '';
+            let model = '';
+            let vendor = '';
+            
+            if (results[0] && results[0].code === 0) {
+                let smartOutput = results[0].stdout;
+                
+                let modelFamilyMatch = smartOutput.match(/Model Family:\s*(.+)/i);
+                if (modelFamilyMatch && modelFamilyMatch[1].trim()) {
+                    modelFamily = modelFamilyMatch[1].trim();
+                }
+                
+                let modelMatch = smartOutput.match(/(?:Device Model|Model Number|Product):\s*(.+)/i);
+                if (modelMatch && modelMatch[1].trim()) {
+                    model = modelMatch[1].trim();
+                }
+                
+                let vendorMatch = smartOutput.match(/Vendor:\s*(.+)/i);
+                if (vendorMatch && vendorMatch[1].trim()) {
+                    vendor = vendorMatch[1].trim();
+                }
+                
+                if (modelFamily && model) {
+                    return modelFamily + ' ' + model;
+                } else if (model) {
+                    return model;
+                } else if (modelFamily) {
+                    return modelFamily;
+                }
+            }
+            
+            if (!model && !modelFamily) {
+                if (results[1] && results[1].code === 0 && results[1].stdout.trim()) {
+                    let lsblkOutput = results[1].stdout.trim();
+                    let parts = lsblkOutput.split(/\s+/, 2);
+                    
+                    if (parts.length >= 2) {
+                        if (parts[0] && parts[0] !== '') {
+                            vendor = parts[0].trim();
+                        }
+                        if (parts[1] && parts[1] !== '') {
+                            model = parts[1].trim();
+                        }
+                    } else if (parts.length === 1 && parts[0] && parts[0] !== '') {
+                        model = parts[0].trim();
+                    }
+                }
+            }
+            
+            if (!model && !vendor) {
+                if (results[2] && results[2].trim()) {
+                    vendor = results[2].trim();
+                }
+                if (results[3] && results[3].trim()) {
+                    model = results[3].trim();
+                }
+            }
+            
+            if (vendor && model) {
+                return vendor + ' ' + model;
+            } else if (model) {
+                return model;
+            } else if (vendor) {
+                return vendor;
+            }
+            
+            return '';
+        }).catch(err => {
+            console.log('getFullDiskModel error for ' + device + ':', err);
+            return '';
         });
     },
 
