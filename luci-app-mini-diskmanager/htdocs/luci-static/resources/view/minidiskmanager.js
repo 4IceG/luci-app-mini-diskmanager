@@ -142,6 +142,24 @@ document.head.append(E('style', {'type': 'text/css'},
 	flex-grow: 1;
 }
 
+.ifacebox {
+    display: flex !important;
+    flex-direction: column !important;
+	min-width: 98% !important;
+}
+
+.ifacebox-body {
+    flex: 1 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.ifacebox-head {
+    background: transparent !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
 .disks-info-label-status {
 	display: inline;
 	margin: 0 4px !important;
@@ -2188,14 +2206,20 @@ return view.extend({
             }
         }
 
-        let controls = E('div', {'class': 'controls'}, [
+	let controls = E('div', {'class': 'controls'}, [
             E('div', {}, [
                 E('label', {}, _('Disk') + ':'),
                 E('span', {'class': 'control-group'}, [
                     diskSelect,
                     E('button', {
                         'class': 'btn cbi-button',
-                        'click': ui.createHandlerFn(this, this.refreshDiskView)
+                        'click': ui.createHandlerFn(this, function() {
+                            if (!this.selectedDisk || this.selectedDisk === '') {
+                                window.location.reload();
+                            } else {
+                                this.refreshDiskView();
+                            }
+                        })
                     }, _('Refresh'))
                 ])
             ]),
