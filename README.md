@@ -31,7 +31,11 @@ LuCI JS Mini Disk Manager. Interface for simple disk/partition management from O
 
 > Disk Manager / Menedżer dysków:
 
-![](https://github.com/4IceG/Personal_data/blob/master/zrzuty/mini-diskmanager/Disk%20Manager%201.png?raw=true)
+![](https://github.com/4IceG/Personal_data/blob/master/zrzuty/mini-diskmanager/bootstrap.png?raw=true)
+
+![](https://github.com/4IceG/Personal_data/blob/master/zrzuty/mini-diskmanager/material.png?raw=true)
+
+![](https://github.com/4IceG/Personal_data/blob/master/zrzuty/mini-diskmanager/openwrt-2020.png?raw=true)
 
 ![](https://github.com/4IceG/Personal_data/blob/master/zrzuty/mini-diskmanager/Disk%20Manager%205.png?raw=true)
 
