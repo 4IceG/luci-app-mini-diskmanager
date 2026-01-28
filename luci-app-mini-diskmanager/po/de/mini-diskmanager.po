@@ -1251,3 +1251,17 @@ msgstr "Medienfehler"
 
 msgid "Error Log Entries"
 msgstr "Fehlerprotokolleinträge"
+
+# SMART
+
+msgid "S.M.A.R.T. Data Reading"
+msgstr "S.M.A.R.T.-Daten auslesen"
+
+msgid "Packages required to read S.M.A.R.T. disk data."
+msgstr "Pakete zum Auslesen von S.M.A.R.T.-Festplattendaten erforderlich."
+
+msgid "Check S.M.A.R.T. packages"
+msgstr "S.M.A.R.T.-Pakete prüfen"
+
+msgid "S.M.A.R.T. tools"
+msgstr "S.M.A.R.T.-Tools"

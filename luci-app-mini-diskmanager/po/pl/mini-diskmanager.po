@@ -1257,3 +1257,17 @@ msgstr "Błędy nośnika"
 
 msgid "Error Log Entries"
 msgstr "Wpisy dziennika błędów"
+
+# SMART
+
+msgid "S.M.A.R.T. Data Reading"
+msgstr "Odczyt danych S.M.A.R.T."
+
+msgid "Packages required to read S.M.A.R.T. disk data."
+msgstr "Pakiety wymagane do odczytu danych S.M.A.R.T. dysku."
+
+msgid "Check S.M.A.R.T. packages"
+msgstr "Sprawdź pakiety S.M.A.R.T."
+
+msgid "S.M.A.R.T. tools"
+msgstr "Narzędzia S.M.A.R.T."

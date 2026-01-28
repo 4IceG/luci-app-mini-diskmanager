@@ -1310,3 +1310,17 @@ msgstr "Erreurs du support"
 
 msgid "Error Log Entries"
 msgstr "Entrées du journal d'erreurs"
+
+# SMART
+
+msgid "S.M.A.R.T. Data Reading"
+msgstr "Lecture des données S.M.A.R.T."
+
+msgid "Packages required to read S.M.A.R.T. disk data."
+msgstr "Paquets nécessaires pour lire les données S.M.A.R.T. du disque."
+
+msgid "Check S.M.A.R.T. packages"
+msgstr "Vérifier les paquets S.M.A.R.T."
+
+msgid "S.M.A.R.T. tools"
+msgstr "Outils S.M.A.R.T."

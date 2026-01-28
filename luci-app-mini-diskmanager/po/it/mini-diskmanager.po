@@ -1245,3 +1245,17 @@ msgstr "Errori del supporto"
 
 msgid "Error Log Entries"
 msgstr "Voci del registro errori"
+
+# SMART
+
+msgid "S.M.A.R.T. Data Reading"
+msgstr "Lettura dati S.M.A.R.T."
+
+msgid "Packages required to read S.M.A.R.T. disk data."
+msgstr "Pacchetti necessari per leggere i dati S.M.A.R.T. del disco."
+
+msgid "Check S.M.A.R.T. packages"
+msgstr "Verifica pacchetti S.M.A.R.T."
+
+msgid "S.M.A.R.T. tools"
+msgstr "Strumenti S.M.A.R.T."

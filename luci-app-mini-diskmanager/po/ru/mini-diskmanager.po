@@ -1252,3 +1252,17 @@ msgstr "Ошибки носителя"
 
 msgid "Error Log Entries"
 msgstr "Записи журнала ошибок"
+
+# SMART
+
+msgid "S.M.A.R.T. Data Reading"
+msgstr "Чтение данных S.M.A.R.T."
+
+msgid "Packages required to read S.M.A.R.T. disk data."
+msgstr "Пакеты, необходимые для чтения данных S.M.A.R.T. диска."
+
+msgid "Check S.M.A.R.T. packages"
+msgstr "Проверить пакеты S.M.A.R.T."
+
+msgid "S.M.A.R.T. tools"
+msgstr "Инструменты S.M.A.R.T."

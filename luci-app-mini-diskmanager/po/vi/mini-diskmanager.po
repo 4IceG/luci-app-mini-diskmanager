@@ -1249,3 +1249,17 @@ msgstr "Lỗi phương tiện"
 
 msgid "Error Log Entries"
 msgstr "Mục nhập nhật ký lỗi"
+
+# SMART
+
+msgid "S.M.A.R.T. Data Reading"
+msgstr "Đọc dữ liệu S.M.A.R.T."
+
+msgid "Packages required to read S.M.A.R.T. disk data."
+msgstr "Các gói cần thiết để đọc dữ liệu S.M.A.R.T. của ổ đĩa."
+
+msgid "Check S.M.A.R.T. packages"
+msgstr "Kiểm tra gói S.M.A.R.T."
+
+msgid "S.M.A.R.T. tools"
+msgstr "Công cụ S.M.A.R.T."

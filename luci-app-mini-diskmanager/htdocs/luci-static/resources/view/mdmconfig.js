@@ -137,6 +137,28 @@ return view.extend({
             });
         }, this);
 
+        o = s.taboption('packages', form.DummyValue, '_dummy_smart');
+        o.rawhtml = true;
+        o.render = function() {
+            return E('div', {}, [
+                E('h3', {}, _('S.M.A.R.T. Data Reading')),
+                E('div', { 'class': 'cbi-map-descr' }, _('Packages required to read S.M.A.R.T. disk data.'))
+            ]);
+        };
+
+        o = s.taboption('packages', form.Button, '_check_smart_packages', _('Check S.M.A.R.T. packages'));
+        o.inputtitle = _('S.M.A.R.T. tools');
+        o.inputstyle = 'action';
+        o.onclick = L.bind(function() {
+            showPackageDialog('S.M.A.R.T. Data Reading', {
+                'S.M.A.R.T. Tools': [
+                    { name: 'smartmontools', label: 'smartmontools' },
+                    { name: 'smartmontools-drivedb', label: 'smartmontools-drivedb' },
+                    { name: 'nvme-cli', label: 'nvme-cli' }
+                ]
+            });
+        }, this);
+
         o = s.taboption('packages', form.DummyValue, '_dummy_filesystems');
         o.rawhtml = true;
         o.render = function() {

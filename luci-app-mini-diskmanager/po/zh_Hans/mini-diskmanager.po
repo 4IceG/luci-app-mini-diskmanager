@@ -1249,3 +1249,17 @@ msgstr "介质错误"
 
 msgid "Error Log Entries"
 msgstr "错误日志条目"
+
+# SMART
+
+msgid "S.M.A.R.T. Data Reading"
+msgstr "S.M.A.R.T. 数据读取"
+
+msgid "Packages required to read S.M.A.R.T. disk data."
+msgstr "读取 S.M.A.R.T. 磁盘数据所需的软件包。"
+
+msgid "Check S.M.A.R.T. packages"
+msgstr "检查 S.M.A.R.T. 软件包"
+
+msgid "S.M.A.R.T. tools"
+msgstr "S.M.A.R.T. 工具"

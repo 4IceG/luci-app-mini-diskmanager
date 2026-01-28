@@ -961,6 +961,24 @@ return view.extend({
         });
     },
 
+    removeDuplicateInDiskName: function(text) {
+        if (!text || typeof text !== 'string') return text;
+        
+        let words = text.trim().split(/\s+/);
+        let seen = new Set();
+        let result = [];
+        
+        for (let word of words) {
+            let wordLower = word.toLowerCase();
+            if (!seen.has(wordLower)) {
+                seen.add(wordLower);
+                result.push(word);
+            }
+        }
+        
+        return result.join(' ');
+    },
+
     getDiskModel: function(device) {
         return Promise.all([
             L.resolveDefault(fs.exec('/usr/bin/lsblk', ['-dno', 'MODEL', '/dev/' + device]), null),
@@ -2192,7 +2210,7 @@ return view.extend({
 
         devices.forEach(dev => {
             let sizeStr = dev.size ? ' - ' + this.formatSize(dev.size) : '';
-            let modelStr = dev.model ? ' (' + dev.model.trim() + ')' : '';
+            let modelStr = dev.model ? ' (' + this.removeDuplicateInDiskName(dev.model.trim()) + ')' : '';
             diskSelect.appendChild(E('option', {'value': dev.name}, '/dev/' + dev.name + sizeStr + modelStr));
         });
 
@@ -3737,11 +3755,11 @@ return view.extend({
                 if (deviceInfoRows.length > 0) {
                     let headerText = '';
                     if (deviceInfo.modelFamily && deviceInfo.model) {
-                        headerText = deviceInfo.modelFamily + ' ' + deviceInfo.model;
+                        headerText = this.removeDuplicateInDiskName(deviceInfo.modelFamily + ' ' + deviceInfo.model);
                     } else if (deviceInfo.model) {
-                        headerText = deviceInfo.model;
+                        headerText = this.removeDuplicateInDiskName(deviceInfo.model);
                     } else if (deviceInfo.modelFamily) {
-                        headerText = deviceInfo.modelFamily;
+                        headerText = this.removeDuplicateInDiskName(deviceInfo.modelFamily);
                     } else {
                         headerText = this.translateDeviceInfoLabel('Device');
                     }
