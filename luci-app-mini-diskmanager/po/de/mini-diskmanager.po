@@ -1265,3 +1265,68 @@ msgstr "S.M.A.R.T.-Pakete prüfen"
 
 msgid "S.M.A.R.T. tools"
 msgstr "S.M.A.R.T.-Tools"
+
+# Mount
+
+msgid "Please select a partition first"
+msgstr "Bitte wählen Sie zuerst eine Partition aus"
+
+msgid "UUID"
+msgstr "UUID"
+
+msgid "Device"
+msgstr "Gerät"
+
+msgid "Filesystem"
+msgstr "Dateisystem"
+
+msgid "Mount point"
+msgstr "Einhängepunkt"
+
+msgid "Use as root filesystem (/)"
+msgstr "Als Root-Dateisystem verwenden (/)"
+
+msgid "Use as external overlay (/overlay)"
+msgstr "Als externes Overlay verwenden (/overlay)"
+
+msgid "-- custom --"
+msgstr "-- benutzerdefiniert --"
+
+msgid "Enter custom mount point"
+msgstr "Benutzerdefinierten Einhängepunkt eingeben"
+
+msgid "Mount options"
+msgstr "Einhängeoptionen"
+
+msgid "See \"mount\" manpage for details."
+msgstr "Siehe \"mount\" Manpage für Details."
+
+msgid "Mount Points - Mount Entry"
+msgstr "Einhängepunkte - Einhängeeintrag"
+
+msgid "Cancel"
+msgstr "Abbrechen"
+
+msgid "Mount point cannot be empty"
+msgstr "Einhängepunkt darf nicht leer sein"
+
+msgid "Mounted to %s"
+msgstr "Eingehängt in %s"
+
+msgid "Failed to mount: "
+msgstr "Einhängen fehlgeschlagen: "
+
+msgid "Mount failed: %s"
+msgstr "Einhängen fehlgeschlagen: %s"
+
+msgid "Mount"
+msgstr "Einhängen"
+
+msgid "Selected partition is not mounted"
+msgstr "Ausgewählte Partition ist nicht eingehängt"
+
+msgid "Unmounted %s"
+msgstr "%s ausgehängt"
+
+msgid "Failed to unmount: "
+msgstr "Aushängen fehlgeschlagen: "

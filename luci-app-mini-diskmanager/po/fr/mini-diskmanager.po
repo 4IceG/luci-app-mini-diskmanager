@@ -1324,3 +1324,68 @@ msgstr "Vérifier les paquets S.M.A.R.T."
 
 msgid "S.M.A.R.T. tools"
 msgstr "Outils S.M.A.R.T."
+
+# Mount
+
+msgid "Please select a partition first"
+msgstr "Veuillez d'abord sélectionner une partition"
+
+msgid "UUID"
+msgstr "UUID"
+
+msgid "Device"
+msgstr "Périphérique"
+
+msgid "Filesystem"
+msgstr "Système de fichiers"
+
+msgid "Mount point"
+msgstr "Point de montage"
+
+msgid "Use as root filesystem (/)"
+msgstr "Utiliser comme système de fichiers racine (/)"
+
+msgid "Use as external overlay (/overlay)"
+msgstr "Utiliser comme superposition externe (/overlay)"
+
+msgid "-- custom --"
+msgstr "-- personnalisé --"
+
+msgid "Enter custom mount point"
+msgstr "Entrez un point de montage personnalisé"
+
+msgid "Mount options"
+msgstr "Options de montage"
+
+msgid "See \"mount\" manpage for details."
+msgstr "Voir la page de manuel \"mount\" pour plus de détails."
+
+msgid "Mount Points - Mount Entry"
+msgstr "Points de montage - Entrée de montage"
+
+msgid "Cancel"
+msgstr "Annuler"
+
+msgid "Mount point cannot be empty"
+msgstr "Le point de montage ne peut pas être vide"
+
+msgid "Mounted to %s"
+msgstr "Monté sur %s"
+
+msgid "Failed to mount: "
+msgstr "Échec du montage : "
+
+msgid "Mount failed: %s"
+msgstr "Échec du montage : %s"
+
+msgid "Mount"
+msgstr "Monter"
+
+msgid "Selected partition is not mounted"
+msgstr "La partition sélectionnée n'est pas montée"
+
+msgid "Unmounted %s"
+msgstr "%s démonté"
+
+msgid "Failed to unmount: "
+msgstr "Échec du démontage : "

@@ -1259,3 +1259,68 @@ msgstr "Verifica pacchetti S.M.A.R.T."
 
 msgid "S.M.A.R.T. tools"
 msgstr "Strumenti S.M.A.R.T."
+
+# Mount
+
+msgid "Please select a partition first"
+msgstr "Seleziona prima una partizione"
+
+msgid "UUID"
+msgstr "UUID"
+
+msgid "Device"
+msgstr "Dispositivo"
+
+msgid "Filesystem"
+msgstr "Filesystem"
+
+msgid "Mount point"
+msgstr "Punto di mount"
+
+msgid "Use as root filesystem (/)"
+msgstr "Usa come filesystem root (/)"
+
+msgid "Use as external overlay (/overlay)"
+msgstr "Usa come overlay esterno (/overlay)"
+
+msgid "-- custom --"
+msgstr "-- personalizzato --"
+
+msgid "Enter custom mount point"
+msgstr "Inserisci punto di mount personalizzato"
+
+msgid "Mount options"
+msgstr "Opzioni di mount"
+
+msgid "See \"mount\" manpage for details."
+msgstr "Vedi manpage \"mount\" per dettagli."
+
+msgid "Mount Points - Mount Entry"
+msgstr "Punti di Mount - Voce di Mount"
+
+msgid "Cancel"
+msgstr "Annulla"
+
+msgid "Mount point cannot be empty"
+msgstr "Il punto di mount non può essere vuoto"
+
+msgid "Mounted to %s"
+msgstr "Montato in %s"
+
+msgid "Failed to mount: "
+msgstr "Montaggio fallito: "
+
+msgid "Mount failed: %s"
+msgstr "Montaggio fallito: %s"
+
+msgid "Mount"
+msgstr "Monta"
+
+msgid "Selected partition is not mounted"
+msgstr "La partizione selezionata non è montata"
+
+msgid "Unmounted %s"
+msgstr "%s smontato"
+
+msgid "Failed to unmount: "
+msgstr "Smontaggio fallito: "

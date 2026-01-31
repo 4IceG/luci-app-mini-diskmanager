@@ -1263,3 +1263,68 @@ msgstr "检查 S.M.A.R.T. 软件包"
 
 msgid "S.M.A.R.T. tools"
 msgstr "S.M.A.R.T. 工具"
+
+# Mount
+
+msgid "Please select a partition first"
+msgstr "请先选择一个分区"
+
+msgid "UUID"
+msgstr "UUID"
+
+msgid "Device"
+msgstr "设备"
+
+msgid "Filesystem"
+msgstr "文件系统"
+
+msgid "Mount point"
+msgstr "挂载点"
+
+msgid "Use as root filesystem (/)"
+msgstr "用作根文件系统 (/)"
+
+msgid "Use as external overlay (/overlay)"
+msgstr "用作外部覆盖层 (/overlay)"
+
+msgid "-- custom --"
+msgstr "-- 自定义 --"
+
+msgid "Enter custom mount point"
+msgstr "输入自定义挂载点"
+
+msgid "Mount options"
+msgstr "挂载选项"
+
+msgid "See \"mount\" manpage for details."
+msgstr "详情请参阅 \"mount\" 手册页。"
+
+msgid "Mount Points - Mount Entry"
+msgstr "挂载点 - 挂载条目"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Mount point cannot be empty"
+msgstr "挂载点不能为空"
+
+msgid "Mounted to %s"
+msgstr "已挂载到 %s"
+
+msgid "Failed to mount: "
+msgstr "挂载失败："
+
+msgid "Mount failed: %s"
+msgstr "挂载失败：%s"
+
+msgid "Mount"
+msgstr "挂载"
+
+msgid "Selected partition is not mounted"
+msgstr "所选分区未挂载"
+
+msgid "Unmounted %s"
+msgstr "已卸载 %s"
+
+msgid "Failed to unmount: "
+msgstr "卸载失败："

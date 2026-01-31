@@ -1266,3 +1266,68 @@ msgstr "Проверить пакеты S.M.A.R.T."
 
 msgid "S.M.A.R.T. tools"
 msgstr "Инструменты S.M.A.R.T."
+
+# Mount
+
+msgid "Please select a partition first"
+msgstr "Сначала выберите раздел"
+
+msgid "UUID"
+msgstr "UUID"
+
+msgid "Device"
+msgstr "Устройство"
+
+msgid "Filesystem"
+msgstr "Файловая система"
+
+msgid "Mount point"
+msgstr "Точка монтирования"
+
+msgid "Use as root filesystem (/)"
+msgstr "Использовать как корневую файловую систему (/)"
+
+msgid "Use as external overlay (/overlay)"
+msgstr "Использовать как внешний оверлей (/overlay)"
+
+msgid "-- custom --"
+msgstr "-- пользовательский --"
+
+msgid "Enter custom mount point"
+msgstr "Введите пользовательскую точку монтирования"
+
+msgid "Mount options"
+msgstr "Параметры монтирования"
+
+msgid "See \"mount\" manpage for details."
+msgstr "См. man-страницу \"mount\" для подробностей."
+
+msgid "Mount Points - Mount Entry"
+msgstr "Точки монтирования - Запись монтирования"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Mount point cannot be empty"
+msgstr "Точка монтирования не может быть пустой"
+
+msgid "Mounted to %s"
+msgstr "Смонтировано в %s"
+
+msgid "Failed to mount: "
+msgstr "Не удалось смонтировать: "
+
+msgid "Mount failed: %s"
+msgstr "Монтирование не удалось: %s"
+
+msgid "Mount"
+msgstr "Монтировать"
+
+msgid "Selected partition is not mounted"
+msgstr "Выбранный раздел не смонтирован"
+
+msgid "Unmounted %s"
+msgstr "Размонтировано %s"
+
+msgid "Failed to unmount: "
+msgstr "Не удалось размонтировать: "

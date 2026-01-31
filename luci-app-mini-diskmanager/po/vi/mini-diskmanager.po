@@ -1263,3 +1263,68 @@ msgstr "Kiểm tra gói S.M.A.R.T."
 
 msgid "S.M.A.R.T. tools"
 msgstr "Công cụ S.M.A.R.T."
+
+# Mount
+
+msgid "Please select a partition first"
+msgstr "Vui lòng chọn phân vùng trước"
+
+msgid "UUID"
+msgstr "UUID"
+
+msgid "Device"
+msgstr "Thiết bị"
+
+msgid "Filesystem"
+msgstr "Hệ thống tệp"
+
+msgid "Mount point"
+msgstr "Điểm gắn kết"
+
+msgid "Use as root filesystem (/)"
+msgstr "Sử dụng làm hệ thống tệp gốc (/)"
+
+msgid "Use as external overlay (/overlay)"
+msgstr "Sử dụng làm lớp phủ bên ngoài (/overlay)"
+
+msgid "-- custom --"
+msgstr "-- tùy chỉnh --"
+
+msgid "Enter custom mount point"
+msgstr "Nhập điểm gắn kết tùy chỉnh"
+
+msgid "Mount options"
+msgstr "Tùy chọn gắn kết"
+
+msgid "See \"mount\" manpage for details."
+msgstr "Xem trang hướng dẫn \"mount\" để biết chi tiết."
+
+msgid "Mount Points - Mount Entry"
+msgstr "Điểm gắn kết - Mục gắn kết"
+
+msgid "Cancel"
+msgstr "Hủy"
+
+msgid "Mount point cannot be empty"
+msgstr "Điểm gắn kết không được để trống"
+
+msgid "Mounted to %s"
+msgstr "Đã gắn kết vào %s"
+
+msgid "Failed to mount: "
+msgstr "Gắn kết thất bại: "
+
+msgid "Mount failed: %s"
+msgstr "Gắn kết thất bại: %s"
+
+msgid "Mount"
+msgstr "Gắn kết"
+
+msgid "Selected partition is not mounted"
+msgstr "Phân vùng đã chọn chưa được gắn kết"
+
+msgid "Unmounted %s"
+msgstr "Đã ngắt kết nối %s"
+
+msgid "Failed to unmount: "
+msgstr "Ngắt kết nối thất bại: "

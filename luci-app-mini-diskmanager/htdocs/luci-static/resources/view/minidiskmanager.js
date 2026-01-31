@@ -154,10 +154,16 @@ document.head.append(E('style', {'type': 'text/css'},
     box-sizing: border-box !important;
 }
 
-.ifacebox-head {
-    background: transparent !important;
+.ifacebox-head port-label {
     width: 100% !important;
     box-sizing: border-box !important;
+    font-weight: bold;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0.25em 0.5em;
 }
 
 .disks-info-label-status {
@@ -309,7 +315,7 @@ document.head.append(E('style', {'type': 'text/css'},
 .partition-segment.free,
 .partition-segment.unallocated {
     color: #fff;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+    text-shadow: 0 1px 2px rgba(0,0,0,.4), 0 2px 6px rgba(0,0,0,.25);
 }
 
 .partition-label {
@@ -2802,7 +2808,7 @@ return view.extend({
                                 font-size: 10px;
                                 color: #fff;
                                 background-color: var(--partition-color-free);
-                                text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+                                text-shadow: 0 2px 4px rgba(0,0,0,0.8);
                             `
                         });
                         freeSegment.appendChild(E('div', {'style': 'font-size: 9px; opacity: 0.85;'}, partitionLabel));
@@ -3766,7 +3772,7 @@ return view.extend({
                     
                     content.push(
                         E('div', {'class': 'ifacebox', 'style': 'margin:.25em 0 1em 0;width:100%'}, [
-                            E('div', {'class': 'ifacebox-head', 'style': 'font-weight:bold;background:#f8f8f8;padding:8px'}, [
+                            E('div', {'class': 'ifacebox-head port-label', 'style': 'font-weight:bold;padding:8px'}, [
                                 headerText
                             ]),
                             E('div', {'class': 'ifacebox-body', 'style': 'padding:8px'}, deviceInfoRows)
@@ -5331,18 +5337,141 @@ return view.extend({
 
         let part = this.selectedPartition;
         let partPath = '/dev/' + part.name;
-        let mountPoint = '/mnt/' + part.name;
-
-        fs.exec('/bin/mkdir', ['-p', mountPoint]).then(() => {
-            fs.exec('/bin/mount', [partPath, mountPoint]).then(res => {
-                if (res.code === 0) {
-                    this.popTimeout(null, E('p', _('Mounted to %s').format(mountPoint)), 5000, 'info');
-                    this.refreshDiskView();
-                } else {
-                    ui.addNotification(null, E('p', _('Failed to mount: ') + res.stderr), 'error');
-                }
-            });
-        });
+        let defaultMountPoint = '/mnt/' + part.name;
+        let fstype = part.filesystem || part.fstype || 'auto';
+        
+        ui.showModal(_('Mount Points - Mount Entry'), [
+            E('div', {'class': 'cbi-section'}, [
+                E('div', {'class': 'cbi-section'}, [
+                    E('div', {'class': 'cbi-value'}, [
+                        E('label', {'class': 'cbi-value-title'}, _('UUID')),
+                        E('div', {'class': 'cbi-value-field'}, [
+                            E('div', {'class': 'size-input-group'}, [
+                                E('input', {
+                                    'type': 'text',
+                                    'class': 'cbi-input-text',
+                                    'id': 'mount-uuid',
+                                    'value': part.uuid || '',
+                                    'readonly': true
+                                })
+                            ])
+                        ])
+                    ]),
+                    E('div', {'class': 'cbi-value'}, [
+                        E('label', {'class': 'cbi-value-title'}, _('Device')),
+                        E('div', {'class': 'cbi-value-field'}, [
+                            E('input', {
+                                'type': 'text',
+                                'class': 'cbi-input-text',
+                                'id': 'mount-device',
+                                'value': partPath,
+                                'readonly': true
+                            })
+                        ])
+                    ]),
+                    E('div', {'class': 'cbi-value'}, [
+                        E('label', {'class': 'cbi-value-title'}, _('Filesystem')),
+                        E('div', {'class': 'cbi-value-field'}, [
+                            E('input', {
+                                'type': 'text',
+                                'class': 'cbi-input-text',
+                                'id': 'mount-fstype',
+                                'value': fstype,
+                                'readonly': true
+                            })
+                        ])
+                    ]),
+                    E('div', {'class': 'cbi-value'}, [
+                        E('label', {'class': 'cbi-value-title'}, _('Mount point')),
+                        E('div', {'class': 'cbi-value-field'}, [
+                            E('select', {
+                                'class': 'cbi-input-select',
+                                'id': 'mount-target',
+                                'change': function() {
+                                    let inputCustom = document.getElementById('mount-target-custom');
+                                    if (this.value === 'custom') {
+                                        inputCustom.style.display = 'block';
+                                        inputCustom.focus();
+                                    } else {
+                                        inputCustom.style.display = 'none';
+                                    }
+                                }
+                            }, [
+                                E('option', {'value': defaultMountPoint, 'selected': true}, defaultMountPoint),
+                                E('option', {'value': '/'}, _('Use as root filesystem (/)')),
+                                E('option', {'value': '/overlay'}, _('Use as external overlay (/overlay)')),
+                                E('option', {'value': 'custom'}, _('-- custom --'))
+                            ]),
+                            E('input', {
+                                'type': 'text',
+                                'class': 'cbi-input-text',
+                                'id': 'mount-target-custom',
+                                'placeholder': _('Mount point'),
+                                'style': 'margin-top: 0.5em; display: none'
+                            })
+                        ])
+                    ]),
+                    E('div', {'class': 'cbi-value'}, [
+                        E('label', {'class': 'cbi-value-title'}, _('Mount options')),
+                        E('div', {'class': 'cbi-value-field'}, [
+                            E('input', {
+                                'type': 'text',
+                                'class': 'cbi-input-text',
+                                'id': 'mount-options',
+                                'placeholder': 'defaults',
+                                'value': 'defaults'
+                            }),
+                            E('div', {'class': 'cbi-value-description'}, _('See "mount" manpage for details.'))
+                        ])
+                    ])
+                ])
+            ]),
+            E('div', {'style': 'display: flex; justify-content: space-between; align-items: center;'}, [
+                E('div', {}, [
+                    E('button', {'class': 'btn', 'click': ui.hideModal}, _('Cancel'))
+                ]),
+                E('div', {}, [
+                    E('button', {
+                        'class': 'btn cbi-button-action',
+                        'click': L.bind(function() {
+                            var selectTarget = document.getElementById('mount-target');
+                            var inputCustom = document.getElementById('mount-target-custom');
+                            var target = selectTarget.value === 'custom' ? inputCustom.value : selectTarget.value;
+                            var options = document.getElementById('mount-options').value || 'defaults';
+                            
+                            if (!target || target.trim() === '') {
+                                ui.addNotification(null, E('p', _('Mount point cannot be empty')), 'error');
+                                return;
+                            }
+                            
+                            ui.hideModal();
+                            
+                            fs.exec('/bin/mkdir', ['-p', target]).then(L.bind(function() {
+                                var args = [];
+                                if (options && options !== 'defaults') {
+                                    args.push('-o', options);
+                                }
+                                if (fstype && fstype !== 'auto') {
+                                    args.push('-t', fstype);
+                                }
+                                args.push(partPath, target);
+                                
+                                return fs.exec('/bin/mount', args);
+                            }, this)).then(L.bind(function(res) {
+                                if (res.code === 0) {
+                                    this.popTimeout(null, E('p', _('Mounted to %s').format(target)), 5000, 'info');
+                                    this.refreshDiskView();
+                                } else {
+                                    ui.addNotification(null, E('p', _('Failed to mount: ') + res.stderr), 'error');
+                                }
+                            }, this)).catch(function(e) {
+                                ui.addNotification(null, E('p', _('Mount failed: %s').format(e.message)), 'error');
+                            });
+                        }, this)
+                    }, _('Mount'))
+                ])
+            ])
+        ]);
     },
 
     unmountDisk: function() {
@@ -5417,8 +5546,8 @@ return view.extend({
             let partitionLayoutSection = E('div', {'class': 'partition-layout-section'}, [
                 E('div', {'class': 'ifacebox', 'style': 'width:98%;table-layout:fixed;'}, [
                     E('div', {
-                        'class': 'ifacebox-head', 
-                        'style': 'font-weight:bold;background:#f8f8f8;padding:8px;text-align:center;',
+                        'class': 'ifacebox-head port-label', 
+                        'style': 'font-weight:bold;padding:8px;text-align:center;',
                         'click': ui.createHandlerFn(this, function(ev) {
                             if (this.hasAnyPartitionMounted(this.selectedDisk)) {
                                 return;

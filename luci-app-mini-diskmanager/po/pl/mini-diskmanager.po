@@ -1271,3 +1271,68 @@ msgstr "Sprawdź pakiety S.M.A.R.T."
 
 msgid "S.M.A.R.T. tools"
 msgstr "Narzędzia S.M.A.R.T."
+
+# Mount
+
+msgid "Please select a partition first"
+msgstr "Najpierw wybierz partycję"
+
+msgid "UUID"
+msgstr "UUID"
+
+msgid "Device"
+msgstr "Urządzenie"
+
+msgid "Filesystem"
+msgstr "System plików"
+
+msgid "Mount point"
+msgstr "Punkt montowania"
+
+msgid "Use as root filesystem (/)"
+msgstr "Użyj jako główny system plików (/)"
+
+msgid "Use as external overlay (/overlay)"
+msgstr "Użyj jako zewnętrzną nakładkę (/overlay)"
+
+msgid "-- custom --"
+msgstr "-- niestandardowy --"
+
+msgid "Enter custom mount point"
+msgstr "Wprowadź niestandardowy punkt montowania"
+
+msgid "Mount options"
+msgstr "Opcje montowania"
+
+msgid "See \"mount\" manpage for details."
+msgstr "Zobacz stronę podręcznika \"mount\" dla szczegółów."
+
+msgid "Mount Points - Mount Entry"
+msgstr "Punkty montowania - Wpis montowania"
+
+msgid "Cancel"
+msgstr "Anuluj"
+
+msgid "Mount point cannot be empty"
+msgstr "Punkt montowania nie może być pusty"
+
+msgid "Mounted to %s"
+msgstr "Zamontowano w %s"
+
+msgid "Failed to mount: "
+msgstr "Montowanie nie powiodło się: "
+
+msgid "Mount failed: %s"
+msgstr "Montowanie nie powiodło się: %s"
+
+msgid "Mount"
+msgstr "Montuj"
+
+msgid "Selected partition is not mounted"
+msgstr "Wybrana partycja nie jest zamontowana"
+
+msgid "Unmounted %s"
+msgstr "Odmontowano %s"
+
+msgid "Failed to unmount: "
+msgstr "Odmontowanie nie powiodło się: "
