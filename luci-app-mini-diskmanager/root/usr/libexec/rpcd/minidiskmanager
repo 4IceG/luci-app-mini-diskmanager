@@ -307,6 +307,70 @@ find_free_space() {
 }
 
 ##################################################################################################################
+# FIND FREE SPACE INSIDE EXTENDED PARTITION / ZNAJDŹ WOLNE MIEJSCE WEWNĄTRZ PARTYCJI ROZSZERZONEJ
+##################################################################################################################
+find_free_space_in_extended() {
+    device="$1"
+    ext_num="$2"
+    
+    log_msg "DEBUG: Searching for free space inside extended partition $ext_num on $device"
+    
+    ext_info=$(/sbin/parted -s -m "$device" unit s print 2>/dev/null | awk -F: -v num="$ext_num" '$1==num {print $2":"$3}' || true)
+    
+    if [ -z "$ext_info" ]; then
+        log_msg "ERROR: Cannot get extended partition $ext_num boundaries"
+        return 1
+    fi
+    
+    ext_start=$(echo "$ext_info" | cut -d: -f1 | sed 's/s$//')
+    ext_end=$(echo "$ext_info" | cut -d: -f2 | sed 's/s$//')
+    
+    log_msg "DEBUG: Extended partition $ext_num boundaries: ${ext_start}s - ${ext_end}s"
+    
+    free=$(/sbin/parted -s -m "$device" unit s print free 2>/dev/null | grep "free;")
+    
+    log_msg "DEBUG: All free regions: $free"
+    
+    result=$(echo "$free" | awk -F: -v ext_start="$ext_start" -v ext_end="$ext_end" '
+        BEGIN {
+            max = 0
+            best_start = ""
+            best_end = ""
+        }
+        /free/ {
+            start=$2; end=$3; size=$4
+            gsub("s","",start); gsub("s","",end); gsub("s","",size)
+            
+            start = start + 0
+            end = end + 0
+            size = size + 0
+            
+            if (start < ext_start || end > ext_end) {
+                next
+            }
+            
+            if (size < 2048) {
+                next
+            }
+            
+            if (size > max) { 
+                max = size
+                best_start = start
+                best_end = end
+            }
+        }
+        END { 
+            if (max > 0) {
+                printf "%s:%s:%s", best_start, best_end, max
+            }
+        }
+    ')
+    
+    log_msg "DEBUG: find_free_space_in_extended result: '$result'"
+    echo "$result"
+}
+
+##################################################################################################################
 # PARTED ALWAYS NON-INTERACTIVE / PARTED ZAWSZE NIE-INTERAKTYWNY
 ##################################################################################################################
 parted_cmd() {
@@ -533,16 +597,18 @@ create_partition_impl() {
         *%) ;;
         *) partition_end="${partition_end}s" ;;
     esac
-
+    
     if echo "$partition_end" | grep -qE '^[0-9]+s$'; then
         num_end=$(echo "$partition_end" | sed 's/s$//')
+
         if [ -n "$free_end" ] && [ "$num_end" -gt "$free_end" ] 2>/dev/null; then
-            log_msg "Requested end $num_end > free_end $free_end, capping to free_end (Żądany koniec $num_end > free_end $free_end, ograniczanie do free_end)"
+            log_msg "WARNING: Requested end $num_end > free_end $free_end, capping to free_end (OSTRZEŻENIE: Żądany koniec $num_end > free_end $free_end, ograniczanie do free_end)"
             partition_end="${free_end}s"
         fi
     fi
 
     log_msg "Creating partition type=$type from ${free_start}s to ${partition_end} (Tworzenie partycji type=$type od ${free_start}s do ${partition_end})"
+    log_msg "DEBUG: size_param='$size_param', free_start=$free_start, free_end=$free_end, partition_end=$partition_end"
 
     if [ "$type" = "logical" ]; then
         log_msg "Refreshing partition table before checking for extended (Odświeżanie tablicy partycji przed sprawdzeniem rozszerzonej)"
@@ -573,7 +639,7 @@ create_partition_impl() {
         
         if [ -n "$ext_exists" ]; then
             log_msg "Extended partition $ext_exists already exists, will create logical inside it (Partycja rozszerzona $ext_exists już istnieje, utworzę logiczną wewnątrz)"
-            free_space=$(find_free_space "$disk")
+            free_space=$(find_free_space_in_extended "$disk" "$ext_exists")
             if [ -n "$free_space" ]; then
                 free_start=$(echo "$free_space" | cut -d: -f1)
                 free_end=$(echo "$free_space" | cut -d: -f2)
@@ -585,6 +651,37 @@ create_partition_impl() {
                 fi
                 
                 log_msg "Free space inside extended (Wolna przestrzeń wewnątrz rozszerzonej): ${free_start}s - ${free_end}s"
+                
+                case "$size_param" in
+                    *%|*s)
+                        partition_end="$size_param"
+                        ;;
+                    *MB|*mb)
+                        mb=$(echo "$size_param" | sed -E 's/[Mm][Bb]$//')
+                        secs=$(( mb * 1024 * 1024 / 512 ))
+                        partition_end="$(( free_start + secs ))s"
+                        ;;
+                    *GB|*gb)
+                        gb=$(echo "$size_param" | sed -E 's/[Gg][Bb]$//')
+                        secs=$(( gb * 1024 * 1024 * 1024 / 512 ))
+                        partition_end="$(( free_start + secs ))s"
+                        ;;
+                    *)
+                        if echo "$size_param" | grep -qE '^[0-9]+$'; then
+                            mb=$size_param
+                            secs=$(( mb * 1024 * 1024 / 512 ))
+                            partition_end="$(( free_start + secs ))s"
+                        else
+                            partition_end="${free_end}s"
+                        fi
+                        ;;
+                esac
+                
+                case "$partition_end" in
+                    *s) ;;
+                    *%) ;;
+                    *) partition_end="${partition_end}s" ;;
+                esac
                 
                 if echo "$partition_end" | grep -qE '^[0-9]+s$'; then
                     num_end=$(echo "$partition_end" | sed 's/s$//')
@@ -609,7 +706,23 @@ create_partition_impl() {
                 return $rc
             fi
             refresh_partitions "$disk"
-            free_space=$(find_free_space "$disk")
+            
+            ext_exists=$(/sbin/parted -s -m "$disk" print 2>/dev/null | awk -F: '/^[0-9]+:/ && tolower($5) ~ /extended/ {print $1}' | head -1 || true)
+            if [ -z "$ext_exists" ]; then
+                ext_exists=$(/sbin/parted -s -m "$disk" print 2>/dev/null | awk -F: '/^[0-9]+:/ && tolower($6) ~ /extended/ {print $1}' | head -1 || true)
+            fi
+            if [ -z "$ext_exists" ]; then
+                ext_exists=$(/sbin/parted -s "$disk" print 2>/dev/null | awk '/[Ee]xtended/ {print $1}' | head -1 || true)
+            fi
+            
+            log_msg "Newly created extended partition number: $ext_exists"
+            
+            if [ -n "$ext_exists" ]; then
+                free_space=$(find_free_space_in_extended "$disk" "$ext_exists")
+            else
+                free_space=$(find_free_space "$disk")
+            fi
+            
             if [ -n "$free_space" ]; then
                 free_start=$(echo "$free_space" | cut -d: -f1)
                 free_end=$(echo "$free_space" | cut -d: -f2)
@@ -621,6 +734,45 @@ create_partition_impl() {
                 fi
                 
                 log_msg "After extended (Po rozszerzonej): free region / wolny region ${free_start}s - ${free_end}s"
+                
+                case "$size_param" in
+                    *%|*s)
+                        partition_end="$size_param"
+                        ;;
+                    *MB|*mb)
+                        mb=$(echo "$size_param" | sed -E 's/[Mm][Bb]$//')
+                        secs=$(( mb * 1024 * 1024 / 512 ))
+                        partition_end="$(( free_start + secs ))s"
+                        ;;
+                    *GB|*gb)
+                        gb=$(echo "$size_param" | sed -E 's/[Gg][Bb]$//')
+                        secs=$(( gb * 1024 * 1024 * 1024 / 512 ))
+                        partition_end="$(( free_start + secs ))s"
+                        ;;
+                    *)
+                        if echo "$size_param" | grep -qE '^[0-9]+$'; then
+                            mb=$size_param
+                            secs=$(( mb * 1024 * 1024 / 512 ))
+                            partition_end="$(( free_start + secs ))s"
+                        else
+                            partition_end="${free_end}s"
+                        fi
+                        ;;
+                esac
+                
+                case "$partition_end" in
+                    *s) ;;
+                    *%) ;;
+                    *) partition_end="${partition_end}s" ;;
+                esac
+                
+                if echo "$partition_end" | grep -qE '^[0-9]+s$'; then
+                    num_end=$(echo "$partition_end" | sed 's/s$//')
+                    if [ -n "$free_end" ] && [ "$num_end" -gt "$free_end" ] 2>/dev/null; then
+                        log_msg "Requested end $num_end > free_end $free_end, capping (Żądany koniec $num_end > free_end $free_end, ograniczanie)"
+                        partition_end="${free_end}s"
+                    fi
+                fi
             fi
         fi
         parted_fstype=$(map_fstype_for_parted "$fstype")
@@ -888,10 +1040,15 @@ resize_partition() {
         return 1
     fi
 
-    if is_device_mounted "$partition"; then
-        log_msg "ERROR: Cannot resize mounted partition (BŁĄD: Nie można powiększyć zamontowanej partycji)"
-        echo 1 > "$RESULT_FILE"
-        return 1
+    fstype=$(blkid -o value -s TYPE "$partition" 2>/dev/null)
+    log_msg "Filesystem type: ${fstype:-unknown} (Typ systemu plików: ${fstype:-nieznany})"
+
+    if [ "$fstype" != "btrfs" ]; then
+        if is_device_mounted "$partition"; then
+            log_msg "ERROR: Cannot resize mounted partition (BŁĄD: Nie można powiększyć zamontowanej partycji)"
+            echo 1 > "$RESULT_FILE"
+            return 1
+        fi
     fi
 
     part_info=$(parted -s -m "$DEVICE" unit s print 2>/dev/null | grep "^${NUM}:")
@@ -936,9 +1093,6 @@ resize_partition() {
         return 0
     fi
 
-    fstype=$(blkid -o value -s TYPE "$partition" 2>/dev/null)
-    log_msg "Filesystem type: ${fstype:-unknown} (Typ systemu plików: ${fstype:-nieznany})"
-
     case "$fstype" in
         ext2|ext3|ext4)
             log_msg "Running e2fsck to check filesystem (Uruchamianie e2fsck w celu sprawdzenia systemu plików)"
@@ -947,6 +1101,19 @@ resize_partition() {
             
             if [ $fsck_rc -ne 0 ] && [ $fsck_rc -ne 1 ]; then
                 log_msg "WARNING: e2fsck returned $fsck_rc, but continuing... (OSTRZEŻENIE: e2fsck zwrócił $fsck_rc, ale kontynuuję...)"
+            fi
+            ;;
+        btrfs)
+            if ! is_device_mounted "$partition"; then
+                log_msg "Running btrfs check for filesystem (Uruchamianie sprawdzania systemu plików btrfs)"
+                btrfs check "$partition" >> "$LOG_FILE" 2>&1
+                fsck_rc=$?
+                
+                if [ $fsck_rc -ne 0 ]; then
+                    log_msg "WARNING: btrfs check returned $fsck_rc, but continuing... (OSTRZEŻENIE: btrfs check zwrócił $fsck_rc, ale kontynuuję...)"
+                fi
+            else
+                log_msg "Btrfs partition is mounted, skipping check (Partycja btrfs jest zamontowana, pomijanie sprawdzania)"
             fi
             ;;
     esac
@@ -972,6 +1139,32 @@ resize_partition() {
             log_msg "Resizing ext filesystem with resize2fs (Powiększanie systemu plików ext za pomocą resize2fs)"
             resize2fs "$partition" >> "$LOG_FILE" 2>&1
             rc=$?
+            ;;
+        btrfs)
+            log_msg "Resizing btrfs filesystem (Powiększanie systemu plików btrfs)"
+            
+            existing_mount=$(grep "^${partition} " /proc/mounts | cut -d' ' -f2)
+            
+            if [ -n "$existing_mount" ]; then
+                log_msg "Btrfs partition is already mounted at $existing_mount (Partycja btrfs jest już zamontowana w $existing_mount)"
+                btrfs filesystem resize max "$existing_mount" >> "$LOG_FILE" 2>&1
+                rc=$?
+            else
+                log_msg "Mounting btrfs partition temporarily for resize (Tymczasowe montowanie partycji btrfs do zmiany rozmiaru)"
+                temp_mount="/tmp/btrfs_resize_$$"
+                mkdir -p "$temp_mount"
+                mount "$partition" "$temp_mount" >> "$LOG_FILE" 2>&1
+                
+                if [ $? -eq 0 ]; then
+                    btrfs filesystem resize max "$temp_mount" >> "$LOG_FILE" 2>&1
+                    rc=$?
+                    umount "$temp_mount" >> "$LOG_FILE" 2>&1
+                    rmdir "$temp_mount"
+                else
+                    log_msg "ERROR: Failed to mount btrfs partition for resize (BŁĄD: Nie udało się zamontować partycji btrfs do zmiany rozmiaru)"
+                    rc=1
+                fi
+            fi
             ;;
         *)
             log_msg "WARNING: Automatic filesystem resize not supported for $fstype (OSTRZEŻENIE: Automatyczna zmiana rozmiaru systemu plików nie jest obsługiwana dla $fstype)"
@@ -1062,6 +1255,10 @@ format_partition() {
         f2fs)
             [ -n "$label" ] && mkfs.f2fs -f -l "$label" "$device" >> "$LOG_FILE" 2>&1 \
                              || mkfs.f2fs -f "$device" >> "$LOG_FILE" 2>&1
+            ;;
+        btrfs)
+            [ -n "$label" ] && mkfs.btrfs -f -L "$label" "$device" >> "$LOG_FILE" 2>&1 \
+                             || mkfs.btrfs -f "$device" >> "$LOG_FILE" 2>&1
             ;;
         swap)
             [ -n "$label" ] && mkswap -L "$label" "$device" >> "$LOG_FILE" 2>&1 \

@@ -186,6 +186,10 @@ return view.extend({
                     { name: 'mkf2fs', label: 'mkf2fs' },
                     { name: 'f2fsck', label: 'f2fsck' },
                     { name: 'f2fs-tools', label: 'f2fs-tools' }
+                ],
+                'Btrfs': [
+                    { name: 'kmod-fs-btrfs', label: 'kmod-fs-btrfs' },
+                    { name: 'btrfs-progs', label: 'btrfs-progs' }
                 ]
             });
         }, this);

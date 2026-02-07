@@ -40,6 +40,7 @@ document.head.append(E('style', {'type': 'text/css'},
 	--partition-color-primary: rgba(100, 149, 237, 0.8);
 	--partition-color-logical: rgba(173, 216, 230, 0.8);
 	--partition-color-f2fs: rgba(156, 39, 176, 0.8);
+	--partition-color-btrfs: rgba(255, 190, 92, 0.8);
 	--partition-color-unallocated: rgba(224, 224, 224, 0.5);
 	--partition-color-free: rgba(224, 224, 224, 0.5);
 	--partition-border: #cccccc;
@@ -74,6 +75,7 @@ document.head.append(E('style', {'type': 'text/css'},
 	--partition-color-primary: rgba(65, 105, 225, 0.8);
 	--partition-color-logical: rgba(100, 149, 237, 0.8);
 	--partition-color-f2fs: rgba(123, 31, 162, 0.8);
+	--partition-color-btrfs: rgba(230, 180, 100, 0.8);
 	--partition-color-unallocated: rgba(66, 66, 66, 0.5);
 	--partition-color-free: rgba(66, 66, 66, 0.5);
 	--partition-border: #555555;
@@ -305,6 +307,10 @@ document.head.append(E('style', {'type': 'text/css'},
 	background-color: var(--partition-color-f2fs);
 	color: #fff;
 }
+.partition-segment.btrfs { 
+	background-color: var(--partition-color-btrfs);
+	color: #fff;
+}
 .partition-segment.free .partition-label,
 .partition-segment.unallocated .partition-label,
 .partition-segment.free .partition-size,
@@ -315,7 +321,7 @@ document.head.append(E('style', {'type': 'text/css'},
 .partition-segment.free,
 .partition-segment.unallocated {
     color: #fff;
-    text-shadow: 0 1px 2px rgba(0,0,0,.4), 0 2px 6px rgba(0,0,0,.25);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
 }
 
 .partition-label {
@@ -393,6 +399,10 @@ document.head.append(E('style', {'type': 'text/css'},
 	background-color: var(--partition-color-f2fs); 
 	border-color: rgba(156, 39, 176, 1);
 }
+.partition-color-indicator.btrfs { 
+	background-color: var(--partition-color-btrfs); 
+	border-color: rgba(255, 205, 130, 1);
+}
 .partition-color-indicator.unallocated { 
 	background-color: var(--partition-color-unallocated); 
 	border-color: rgba(158, 158, 158, 1);
@@ -418,7 +428,7 @@ document.head.append(E('style', {'type': 'text/css'},
 	border-right: 1px solid rgba(255,255,255,0.4);
 	position: relative;
 	overflow: hidden;
-	text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+	text-shadow: 0 1px 2px rgba(0,0,0,0.6);
 }
 
 .partition-inner-segment:last-child {
@@ -449,6 +459,9 @@ document.head.append(E('style', {'type': 'text/css'},
 }
 .partition-inner-segment.f2fs { 
 	background-color: var(--partition-color-f2fs);
+}
+.partition-inner-segment.btrfs { 
+	background-color: var(--partition-color-btrfs);
 }
 .partition-inner-segment.logical { 
 	background-color: var(--partition-color-logical);
@@ -615,6 +628,10 @@ return view.extend({
 
             if (has('kmod-fs-f2fs') && has('mkf2fs') && has('f2fs-tools') && has('f2fsck')) {
                 fsSet.add('f2fs');
+            }
+
+            if (has('btrfs-progs') && has('kmod-fs-btrfs')) {
+                fsSet.add('btrfs');
             }
 
             if (has('dosfstools') && has('kmod-fs-vfat')) {
@@ -1922,6 +1939,7 @@ return view.extend({
             'exfat': 'exFAT',
             'swap': 'Swap',
             'f2fs': 'F2FS',
+            'btrfs': 'Btrfs',
             'extended': 'Extended',
             'unallocated': 'Unallocated'
         };
@@ -1967,6 +1985,7 @@ return view.extend({
             'exfat': 'rgba(255, 152, 0, 0.8)',
             'swap': 'rgba(244, 67, 54, 0.8)',
             'f2fs': 'rgba(156, 39, 176, 0.8)',
+            'btrfs': 'rgba(255, 99, 25, 0.8)',
             'extended': 'rgba(158, 158, 158, 0.8)',
             'primary': 'rgba(100, 149, 237, 0.8)',
             'logical': 'rgba(173, 216, 230, 0.8)',
@@ -1987,6 +2006,7 @@ return view.extend({
                 'exfat': 'rgba(230, 126, 34, 0.8)',
                 'swap': 'rgba(198, 40, 40, 0.8)',
                 'f2fs': 'rgba(123, 31, 162, 0.8)',
+                'btrfs': 'rgba(204, 79, 20, 0.8)',
                 'extended': 'rgba(97, 97, 97, 0.8)',
                 'primary': 'rgba(65, 105, 225, 0.8)',
                 'logical': 'rgba(100, 149, 237, 0.8)',
@@ -2097,11 +2117,11 @@ return view.extend({
         if (!partition) return false;
         
         let fstype = this.normalizeFsClass(partition.fstype);
-        if (fstype !== 'ext2' && fstype !== 'ext3' && fstype !== 'ext4') {
+        if (fstype !== 'ext2' && fstype !== 'ext3' && fstype !== 'ext4' && fstype !== 'btrfs') {
             return false;
         }
 
-        if (this.isPartitionMounted(partition)) {
+        if (fstype !== 'btrfs' && this.isPartitionMounted(partition)) {
             return false;
         }
 
@@ -2808,7 +2828,7 @@ return view.extend({
                                 font-size: 10px;
                                 color: #fff;
                                 background-color: var(--partition-color-free);
-                                text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+                                text-shadow: 0 1px 3px rgba(0,0,0,0.7);
                             `
                         });
                         freeSegment.appendChild(E('div', {'style': 'font-size: 9px; opacity: 0.85;'}, partitionLabel));
@@ -2885,6 +2905,7 @@ return view.extend({
             'ext3': 'Ext3',
             'ext2': 'Ext2',
             'f2fs': 'F2FS',
+            'btrfs': 'Btrfs',
             'ntfs': 'NTFS',
             'vfat': 'FAT32',
             'exfat': 'exFAT',
@@ -3318,7 +3339,7 @@ return view.extend({
                             'style': 'cursor: pointer; display: inline-flex; align-items: center; gap:6px;'
                         }, [
                             logCheckbox,
-                            E('span', {}, indent + '▶ ' + logPartitionName)
+                            E('span', {}, indent + '⤷ ' + logPartitionName)
                         ]);
 
                         let logTypeCell = '<span class="partition-color-indicator ' + logIndicatorClass + '"></span> ' + 
@@ -4395,7 +4416,7 @@ return view.extend({
             }.bind(this);
 
             const supported = await this.detectSupportedFilesystems();
-            const fsOptions = ['ext4', 'ext3', 'ext2', 'f2fs', 'ntfs', 'vfat', 'exfat', 'swap'];
+            const fsOptions = ['ext4', 'ext3', 'ext2', 'f2fs', 'btrfs', 'ntfs', 'vfat', 'exfat', 'swap'];
 
             ui.showModal(_('Create partition'), [
                 E('div', {'class': 'cbi-section'}, [
@@ -4427,14 +4448,25 @@ return view.extend({
                                     'change': function() {
                                         let fsTypeSelect = document.getElementById('fs_type');
                                         let labelInput = document.getElementById('part_label');
+                                        let reservedSection = document.getElementById('reserved_space_section');
                                         if (this.value === 'extended') {
                                             fsTypeSelect.disabled = true;
                                             fsTypeSelect.value = '';
                                             labelInput.disabled = true;
                                             labelInput.value = '';
+                                            if (reservedSection) {
+                                                reservedSection.style.display = 'none';
+                                            }
                                         } else {
                                             fsTypeSelect.disabled = false;
                                             labelInput.disabled = false;
+                                            if (reservedSection && fsTypeSelect.value) {
+                                                if (fsTypeSelect.value === 'ext2' || fsTypeSelect.value === 'ext3' || fsTypeSelect.value === 'ext4') {
+                                                    reservedSection.style.display = '';
+                                                } else {
+                                                    reservedSection.style.display = 'none';
+                                                }
+                                            }
                                         }
                                     }
                                 })
@@ -4502,7 +4534,7 @@ return view.extend({
                                 ])
                             ])
                         ]),
-                        E('div', {'class': 'cbi-value', 'id': 'reserved_space_section'}, [
+                        E('div', {'class': 'cbi-value', 'id': 'reserved_space_section', 'style': 'display: none;'}, [
                             E('label', {'class': 'cbi-value-title'}, _('Reserved space')),
                             E('div', {'class': 'cbi-value-field'}, [
                                 E('div', {'class': 'size-input-group'}, [
@@ -4573,7 +4605,7 @@ return view.extend({
                 fsSelect.innerHTML = '';
 
                 if (supported && supported.length > 0) {
-                    const preferred = ['ext4','ext3','ext2','f2fs','vfat','ntfs','exfat','swap'];
+                    const preferred = ['ext4','ext3','ext2','f2fs','btrfs','vfat','ntfs','exfat','swap'];
                     const ordered = preferred.filter(x => supported.indexOf(x) !== -1).concat(supported.filter(x => preferred.indexOf(x) === -1));
                     ordered.forEach((fsName, idx) => {
                         let label = this.getFriendlyFsName(fsName);
@@ -4791,7 +4823,7 @@ return view.extend({
         this.detectSupportedFilesystems().then((supported) => {
             let fsOptions = [];
             if (supported && supported.length > 0) {
-                const preferred = ['ext4','ext3','ext2','f2fs','vfat','ntfs','exfat','swap'];
+                const preferred = ['ext4','ext3','ext2','f2fs','btrfs','vfat','ntfs','exfat','swap'];
                 const ordered = preferred.filter(x => supported.indexOf(x) !== -1).concat(supported.filter(x => preferred.indexOf(x) === -1));
                 ordered.forEach((fsName, idx) => {
                     fsOptions.push(E('option', {'value': fsName, ...(idx===0?{'selected':'selected'}:{})}, this.getFriendlyFsName(fsName)));
