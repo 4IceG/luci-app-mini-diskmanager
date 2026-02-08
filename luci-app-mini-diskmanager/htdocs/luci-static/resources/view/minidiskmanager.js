@@ -168,6 +168,11 @@ document.head.append(E('style', {'type': 'text/css'},
     padding: 0.25em 0.5em;
 }
 
+.ifacebox-head.port-label {
+    cursor: pointer;
+    user-select: none;
+}
+
 .disks-info-label-status {
 	display: inline;
 	margin: 0 4px !important;
@@ -256,6 +261,8 @@ document.head.append(E('style', {'type': 'text/css'},
 	position: relative;
 	opacity: 0.85;
 	box-sizing: border-box;
+	cursor: pointer;
+	user-select: none;
 }
 
 .partition-segment:last-child {
@@ -321,7 +328,7 @@ document.head.append(E('style', {'type': 'text/css'},
 .partition-segment.free,
 .partition-segment.unallocated {
     color: #fff;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.7);
 }
 
 .partition-label {
@@ -332,7 +339,9 @@ document.head.append(E('style', {'type': 'text/css'},
 	text-overflow: ellipsis;
 	max-width: 100%;
 	line-height: 1.3;
-	text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+	text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+	cursor: pointer;
+	user-select: none;
 }
 
 .partition-size {
@@ -340,7 +349,9 @@ document.head.append(E('style', {'type': 'text/css'},
 	font-weight: 600;
 	margin-top: 2px;
 	line-height: 1.2;
-	text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+	text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+	cursor: pointer;
+	user-select: none;
 }
 
 .partition-color-indicator {
@@ -428,7 +439,7 @@ document.head.append(E('style', {'type': 'text/css'},
 	border-right: 1px solid rgba(255,255,255,0.4);
 	position: relative;
 	overflow: hidden;
-	text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+	text-shadow: 0 1px 2px rgba(0,0,0,0.7);
 }
 
 .partition-inner-segment:last-child {
@@ -512,6 +523,8 @@ return view.extend({
     MIN_VISIBLE_SIZE: 200 * 1024 * 1024, // 200 MB
     wipeAllEnabled: false,
     hasDdSupport: null,
+    isLoadingDiskData: false,
+    lastSelectedDiskForLoading: null,
     
     viewName: 'minidiskmanager',
 
@@ -725,6 +738,18 @@ return view.extend({
         } catch (e) {
             console.error('disableActiveButtonsAndRemember failed', e);
             return { restore: function() {} };
+        }
+    },
+
+    setDiskControlsEnabled: function(enabled) {
+        const diskSelect = document.getElementById('disk-select');
+        const refreshButton = document.getElementById('btn-refresh-disk');
+        
+        if (diskSelect) {
+            diskSelect.disabled = !enabled;
+        }
+        if (refreshButton) {
+            refreshButton.disabled = !enabled;
         }
     },
 
@@ -2223,6 +2248,7 @@ return view.extend({
         this.mountedPartitions = data[1] || {};
 
         let diskSelect = E('select', {
+            'id': 'disk-select',
             'class': 'cbi-input-select',
             'style': 'max-width: 400px;',
             'change': ui.createHandlerFn(this, function(ev) {
@@ -2256,6 +2282,7 @@ return view.extend({
                 E('span', {'class': 'control-group'}, [
                     diskSelect,
                     E('button', {
+                        'id': 'btn-refresh-disk',
                         'class': 'btn cbi-button',
                         'click': ui.createHandlerFn(this, function() {
                             if (!this.selectedDisk || this.selectedDisk === '') {
@@ -5545,74 +5572,110 @@ return view.extend({
             return;
         }
 
+        const diskToLoad = this.selectedDisk;
+        this.lastSelectedDiskForLoading = diskToLoad;
+
+        this.isLoadingDiskData = true;
+        this.setDiskControlsEnabled(false);
+
         let contentArea = document.getElementById('disk-content-area');
-        if (!contentArea) return;
+        if (!contentArea) {
+            this.isLoadingDiskData = false;
+            this.setDiskControlsEnabled(true);
+            return;
+        }
 
         contentArea.innerHTML = '';
         contentArea.appendChild(E('div', {'class': 'alert alert-info'}, 
             E('span', {'class': 'spinning'}, _('Loading disk information...'))));
 
-        Promise.all([
-            this.getDiskInfo(this.selectedDisk),
-            this.getMountedPartitions()
-        ]).then(results => {
-            let diskInfo = results[0];
-            this.mountedPartitions = results[1];
-            this.diskData[this.selectedDisk] = diskInfo;
+        setTimeout(() => {
+            const diskSelect = document.getElementById('disk-select');
+            const currentSelectedInDropdown = diskSelect ? diskSelect.value : null;
+            
+            if (currentSelectedInDropdown !== this.lastSelectedDiskForLoading || 
+                this.lastSelectedDiskForLoading !== diskToLoad ||
+                this.selectedDisk !== diskToLoad) {
+                console.log('Disk selection changed during loading verification, aborting load for:', diskToLoad);
+                this.isLoadingDiskData = false;
+                this.setDiskControlsEnabled(true);
+                return;
+            }
 
-            let diskDetails = E('div', {'class': 'cbi-value'}, [
-                E('div', { 
-                    'class': 'cbi-value', 
-                    'id': 'disk-info-compact',
-                    'style': 'margin-bottom: 0.5em; text-align: left;'
-                }, [
-                    E('small', { 'style': 'font-size: 0.9em; color: var(--text-color-medium, #111);' }, [
-                        _('Mount Status') + ': ',
-                        E('span', { 'style': 'color: ' + (this.hasAnyPartitionMounted(this.selectedDisk) ? 
-                            'var(--app-mini-diskmanager-primary)' : 'var(--text-color-secondary)') }, 
-                            [(this.hasAnyPartitionMounted(this.selectedDisk) ? _('Mounted') : _('Not mounted')).toUpperCase()])
+            Promise.all([
+                this.getDiskInfo(diskToLoad),
+                this.getMountedPartitions()
+            ]).then(results => {
+                if (this.selectedDisk !== diskToLoad || this.lastSelectedDiskForLoading !== diskToLoad) {
+                    console.log('Disk changed during data loading, discarding results for:', diskToLoad);
+                    this.isLoadingDiskData = false;
+                    this.setDiskControlsEnabled(true);
+                    return;
+                }
+
+                let diskInfo = results[0];
+                this.mountedPartitions = results[1];
+                this.diskData[diskToLoad] = diskInfo;
+
+                let diskDetails = E('div', {'class': 'cbi-value'}, [
+                    E('div', { 
+                        'class': 'cbi-value', 
+                        'id': 'disk-info-compact',
+                        'style': 'margin-bottom: 0.5em; text-align: left;'
+                    }, [
+                        E('small', { 'style': 'font-size: 0.9em; color: var(--text-color-medium, #111);' }, [
+                            _('Mount Status') + ': ',
+                            E('span', { 'style': 'color: ' + (this.hasAnyPartitionMounted(diskToLoad) ? 
+                                'var(--app-mini-diskmanager-primary)' : 'var(--text-color-secondary)') }, 
+                                [(this.hasAnyPartitionMounted(diskToLoad) ? _('Mounted') : _('Not mounted')).toUpperCase()])
+                        ])
                     ])
-                ])
-            ]);
+                ]);
 
-            let partitionLayoutSection = E('div', {'class': 'partition-layout-section'}, [
-                E('div', {'class': 'ifacebox', 'style': 'width:98%;table-layout:fixed;'}, [
-                    E('div', {
-                        'class': 'ifacebox-head port-label', 
-                        'style': 'font-weight:bold;padding:8px;text-align:center;',
-                        'click': ui.createHandlerFn(this, function(ev) {
-                            if (this.hasAnyPartitionMounted(this.selectedDisk)) {
-                                return;
-                            }  
-                            let wipeCheckbox = document.getElementById('wipeall-checkbox');
-                            if (wipeCheckbox && !wipeCheckbox.disabled) {
-                                wipeCheckbox.checked = !wipeCheckbox.checked;
-                                wipeCheckbox.dispatchEvent(new Event('change', { bubbles: true }));
-                            }
-                        })
-                    }, _('Partition Layout')),
-                    E('div', {'class': 'ifacebox-body'}, [
-                        this.renderPartitionBar(diskInfo)
+                let partitionLayoutSection = E('div', {'class': 'partition-layout-section'}, [
+                    E('div', {'class': 'ifacebox', 'style': 'width:98%;table-layout:fixed;'}, [
+                        E('div', {
+                            'class': 'ifacebox-head port-label', 
+                            'style': 'font-weight:bold;padding:8px;text-align:center;',
+                            'click': ui.createHandlerFn(this, function(ev) {
+                                if (this.hasAnyPartitionMounted(diskToLoad)) {
+                                    return;
+                                }  
+                                let wipeCheckbox = document.getElementById('wipeall-checkbox');
+                                if (wipeCheckbox && !wipeCheckbox.disabled) {
+                                    wipeCheckbox.checked = !wipeCheckbox.checked;
+                                    wipeCheckbox.dispatchEvent(new Event('change', { bubbles: true }));
+                                }
+                            })
+                        }, _('Partition Layout')),
+                        E('div', {'class': 'ifacebox-body'}, [
+                            this.renderPartitionBar(diskInfo)
+                        ])
                     ])
-                ])
-            ]);
+                ]);
 
-            contentArea.innerHTML = '';
-            contentArea.appendChild(diskDetails);
-            contentArea.appendChild(partitionLayoutSection);
-            contentArea.appendChild(E('h3', {'class': 'fade-in'}, _('Partitions')));
-            contentArea.appendChild(E('div', {'class': 'partition-table-container'}, [
-                this.renderPartitionTable(diskInfo)
-            ]));
+                contentArea.innerHTML = '';
+                contentArea.appendChild(diskDetails);
+                contentArea.appendChild(partitionLayoutSection);
+                contentArea.appendChild(E('h3', {'class': 'fade-in'}, _('Partitions')));
+                contentArea.appendChild(E('div', {'class': 'partition-table-container'}, [
+                    this.renderPartitionTable(diskInfo)
+                ]));
 
-            this.updateActionButtons();
-        }).catch(err => {
-            console.log('refreshDiskView error:', err);
-            contentArea.innerHTML = '';
-            contentArea.appendChild(E('div', {'class': 'alert alert-danger'}, 
-                _('Error loading disk information: ') + (err.message || err.toString())));
-            this.updateActionButtons();
-        });
+                this.updateActionButtons();
+                this.isLoadingDiskData = false;
+                this.setDiskControlsEnabled(true);
+            }).catch(err => {
+                console.log('refreshDiskView error:', err);
+                contentArea.innerHTML = '';
+                contentArea.appendChild(E('div', {'class': 'alert alert-danger'}, 
+                    _('Error loading disk information: ') + (err.message || err.toString())));
+                this.updateActionButtons();
+                
+                this.isLoadingDiskData = false;
+                this.setDiskControlsEnabled(true);
+            });
+        }, 300); // spin up HDD
     },
 
     handleSaveApply: null,
