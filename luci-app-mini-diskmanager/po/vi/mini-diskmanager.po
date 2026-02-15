@@ -1328,3 +1328,9 @@ msgstr "Đã ngắt kết nối %s"
 
 msgid "Failed to unmount: "
 msgstr "Ngắt kết nối thất bại: "
+
+msgid "Last selected disk has changed and did not pass verification. Data collection for: %s will be aborted. The page will be reloaded."
+msgstr "Ổ đĩa được chọn lần cuối đã thay đổi và không vượt qua xác minh. Việc thu thập dữ liệu cho: %s sẽ bị hủy. Trang sẽ được tải lại."
+
+msgid "Last selected disk has changed. Refreshing the view..."
+msgstr "Ổ đĩa được chọn lần cuối đã thay đổi. Đang làm mới giao diện..."

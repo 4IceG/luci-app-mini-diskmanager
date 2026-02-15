@@ -1330,3 +1330,9 @@ msgstr "%s ausgehängt"
 
 msgid "Failed to unmount: "
 msgstr "Aushängen fehlgeschlagen: "
+
+msgid "Last selected disk has changed and did not pass verification. Data collection for: %s will be aborted. The page will be reloaded."
+msgstr "Der zuletzt ausgewählte Datenträger wurde geändert und hat die Überprüfung nicht bestanden. Die Datenerfassung für: %s wird abgebrochen. Die Seite wird neu geladen."
+
+msgid "Last selected disk has changed. Refreshing the view..."
+msgstr "Der zuletzt ausgewählte Datenträger wurde geändert. Ansicht wird aktualisiert..."

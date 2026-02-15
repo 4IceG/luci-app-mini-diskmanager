@@ -7,8 +7,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-mini-diskmanager
-PKG_VERSION:=1.0.28
-PKG_RELEASE:=20260208
+PKG_VERSION:=1.0.29
+PKG_RELEASE:=20260215
 LUCI_TITLE:=LuCI JS Support for Mini Disk Manager
 MAINTAINER:=Rafał Wabik <4Rafal@gmail.com>
 LUCI_DESCRIPTION:=Interface for managing disk partitions and filesystems in OpenWrt.

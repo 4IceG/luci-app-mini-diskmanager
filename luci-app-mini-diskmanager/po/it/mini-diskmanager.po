@@ -1324,3 +1324,9 @@ msgstr "%s smontato"
 
 msgid "Failed to unmount: "
 msgstr "Smontaggio fallito: "
+
+msgid "Last selected disk has changed and did not pass verification. Data collection for: %s will be aborted. The page will be reloaded."
+msgstr "L’ultimo disco selezionato è cambiato e non ha superato la verifica. La raccolta dei dati per: %s verrà interrotta. La pagina verrà ricaricata."
+
+msgid "Last selected disk has changed. Refreshing the view..."
+msgstr "L’ultimo disco selezionato è cambiato. Aggiornamento della vista..."

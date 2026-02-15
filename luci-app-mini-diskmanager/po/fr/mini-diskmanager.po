@@ -1389,3 +1389,9 @@ msgstr "%s démonté"
 
 msgid "Failed to unmount: "
 msgstr "Échec du démontage : "
+
+msgid "Last selected disk has changed and did not pass verification. Data collection for: %s will be aborted. The page will be reloaded."
+msgstr "Le dernier disque sélectionné a changé et n’a pas passé la vérification. La collecte des données pour : %s sera interrompue. La page sera rechargée."
+
+msgid "Last selected disk has changed. Refreshing the view..."
+msgstr "Le dernier disque sélectionné a changé. Actualisation de l’affichage..."

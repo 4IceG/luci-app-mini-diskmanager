@@ -1336,3 +1336,9 @@ msgstr "Odmontowano %s"
 
 msgid "Failed to unmount: "
 msgstr "Odmontowanie nie powiodło się: "
+
+msgid "Last selected disk has changed and did not pass verification. Data collection for: %s will be aborted. The page will be reloaded."
+msgstr "Ostatnio wybrany dysk został zmieniony i nie przeszedł weryfikacji. Zbieranie danych dla: %s zostanie przerwane. Strona zostanie przeładowana."
+
+msgid "Last selected disk has changed. Refreshing the view..."
+msgstr "Ostatnio wybrany dysk został zmieniony. Odświeżanie widoku..."

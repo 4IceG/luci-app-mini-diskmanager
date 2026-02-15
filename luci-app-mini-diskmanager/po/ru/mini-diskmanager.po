@@ -1331,3 +1331,9 @@ msgstr "Размонтировано %s"
 
 msgid "Failed to unmount: "
 msgstr "Не удалось размонтировать: "
+
+msgid "Last selected disk has changed and did not pass verification. Data collection for: %s will be aborted. The page will be reloaded."
+msgstr "Последний выбранный диск был изменён и не прошёл проверку. Сбор данных для: %s будет прерван. Страница будет перезагружена."
+
+msgid "Last selected disk has changed. Refreshing the view..."
+msgstr "Последний выбранный диск был изменён. Обновление представления..."

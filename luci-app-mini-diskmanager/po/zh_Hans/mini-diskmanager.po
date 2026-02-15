@@ -1328,3 +1328,9 @@ msgstr "已卸载 %s"
 
 msgid "Failed to unmount: "
 msgstr "卸载失败："
+
+msgid "Last selected disk has changed and did not pass verification. Data collection for: %s will be aborted. The page will be reloaded."
+msgstr "上次选择的磁盘已更改且未通过验证，将中止对 %s 的数据收集。页面将重新加载。"
+
+msgid "Last selected disk has changed. Refreshing the view..."
+msgstr "上次选择的磁盘已更改。正在刷新视图..."

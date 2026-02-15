@@ -931,17 +931,56 @@ return view.extend({
 
     getFullDiskModel: function(device) {
         return Promise.all([
-            L.resolveDefault(fs.exec('/usr/sbin/smartctl', ['-i', '/dev/' + device]), null),
-            L.resolveDefault(fs.exec('/usr/bin/lsblk', ['-dno', 'VENDOR,MODEL', '/dev/' + device]), null),
             L.resolveDefault(fs.read('/sys/block/' + device + '/device/vendor'), null),
-            L.resolveDefault(fs.read('/sys/block/' + device + '/device/model'), null)
+            L.resolveDefault(fs.read('/sys/block/' + device + '/device/model'), null),
+            L.resolveDefault(fs.exec('/usr/bin/lsblk', ['-dno', 'VENDOR,MODEL', '/dev/' + device]), null),
+            L.resolveDefault(fs.exec('/usr/sbin/smartctl', ['-i', '/dev/' + device]), null)
         ]).then(results => {
             let modelFamily = '';
             let model = '';
             let vendor = '';
             
-            if (results[0] && results[0].code === 0) {
-                let smartOutput = results[0].stdout;
+            if (results[0] && results[0].trim()) {
+                vendor = results[0].trim();
+            }
+            if (results[1] && results[1].trim()) {
+                model = results[1].trim();
+            }
+            
+            if (vendor && model) {
+                return vendor + ' ' + model;
+            } else if (model) {
+                return model;
+            } else if (vendor) {
+                return vendor;
+            }
+            
+            if (results[2] && results[2].code === 0 && results[2].stdout.trim()) {
+                let lsblkOutput = results[2].stdout.trim();
+                let parts = lsblkOutput.split(/\s+/, 2);
+                
+                if (parts.length >= 2) {
+                    if (parts[0] && parts[0] !== '') {
+                        vendor = parts[0].trim();
+                    }
+                    if (parts[1] && parts[1] !== '') {
+                        model = parts[1].trim();
+                    }
+                } else if (parts.length === 1 && parts[0] && parts[0] !== '') {
+                    model = parts[0].trim();
+                }
+                
+                if (vendor && model) {
+                    return vendor + ' ' + model;
+                } else if (model) {
+                    return model;
+                } else if (vendor) {
+                    return vendor;
+                }
+            }
+            
+            if (results[3] && results[3].code === 0) {
+                let smartOutput = results[3].stdout;
                 
                 let modelFamilyMatch = smartOutput.match(/Model Family:\s*(.+)/i);
                 if (modelFamilyMatch && modelFamilyMatch[1].trim()) {
@@ -964,42 +1003,9 @@ return view.extend({
                     return model;
                 } else if (modelFamily) {
                     return modelFamily;
+                } else if (vendor) {
+                    return vendor;
                 }
-            }
-            
-            if (!model && !modelFamily) {
-                if (results[1] && results[1].code === 0 && results[1].stdout.trim()) {
-                    let lsblkOutput = results[1].stdout.trim();
-                    let parts = lsblkOutput.split(/\s+/, 2);
-                    
-                    if (parts.length >= 2) {
-                        if (parts[0] && parts[0] !== '') {
-                            vendor = parts[0].trim();
-                        }
-                        if (parts[1] && parts[1] !== '') {
-                            model = parts[1].trim();
-                        }
-                    } else if (parts.length === 1 && parts[0] && parts[0] !== '') {
-                        model = parts[0].trim();
-                    }
-                }
-            }
-            
-            if (!model && !vendor) {
-                if (results[2] && results[2].trim()) {
-                    vendor = results[2].trim();
-                }
-                if (results[3] && results[3].trim()) {
-                    model = results[3].trim();
-                }
-            }
-            
-            if (vendor && model) {
-                return vendor + ' ' + model;
-            } else if (model) {
-                return model;
-            } else if (vendor) {
-                return vendor;
             }
             
             return '';
@@ -5597,8 +5603,19 @@ return view.extend({
                 this.lastSelectedDiskForLoading !== diskToLoad ||
                 this.selectedDisk !== diskToLoad) {
                 console.log('Disk selection changed during loading verification, aborting load for:', diskToLoad);
+                ui.addNotification(null, E('p', _('Last selected disk has changed and did not pass verification. Data collection for: %s will be aborted. The page will be reloaded.').format(diskToLoad)), 'warning');
+                
+                localStorage.removeItem(`luci-app-${this.viewName}-selectedDisk`);
+                this.selectedDisk = '';
+                
                 this.isLoadingDiskData = false;
                 this.setDiskControlsEnabled(true);
+                contentArea.innerHTML = '';
+                contentArea.appendChild(E('div', {'class': 'alert alert-warning'}, 
+                    _('Last selected disk has changed. Refreshing the view...')));
+                setTimeout(function() {
+                    window.location.reload();
+                }, 1500);
                 return;
             }
 
