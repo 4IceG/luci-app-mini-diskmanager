@@ -1,64 +1,18 @@
-name: Build and Release
+name: Push / PR
 
 on:
   push:
-    branches:
-      - main
-      - master
-    paths:
-      - 'luci-app-mini-diskmanager/Makefile'
-      - '.github/workflows/**'
   pull_request:
   workflow_dispatch:
 
 jobs:
-  check-version:
-    name: Check for version change
-    runs-on: ubuntu-latest
-    outputs:
-      version: ${{ steps.get_version.outputs.version }}
-      should_release: ${{ steps.check_release.outputs.should_release }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Get current version from Makefile
-        id: get_version
-        run: |
-          VERSION=$(grep "PKG_VERSION:=" luci-app-mini-diskmanager/Makefile | head -1 | cut -d'=' -f2 | tr -d ' ')
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "Znaleziona wersja: $VERSION"
-
-      - name: Check if this version already has a release
-        id: check_release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          VERSION="${{ steps.get_version.outputs.version }}"
-          if gh release view "v$VERSION" >/dev/null 2>&1; then
-            echo "should_release=false" >> $GITHUB_OUTPUT
-          else
-            echo "should_release=true" >> $GITHUB_OUTPUT
-          fi
-
   build:
-    name: ${{ matrix.arch }} - OpenWrt ${{ matrix.openwrt_version }}
+    name: ${{ matrix.arch }} build
     runs-on: ubuntu-latest
-    needs: check-version
-    if: needs.check-version.outputs.should_release == 'true'
     strategy:
-      fail-fast: false
       matrix:
         arch:
           - x86_64
-          - aarch64_generic
-          - mipsel_24kc
-          - arm_cortex-a9
-        openwrt_version:
-          - '25.12.0-rc4'
-          - '23.05'
 
     steps:
       - name: Checkout
@@ -77,96 +31,9 @@ jobs:
         env:
           ARCH: ${{ matrix.arch }}
           PACKAGES: luci-base luci-app-mini-diskmanager
-          VERSION: ${{ matrix.openwrt_version }}
-
-      - name: Find package files
-        id: find_packages
-        run: |
-          if ls bin/packages/${{ matrix.arch }}/**/*-mini-diskmanager-*.apk 2>/dev/null; then
-            echo "package_type=apk" >> $GITHUB_OUTPUT
-            echo "package_files=$(ls bin/packages/${{ matrix.arch }}/**/*-mini-diskmanager-*.apk)" >> $GITHUB_OUTPUT
-          elif ls bin/packages/${{ matrix.arch }}/**/*-mini-diskmanager-*.ipk 2>/dev/null; then
-            echo "package_type=ipk" >> $GITHUB_OUTPUT
-            echo "package_files=$(ls bin/packages/${{ matrix.arch }}/**/*-mini-diskmanager-*.ipk)" >> $GITHUB_OUTPUT
-          else
-            exit 1
-          fi
 
       - name: Store packages
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.arch }}-openwrt-${{ matrix.openwrt_version }}-packages
-          path: |
-            bin/packages/${{ matrix.arch }}/**/*-mini-diskmanager-*.apk
-            bin/packages/${{ matrix.arch }}/**/*-mini-diskmanager-*.ipk
-          retention-days: 90
-
-      - name: Prepare files for release
-        run: |
-          mkdir -p AUTOMAT/${{ matrix.arch }}
-          find bin/packages/${{ matrix.arch }} -name "*-mini-diskmanager-*.apk" -o -name "*-mini-diskmanager-*.ipk" | while read file; do
-            if [ -f "$file" ]; then
-              cp "$file" "AUTOMAT/${{ matrix.arch }}/"
-            fi
-          done
-
-      - name: Upload release files
-        uses: actions/upload-artifact@v4
-        with:
-          name: release-${{ matrix.arch }}-openwrt-${{ matrix.openwrt_version }}
-          path: AUTOMAT/${{ matrix.arch }}/*
-          retention-days: 1
-
-  release:
-    name: Create Release
-    needs: [check-version, build]
-    runs-on: ubuntu-latest
-    if: needs.check-version.outputs.should_release == 'true'
-    
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Download all artifacts
-        uses: actions/download-artifact@v4
-        with:
-          pattern: release-*
-          path: downloaded_artifacts
-
-      - name: Reorganize files with folder structure
-        run: |
-          mkdir -p AUTOMAT
-          for artifact_dir in downloaded_artifacts/release-*; do
-            if [ -d "$artifact_dir" ]; then
-              arch=$(basename "$artifact_dir" | sed 's/release-\([^-]*\).*/\1/')
-              mkdir -p "AUTOMAT/$arch"
-              cp -r "$artifact_dir"/* "AUTOMAT/$arch/" 2>/dev/null || true
-            fi
-          done
-
-          ls -R AUTOMAT/
-
-      - name: Create Git Tag
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          VERSION="v${{ needs.check-version.outputs.version }}"
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git tag -a "$VERSION" -m "Release $VERSION"
-          git push origin "$VERSION"
-
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: v${{ needs.check-version.outputs.version }}
-          name: Luci App Mini Diskmanager v${{ needs.check-version.outputs.version }}
-          files: AUTOMAT/**/*
-          draft: false
-          prerelease: false
-          generate_release_notes: true
-          body: |
-            ## Luci App Mini Diskmanager - v${{ needs.check-version.outputs.version }}
-         
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          name: ${{ matrix.arch }}-packages
+          path: bin/packages/${{ matrix.arch }}/**/*-mini-diskmanager-*.apk
